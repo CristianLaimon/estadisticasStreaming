@@ -36,30 +36,29 @@ namespace estadisticasStreaming
         {
             toolStripStatusLabel1.Text = rutaArchivo;
             int fila = 0;
-            StreamReader lector;
 
             using (FileStream fs = new FileStream(rutaArchivo, FileMode.Open, FileAccess.Read))
             {
-                lector = new StreamReader(fs);
-
-                while (!lector.EndOfStream)
+                using (StreamReader lector = new StreamReader(fs))
                 {
-                    string linea = lector.ReadLine();
-                    string[] lineaElementos = linea.Split(','); 
-                    dataGridView1.Rows.Add();
-
-                    for (int i = 0; i < lineaElementos.Length; i++) //Es -1 para que se consideren los índices de las filas, ya que estos empiezan en 0 y no en 1.
+                    while (!lector.EndOfStream)
                     {
-                        dataGridView1.Rows[fila].Cells[i].Value = lineaElementos[i];
-                    }
+                        string linea = lector.ReadLine();
+                        string[] lineaElementos = linea.Split(','); 
+                        dataGridView1.Rows.Add();
 
-                    fila++;
+                        for (int i = 0; i < lineaElementos.Length; i++) //Es -1 para que se consideren los índices de las filas, ya que estos empiezan en 0 y no en 1.
+                        {
+                            dataGridView1.Rows[fila].Cells[i].Value = lineaElementos[i];
+                        }
+
+                        fila++;
+                    }
                 }
             }
-            lector.Close();
         }
 
-        private void ObtenerDatos() //Los obtiene de la tabla. El proceso de análisis de datos está totalmente separado del proceso de lectura e impresión de los mismos.
+        private void ObtenerDatos() 
         {
             listaRegistros.Clear();
 
@@ -67,6 +66,49 @@ namespace estadisticasStreaming
             {
                 listaRegistros.Add(new Registro(fila.Cells[0].Value.ToString(), (byte)fila.Cells[1].Value, fila.Cells[0].Value.ToString(), fila.Cells[0].Value.ToString(), fila.Cells[0].Value.ToString(), fila.Cells[0].Value.ToString(), fila.Cells[0].Value.ToString(), fila.Cells[0].Value.ToString(), fila.Cells[0].Value.ToString(), (short)fila.Cells[0].Value, (short)fila.Cells[0].Value));
             }
+
+            Estadisticas.TotalUsuarios = listaRegistros.Count;
+
+            foreach (Registro r in listaRegistros) //Entre el 70% y el 90% no cuenta para ninguno de estos? omg
+            {
+                if(r.MinutosVistos <= 10) Estadisticas.NoStarters++;
+                else if(r.MinutosVistos <= (short)(r.Duracion*.7)) Estadisticas.NoWatchers++; 
+                else if (r.MinutosVistos >= (short)(r.Duracion * .9)) Estadisticas.NoCompleters++;
+
+                if (r.MinutosVistos == r.Duracion) Estadisticas.VerCompleto++;
+                else Estadisticas.VerIncompleto++;
+
+                if (r.Tipo == "PELICULA") Estadisticas.Peliculas++;
+                else Estadisticas.Series++;
+
+                switch (r.Genero)
+                {
+                    case "ROMANCE": Estadisticas.Romance++;
+                        break;
+                    case "DRAMA": Estadisticas.Drama++;
+                        break;
+                    case "TERROR": Estadisticas.Terror++;
+                        break;
+                    case "SUSPENSO": Estadisticas.Suspenso++;
+                        break;
+                    case "ACCION": Estadisticas.Accion++;
+                        break;
+                }
+
+                //switch (r.AnioEstreno)
+                //{
+                //    case "2020": Estadisticas.
+                //}
+            }
+
+
+
+
+
+
+
+
+
 
 
         }
