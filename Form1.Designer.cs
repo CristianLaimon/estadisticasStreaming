@@ -34,7 +34,6 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.abrirNuevoArchivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.abrirConsumotxtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.créditosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hechoPorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dianaYulissaSesmaSantiagoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -99,8 +98,7 @@
             // abrirToolStripMenuItem
             // 
             this.abrirToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.abrirNuevoArchivoToolStripMenuItem,
-            this.abrirConsumotxtToolStripMenuItem});
+            this.abrirNuevoArchivoToolStripMenuItem});
             this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
             this.abrirToolStripMenuItem.Size = new System.Drawing.Size(56, 24);
             this.abrirToolStripMenuItem.Text = "Abrir";
@@ -111,13 +109,6 @@
             this.abrirNuevoArchivoToolStripMenuItem.Size = new System.Drawing.Size(249, 26);
             this.abrirNuevoArchivoToolStripMenuItem.Text = "Abrir archivo existente...";
             this.abrirNuevoArchivoToolStripMenuItem.Click += new System.EventHandler(this.abrirNuevoArchivoToolStripMenuItem_Click);
-            // 
-            // abrirConsumotxtToolStripMenuItem
-            // 
-            this.abrirConsumotxtToolStripMenuItem.Name = "abrirConsumotxtToolStripMenuItem";
-            this.abrirConsumotxtToolStripMenuItem.Size = new System.Drawing.Size(249, 26);
-            this.abrirConsumotxtToolStripMenuItem.Text = "Abrir consumo.txt";
-            this.abrirConsumotxtToolStripMenuItem.Click += new System.EventHandler(this.abrirConsumotxtToolStripMenuItem_Click);
             // 
             // créditosToolStripMenuItem
             // 
@@ -326,6 +317,5 @@
         private DataGridViewTextBoxColumn minutosVistos;
         private Button button1;
         private OpenFileDialog openFileDialog1;
-        private ToolStripMenuItem abrirConsumotxtToolStripMenuItem;
     }
 }

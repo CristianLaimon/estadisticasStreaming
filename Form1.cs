@@ -3,6 +3,8 @@ namespace estadisticasStreaming
     public partial class Form1 : Form
     {
         private string rutaArchivo;
+        private static List<Registro> listaRegistros;
+
         public Form1()
         {
             InitializeComponent();
@@ -12,60 +14,52 @@ namespace estadisticasStreaming
         {
             toolStripStatusLabel1.Text = "Hecho por: Diana Yulissa Sesma Santiago y Kristan Ruíz Limón";
             openFileDialog1.InitialDirectory = Path.Combine(Application.StartupPath, "Data");
+            listaRegistros = new List<Registro>();
         }
 
         private void button1_Click(object sender, EventArgs e) => ObtenerRuta();
         private void abrirNuevoArchivoToolStripMenuItem_Click(object sender, EventArgs e) => ObtenerRuta();
 
-        private void abrirConsumotxtToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            rutaArchivo = Path.Combine(Application.StartupPath, "Data", "consumo.txt");
-            LeerArchivo();
-        }
-        
 
         private void ObtenerRuta()
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 rutaArchivo = openFileDialog1.FileName;
-                LeerArchivo();
+                ImprimirContenido();
             }
         }
 
-        private void LeerArchivo()
+        private void ImprimirContenido()
         {
-            if (rutaArchivo != null)
-            {
-                int fila = 0;
-                StreamReader lector;
+            toolStripStatusLabel1.Text = rutaArchivo;
+            int fila = 0;
+            StreamReader lector;
 
-                using (FileStream fs = new FileStream(rutaArchivo, FileMode.Open, FileAccess.Read))
+            using (FileStream fs = new FileStream(rutaArchivo, FileMode.Open, FileAccess.Read))
+            {
+                lector = new StreamReader(fs);
+
+                while (!lector.EndOfStream)
                 {
-                    lector = new StreamReader(fs);
+                    string linea = lector.ReadLine();
+                    string[] lineaElementos = linea.Split(','); 
+                    dataGridView1.Rows.Add();
 
-                    while (!lector.EndOfStream)
+                    for (int i = 0; i < lineaElementos.Length; i++) //Es -1 para que se consideren los índices de las filas, ya que estos empiezan en 0 y no en 1.
                     {
-                        string linea = lector.ReadLine();
-                        string[] lineaElementos = linea.Split(','); 
-                        dataGridView1.Rows.Add();
-
-                        for (int i = 0; i < lineaElementos.Length; i++) //Es -1 para que se consideren los índices de las filas, ya que estos empiezan en 0 y no en 1.
-                        {
-                            dataGridView1.Rows[fila].Cells[i].Value = lineaElementos[i];
-                        }
-
-                        fila++;
+                        dataGridView1.Rows[fila].Cells[i].Value = lineaElementos[i];
                     }
-                }
 
-                lector.Close();
+                    fila++;
+                }
             }
-            else
-            {
-                MessageBox.Show("Todavía no ha seleccionado un archivo para leer", "Advertencia", MessageBoxButtons.OK,
-                    MessageBoxIcon.Exclamation);
-            }
+            lector.Close();
+        }
+
+        private void ObtenerDatos() //Los obtiene de la tabla. El proceso de análisis de datos está totalmente separado del proceso de lectura e impresión de los mismos.
+        {
+
         }
 
 
