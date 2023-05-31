@@ -1,3 +1,5 @@
+using estadisticasStreaming.Clases;
+
 namespace estadisticasStreaming
 {
     public partial class Form1 : Form
@@ -59,6 +61,13 @@ namespace estadisticasStreaming
 
         private void ObtenerDatos() //Los obtiene de la tabla. El proceso de análisis de datos está totalmente separado del proceso de lectura e impresión de los mismos.
         {
+            listaRegistros.Clear();
+
+            foreach (DataGridViewRow fila in dataGridView1.Rows)
+            {
+                listaRegistros.Add(new Registro(fila.Cells[0].Value.ToString(), (byte)fila.Cells[1].Value, fila.Cells[0].Value.ToString(), fila.Cells[0].Value.ToString(), fila.Cells[0].Value.ToString(), fila.Cells[0].Value.ToString(), fila.Cells[0].Value.ToString(), fila.Cells[0].Value.ToString(), fila.Cells[0].Value.ToString(), (short)fila.Cells[0].Value, (short)fila.Cells[0].Value));
+            }
+
 
         }
 

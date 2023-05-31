@@ -4,31 +4,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace estadisticasStreaming
+namespace estadisticasStreaming.Clases
 {
     internal class Registro
     {
-        private static List<Registro> listaRegistros = new List<Registro>();
         private string cuenta, pais, productoVisto, tipo, anioEstreno, genero, director, clasificacion;
         private byte edad;
         private short duracion, minutosVistos;
 
-        public Registro()
+        public Registro(string cuenta, byte edad, string pais, string productoVisto, string tipo, string anioEstreno,
+            string genero, string director, string clasificacion, short duracion, short minutosVistos)
         {
-            Cuenta = string.Empty;
-            Pais = string.Empty;
-            ProductoVisto = string.Empty;
-            Tipo = string.Empty;
-            AnioEstreno = string.Empty;
-            Genero = string.Empty;
-            Director = string.Empty;
-            Clasificacion = string.Empty;
-            Edad = 0;
-            Duracion = 0;
-            MinutosVistos = 0;
+            this.cuenta = cuenta;
+            this.edad = edad;
+            this.pais = pais;
+            this.productoVisto = productoVisto;
+            this.tipo = tipo;
+            this.anioEstreno = anioEstreno;
+            this.genero = genero;
+            this.director = director;
+            this.clasificacion = clasificacion;
+            this.duracion = duracion;
+            this.minutosVistos = minutosVistos;
+
         }
 
-        internal static List<Registro> ListaRegistros { get => listaRegistros; set => listaRegistros = value; }
         public string Cuenta { get => cuenta; set => cuenta = value; }
         public string Pais { get => pais; set => pais = value; }
         public string ProductoVisto { get => productoVisto; set => productoVisto = value; }
