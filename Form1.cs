@@ -11,6 +11,7 @@ namespace estadisticasStreaming
         private void Form1_Load(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = "Hecho por: Diana Yulissa Sesma Santiago y Kristan Ruíz Limón";
+            openFileDialog1.InitialDirectory = Path.Combine(Application.StartupPath, "Data");
         }
 
         private void button1_Click(object sender, EventArgs e) => ObtenerRuta();
@@ -37,26 +38,28 @@ namespace estadisticasStreaming
             if (rutaArchivo != null)
             {
                 int fila = 0;
+                StreamReader lector;
 
-                using (FileStream fs = new FileStream(rutaArchivo, FileMode.Open, FileAccess.ReadWrite))
+                using (FileStream fs = new FileStream(rutaArchivo, FileMode.Open, FileAccess.Read))
                 {
-                    var escritor = new StreamWriter(fs);
-                    var lector = new StreamReader(fs);
+                    lector = new StreamReader(fs);
 
                     while (!lector.EndOfStream)
                     {
                         string linea = lector.ReadLine();
-                        string[] lineaElementos = linea.Split(',');
+                        string[] lineaElementos = linea.Split(','); 
+                        dataGridView1.Rows.Add();
 
-                        for (int i = 0; i < lineaElementos.Length - 1; i++) //Es -1 para que se consideren los índices de las filas, ya que estos empiezan en 0 y no en 1.
+                        for (int i = 0; i < lineaElementos.Length; i++) //Es -1 para que se consideren los índices de las filas, ya que estos empiezan en 0 y no en 1.
                         {
-                            dataGridView1.Rows.Add();
                             dataGridView1.Rows[fila].Cells[i].Value = lineaElementos[i];
-                        fila++;
                         }
+
+                        fila++;
                     }
                 }
 
+                lector.Close();
             }
             else
             {

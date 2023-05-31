@@ -30,14 +30,15 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.statusStripPrincipal = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.abrirNuevoArchivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.abrirConsumotxtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.créditosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hechoPorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dianaYulissaSesmaSantiagoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kristanRuízLimónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.cuenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.edad = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,7 +53,6 @@
             this.minutosVistos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button1 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.abrirConsumotxtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStripPrincipal.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -77,6 +77,12 @@
             this.statusStripPrincipal.Size = new System.Drawing.Size(1107, 26);
             this.statusStripPrincipal.TabIndex = 2;
             this.statusStripPrincipal.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(151, 20);
+            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
             // menuStrip1
             // 
@@ -106,6 +112,13 @@
             this.abrirNuevoArchivoToolStripMenuItem.Text = "Abrir archivo existente...";
             this.abrirNuevoArchivoToolStripMenuItem.Click += new System.EventHandler(this.abrirNuevoArchivoToolStripMenuItem_Click);
             // 
+            // abrirConsumotxtToolStripMenuItem
+            // 
+            this.abrirConsumotxtToolStripMenuItem.Name = "abrirConsumotxtToolStripMenuItem";
+            this.abrirConsumotxtToolStripMenuItem.Size = new System.Drawing.Size(249, 26);
+            this.abrirConsumotxtToolStripMenuItem.Text = "Abrir consumo.txt";
+            this.abrirConsumotxtToolStripMenuItem.Click += new System.EventHandler(this.abrirConsumotxtToolStripMenuItem_Click);
+            // 
             // créditosToolStripMenuItem
             // 
             this.créditosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -134,17 +147,11 @@
             this.kristanRuízLimónToolStripMenuItem.Size = new System.Drawing.Size(289, 26);
             this.kristanRuízLimónToolStripMenuItem.Text = "Kristan Ruíz Limón";
             // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(151, 20);
-            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
-            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.ColumnHeadersHeight = 29;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cuenta,
             this.edad,
@@ -266,13 +273,6 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // abrirConsumotxtToolStripMenuItem
-            // 
-            this.abrirConsumotxtToolStripMenuItem.Name = "abrirConsumotxtToolStripMenuItem";
-            this.abrirConsumotxtToolStripMenuItem.Size = new System.Drawing.Size(249, 26);
-            this.abrirConsumotxtToolStripMenuItem.Text = "Abrir consumo.txt";
-            this.abrirConsumotxtToolStripMenuItem.Click += new System.EventHandler(this.abrirConsumotxtToolStripMenuItem_Click);
             // 
             // Form1
             // 
