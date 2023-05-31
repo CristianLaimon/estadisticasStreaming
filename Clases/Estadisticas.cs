@@ -21,6 +21,11 @@ namespace estadisticasStreaming.Clases
         private static int terror = 0;
         private static int suspenso = 0;
         private static int accion = 0;
+        private static int Anio2020 = 0;
+        private static int Anio2021 = 0;
+        private static int Anio2022 = 0;
+        private static int Anio2023 = 0;
+
         public static int TotalUsuarios { get => totalUsuarios; set => totalUsuarios = value; }
         public static int NoStarters { get => noStarters; set => noStarters = value; }
         public static int NoWatchers { get => noWatchers; set => noWatchers = value; }
@@ -34,5 +39,9 @@ namespace estadisticasStreaming.Clases
         public static int Terror { get => terror; set => terror = value; }
         public static int Suspenso { get => suspenso; set => suspenso = value; }
         public static int Accion { get => accion; set => accion = value; }
+        public static int Anio20201 { get => Anio2020; set => Anio2020 = value; }
+        public static int Anio20211 { get => Anio2021; set => Anio2021 = value; }
+        public static int Anio20221 { get => Anio2022; set => Anio2022 = value; }
+        public static int Anio20231 { get => Anio2023; set => Anio2023 = value; }
     }
 }

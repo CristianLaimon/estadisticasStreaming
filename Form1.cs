@@ -95,10 +95,18 @@ namespace estadisticasStreaming
                         break;
                 }
 
-                //switch (r.AnioEstreno)
-                //{
-                //    case "2020": Estadisticas.
-                //}
+                switch (r.AnioEstreno)
+                {
+                    case "2020": Estadisticas.Anio20201++;
+                        break;
+                    case "2021": Estadisticas.Anio20211++;
+                        break;
+                    case "2022": Estadisticas.Anio20221++;
+                        break;
+                    case "2023": Estadisticas.Anio20231++;
+                        break;
+
+                }
             }
 
 
