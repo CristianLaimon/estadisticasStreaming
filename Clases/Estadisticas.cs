@@ -31,6 +31,8 @@ namespace estadisticasStreaming.Clases
         private static int colombia = 0;
         private static int cuba = 0;
         private static int costaRica = 0;
+        private static Dictionary<string, int> peliculasYCantidad = new Dictionary<string, int>();
+        private static Dictionary<string, int> seriesYCantidad = new Dictionary<string, int>();
         private static string peliculaPopular = "";
         private static string seriePopular = "";
 
@@ -59,5 +61,7 @@ namespace estadisticasStreaming.Clases
         public static int CostaRica { get => costaRica; set => costaRica = value; }
         public static string PeliculaPopular { get => peliculaPopular; set => peliculaPopular = value; }
         public static string SeriePopular { get => seriePopular; set => seriePopular = value; }
+        public static Dictionary<string, int> PeliculasYCantidad { get => peliculasYCantidad; set => peliculasYCantidad = value; }
+        public static Dictionary<string, int> SeriesYCantidad { get => seriesYCantidad; set => seriesYCantidad = value; }
     }
 }

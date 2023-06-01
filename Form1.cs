@@ -6,7 +6,7 @@ namespace estadisticasStreaming
     {
         private string rutaArchivo;
         private static List<Registro> listaRegistros;
-        Dictionary<string, int> contenidoYVeces = new Dictionary<string, int>();
+
 
         public Form1()
         {
@@ -60,6 +60,7 @@ namespace estadisticasStreaming
             ObtenerDatos(); //Es solo para probar
         }
 
+
         private void ObtenerDatos() 
         {
             listaRegistros.Clear();
@@ -84,12 +85,8 @@ namespace estadisticasStreaming
                       short.Parse(lineaElementos[10])));
                 }
             }
-            
-
 
             Estadisticas.TotalUsuarios = listaRegistros.Count;
-
-
 
             foreach (Registro r in listaRegistros) //Entre el 70% y el 90% no cuenta para ninguno de estos? omg //Comentario nuevo: Esto ya está corregido...
             {
@@ -100,8 +97,33 @@ namespace estadisticasStreaming
                 if (r.MinutosVistos == r.Duracion) Estadisticas.VerCompleto++;
                 else Estadisticas.VerIncompleto++;
 
-                if (r.Tipo == "PELICULA") Estadisticas.Peliculas++;
-                else Estadisticas.Series++;
+                if (r.Tipo == "PELICULA")
+                {
+                    Estadisticas.Peliculas++;
+
+                    if (Estadisticas.PeliculasYCantidad.ContainsKey(r.ProductoVisto)) //Si ya existe la llave (la pelicula), se le suma 1 al valor de la llave a su contador.
+                    {
+                        Estadisticas.PeliculasYCantidad[r.ProductoVisto]++;
+                    }
+                    else
+                    {
+                        Estadisticas.PeliculasYCantidad.Add(r.ProductoVisto, 1); //Si no existe la llave, se crea y se le asigna el valor de 1.
+                    }
+
+                }
+                else
+                {
+                    Estadisticas.Series++;
+
+                    if (Estadisticas.SeriesYCantidad.ContainsKey(r.ProductoVisto)) 
+                    { 
+                        Estadisticas.SeriesYCantidad[r.ProductoVisto]++;
+                    }
+                    else
+                    {
+                        Estadisticas.SeriesYCantidad.Add(r.ProductoVisto, 1);
+                    }
+                }
 
 
                 switch (r.Genero)
@@ -146,19 +168,10 @@ namespace estadisticasStreaming
                         break;
                 }
 
-                if (contenidoYVeces.ContainsKey(r.ProductoVisto)) //Si ya existe la llave (la pelicula o serie), se le suma 1 al valor de la llave a su contador.
-                {
-                    contenidoYVeces[r.ProductoVisto]++;
-                }
-                else
-                {
-                    contenidoYVeces.Add(r.ProductoVisto, 1); //Si no existe la llave, se crea y se le asigna el valor de 1.
-                }
-
             }
 
-            Estadisticas.PeliculaPopular = contenidoYVeces.Aggregate((l, r) => l.Value > r.Value ? l : r).Key; //Obtiene la llave con el valor más alto.
-
+            Estadisticas.PeliculaPopular = Estadisticas.PeliculasYCantidad.Aggregate((l, r) => l.Value > r.Value ? l : r).Key; //Obtiene la pelicula con el valor (contador) más alto.
+            Estadisticas.SeriePopular = Estadisticas.SeriesYCantidad.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
         }
     }
 }
