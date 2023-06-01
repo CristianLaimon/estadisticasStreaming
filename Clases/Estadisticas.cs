@@ -21,10 +21,16 @@ namespace estadisticasStreaming.Clases
         private static int terror = 0;
         private static int suspenso = 0;
         private static int accion = 0;
-        private static int Anio2020 = 0;
-        private static int Anio2021 = 0;
-        private static int Anio2022 = 0;
-        private static int Anio2023 = 0;
+        private static int anio2020 = 0;
+        private static int anio2021 = 0;
+        private static int anio2022 = 0;
+        private static int anio2023 = 0;
+        private static int mexico = 0;
+        private static int eu = 0;
+        private static int canada = 0;
+        private static int colombia = 0;
+        private static int cuba = 0;
+        private static int costaRica = 0;
 
         public static int TotalUsuarios { get => totalUsuarios; set => totalUsuarios = value; }
         public static int NoStarters { get => noStarters; set => noStarters = value; }
@@ -39,9 +45,15 @@ namespace estadisticasStreaming.Clases
         public static int Terror { get => terror; set => terror = value; }
         public static int Suspenso { get => suspenso; set => suspenso = value; }
         public static int Accion { get => accion; set => accion = value; }
-        public static int Anio20201 { get => Anio2020; set => Anio2020 = value; }
-        public static int Anio20211 { get => Anio2021; set => Anio2021 = value; }
-        public static int Anio20221 { get => Anio2022; set => Anio2022 = value; }
-        public static int Anio20231 { get => Anio2023; set => Anio2023 = value; }
+        public static int Anio2020 { get => anio2020; set => anio2020 = value; }
+        public static int Anio2021 { get => anio2021; set => anio2021 = value; }
+        public static int Anio2022 { get => anio2022; set => anio2022 = value; }
+        public static int Anio2023 { get => anio2023; set => anio2023 = value; }
+        public static int Mexico { get => mexico; set => mexico = value; }
+        public static int Eu { get => eu; set => eu = value; }
+        public static int Canada { get => canada; set => canada = value; }
+        public static int Colombia { get => colombia; set => colombia = value; }
+        public static int Cuba { get => cuba; set => cuba = value; }
+        public static int CostaRica { get => costaRica; set => costaRica = value; }
     }
 }

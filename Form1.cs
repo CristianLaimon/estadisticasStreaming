@@ -37,9 +37,8 @@ namespace estadisticasStreaming
             toolStripStatusLabel1.Text = rutaArchivo;
             int fila = 0;
 
-            using (FileStream fs = new FileStream(rutaArchivo, FileMode.Open, FileAccess.Read))
-            {
-                using (StreamReader lector = new StreamReader(fs))
+
+                using (StreamReader lector = new StreamReader(rutaArchivo))
                 {
                     while (!lector.EndOfStream)
                     {
@@ -54,7 +53,7 @@ namespace estadisticasStreaming
 
                         fila++;
                     }
-                }
+                
             }
         }
 
@@ -69,10 +68,10 @@ namespace estadisticasStreaming
 
             Estadisticas.TotalUsuarios = listaRegistros.Count;
 
-            foreach (Registro r in listaRegistros) //Entre el 70% y el 90% no cuenta para ninguno de estos? omg
+            foreach (Registro r in listaRegistros) //Entre el 70% y el 90% no cuenta para ninguno de estos? omg //Comentario nuevo: Esto ya está corregido...
             {
-                if(r.MinutosVistos <= 10) Estadisticas.NoStarters++;
-                else if(r.MinutosVistos <= (short)(r.Duracion*.7)) Estadisticas.NoWatchers++; 
+                if(r.MinutosVistos <= (short)(r.Duracion*0.1)) Estadisticas.NoStarters++;
+                else if(r.MinutosVistos < (short)(r.Duracion*.9)) Estadisticas.NoWatchers++; 
                 else if (r.MinutosVistos >= (short)(r.Duracion * .9)) Estadisticas.NoCompleters++;
 
                 if (r.MinutosVistos == r.Duracion) Estadisticas.VerCompleto++;
@@ -97,31 +96,32 @@ namespace estadisticasStreaming
 
                 switch (r.AnioEstreno)
                 {
-                    case "2020": Estadisticas.Anio20201++;
+                    case "2020": Estadisticas.Anio2020++;
                         break;
-                    case "2021": Estadisticas.Anio20211++;
+                    case "2021": Estadisticas.Anio2021++;
                         break;
-                    case "2022": Estadisticas.Anio20221++;
+                    case "2022": Estadisticas.Anio2022++;
                         break;
-                    case "2023": Estadisticas.Anio20231++;
+                    case "2023": Estadisticas.Anio2023++;
                         break;
+                }
 
+                switch (r.Pais)
+                {
+                    case "MEXICO": Estadisticas.Mexico++;
+                        break;
+                    case "EU": Estadisticas.Eu++;
+                        break;
+                    case "CANADA": Estadisticas.Canada++;
+                        break;
+                    case "COLOMBIA": Estadisticas.Colombia++;
+                        break;
+                    case "CUBA": Estadisticas.Cuba++;
+                        break;
+                    case "COSTA RICA": Estadisticas.CostaRica++;
+                        break;
                 }
             }
-
-
-
-
-
-
-
-
-
-
-
         }
-
-
-
     }
 }
