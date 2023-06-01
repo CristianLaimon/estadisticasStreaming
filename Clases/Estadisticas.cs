@@ -31,6 +31,8 @@ namespace estadisticasStreaming.Clases
         private static int colombia = 0;
         private static int cuba = 0;
         private static int costaRica = 0;
+        private static string peliculaPopular = "";
+        private static string seriePopular = "";
 
         public static int TotalUsuarios { get => totalUsuarios; set => totalUsuarios = value; }
         public static int NoStarters { get => noStarters; set => noStarters = value; }
@@ -55,5 +57,7 @@ namespace estadisticasStreaming.Clases
         public static int Colombia { get => colombia; set => colombia = value; }
         public static int Cuba { get => cuba; set => cuba = value; }
         public static int CostaRica { get => costaRica; set => costaRica = value; }
+        public static string PeliculaPopular { get => peliculaPopular; set => peliculaPopular = value; }
+        public static string SeriePopular { get => seriePopular; set => seriePopular = value; }
     }
 }

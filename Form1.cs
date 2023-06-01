@@ -6,6 +6,7 @@ namespace estadisticasStreaming
     {
         private string rutaArchivo;
         private static List<Registro> listaRegistros;
+        Dictionary<string, int> contenidoYVeces = new Dictionary<string, int>();
 
         public Form1()
         {
@@ -38,35 +39,57 @@ namespace estadisticasStreaming
             int fila = 0;
 
 
-                using (StreamReader lector = new StreamReader(rutaArchivo))
+            using (StreamReader lector = new StreamReader(rutaArchivo))
+            {
+                while (!lector.EndOfStream)
                 {
-                    while (!lector.EndOfStream)
+                    string linea = lector.ReadLine();
+                    string[] lineaElementos = linea.Split(','); 
+                    dataGridView1.Rows.Add();
+
+                    for (int i = 0; i < lineaElementos.Length; i++) //Es -1 para que se consideren los índices de las filas, ya que estos empiezan en 0 y no en 1.
                     {
-                        string linea = lector.ReadLine();
-                        string[] lineaElementos = linea.Split(','); 
-                        dataGridView1.Rows.Add();
-
-                        for (int i = 0; i < lineaElementos.Length; i++) //Es -1 para que se consideren los índices de las filas, ya que estos empiezan en 0 y no en 1.
-                        {
-                            dataGridView1.Rows[fila].Cells[i].Value = lineaElementos[i];
-                        }
-
-                        fila++;
+                        dataGridView1.Rows[fila].Cells[i].Value = lineaElementos[i];
                     }
-                
+
+                    fila++;
+                }
+            
             }
+
+            ObtenerDatos(); //Es solo para probar
         }
 
         private void ObtenerDatos() 
         {
             listaRegistros.Clear();
 
-            foreach (DataGridViewRow fila in dataGridView1.Rows)
+            using (StreamReader lector = new StreamReader(rutaArchivo))
             {
-                listaRegistros.Add(new Registro(fila.Cells[0].Value.ToString(), (byte)fila.Cells[1].Value, fila.Cells[0].Value.ToString(), fila.Cells[0].Value.ToString(), fila.Cells[0].Value.ToString(), fila.Cells[0].Value.ToString(), fila.Cells[0].Value.ToString(), fila.Cells[0].Value.ToString(), fila.Cells[0].Value.ToString(), (short)fila.Cells[0].Value, (short)fila.Cells[0].Value));
+                while (!lector.EndOfStream)
+                {
+                    string linea = lector.ReadLine();
+                    string[] lineaElementos = linea.Split(',');
+                    listaRegistros.Add(new Registro(
+                        lineaElementos[0],
+                      byte.Parse(lineaElementos[1]),
+                      lineaElementos[2],
+                      lineaElementos[3],
+                      lineaElementos[4],
+                      lineaElementos[5],
+                      lineaElementos[6],
+                      lineaElementos[7],
+                      lineaElementos[8],
+                      short.Parse(lineaElementos[9]),
+                      short.Parse(lineaElementos[10])));
+                }
             }
+            
+
 
             Estadisticas.TotalUsuarios = listaRegistros.Count;
+
+
 
             foreach (Registro r in listaRegistros) //Entre el 70% y el 90% no cuenta para ninguno de estos? omg //Comentario nuevo: Esto ya está corregido...
             {
@@ -79,6 +102,7 @@ namespace estadisticasStreaming
 
                 if (r.Tipo == "PELICULA") Estadisticas.Peliculas++;
                 else Estadisticas.Series++;
+
 
                 switch (r.Genero)
                 {
@@ -121,7 +145,20 @@ namespace estadisticasStreaming
                     case "COSTA RICA": Estadisticas.CostaRica++;
                         break;
                 }
+
+                if (contenidoYVeces.ContainsKey(r.ProductoVisto)) //Si ya existe la llave (la pelicula o serie), se le suma 1 al valor de la llave a su contador.
+                {
+                    contenidoYVeces[r.ProductoVisto]++;
+                }
+                else
+                {
+                    contenidoYVeces.Add(r.ProductoVisto, 1); //Si no existe la llave, se crea y se le asigna el valor de 1.
+                }
+
             }
+
+            Estadisticas.PeliculaPopular = contenidoYVeces.Aggregate((l, r) => l.Value > r.Value ? l : r).Key; //Obtiene la llave con el valor más alto.
+
         }
     }
 }
