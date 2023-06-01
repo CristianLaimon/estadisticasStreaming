@@ -305,8 +305,10 @@
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.panel1);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(1125, 701);
+            this.MinimumSize = new System.Drawing.Size(1125, 701);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Manager";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
