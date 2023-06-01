@@ -54,6 +54,7 @@
             this.buttonSeleccionar = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.buttonInformacion = new System.Windows.Forms.Button();
+            this.buttonEstadisticas = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.statusStripPrincipal.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -75,11 +76,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(321, 7);
+            this.label1.Location = new System.Drawing.Point(347, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(286, 45);
+            this.label1.Size = new System.Drawing.Size(287, 45);
             this.label1.TabIndex = 0;
             this.label1.Text = "Registros Manager";
             // 
@@ -297,6 +298,16 @@
             this.buttonInformacion.UseVisualStyleBackColor = true;
             this.buttonInformacion.Click += new System.EventHandler(this.buttonInformacion_Click);
             // 
+            // buttonEstadisticas
+            // 
+            this.buttonEstadisticas.Location = new System.Drawing.Point(432, 432);
+            this.buttonEstadisticas.Name = "buttonEstadisticas";
+            this.buttonEstadisticas.Size = new System.Drawing.Size(75, 23);
+            this.buttonEstadisticas.TabIndex = 7;
+            this.buttonEstadisticas.Text = "Estadisticas";
+            this.buttonEstadisticas.UseVisualStyleBackColor = true;
+            this.buttonEstadisticas.Click += new System.EventHandler(this.buttonEstadisticas_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -304,6 +315,7 @@
             this.BackgroundImage = global::estadisticasStreaming.Properties.Resources.BackGround;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(970, 496);
+            this.Controls.Add(this.buttonEstadisticas);
             this.Controls.Add(this.buttonInformacion);
             this.Controls.Add(this.buttonSeleccionar);
             this.Controls.Add(this.dataGridView1);
@@ -357,5 +369,6 @@
         private OpenFileDialog openFileDialog1;
         private Label label1;
         private Button buttonInformacion;
+        private Button buttonEstadisticas;
     }
 }

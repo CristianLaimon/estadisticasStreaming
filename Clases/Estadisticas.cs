@@ -35,6 +35,8 @@ namespace estadisticasStreaming.Clases
         private static Dictionary<string, int> seriesYCantidad = new Dictionary<string, int>();
         private static string peliculaPopular = "";
         private static string seriePopular = "";
+        private static string paisMasConsumo = "";
+        private static Dictionary<string, int> paisYCantidad = new Dictionary<string, int>();
 
         public static int TotalUsuarios { get => totalUsuarios; set => totalUsuarios = value; }
         public static int NoStarters { get => noStarters; set => noStarters = value; }
@@ -63,5 +65,7 @@ namespace estadisticasStreaming.Clases
         public static string SeriePopular { get => seriePopular; set => seriePopular = value; }
         public static Dictionary<string, int> PeliculasYCantidad { get => peliculasYCantidad; set => peliculasYCantidad = value; }
         public static Dictionary<string, int> SeriesYCantidad { get => seriesYCantidad; set => seriesYCantidad = value; }
+        public static string PaisMasConsumo { get => paisMasConsumo; set => paisMasConsumo = value; }
+        public static Dictionary<string, int> PaisYCantidad { get => paisYCantidad; set => paisYCantidad = value; }
     }
 }

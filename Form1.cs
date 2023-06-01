@@ -1,4 +1,5 @@
 using estadisticasStreaming.Clases;
+using System.Diagnostics.CodeAnalysis;
 
 namespace estadisticasStreaming
 {
@@ -19,6 +20,7 @@ namespace estadisticasStreaming
             openFileDialog1.InitialDirectory = Path.Combine(Application.StartupPath, "Data");
             listaRegistros = new List<Registro>();
             buttonInformacion.Enabled = false;
+            buttonEstadisticas.Enabled = false;
         }
 
         private void buttonSeleccionar_Click(object sender, EventArgs e) => ObtenerRuta();
@@ -50,6 +52,7 @@ namespace estadisticasStreaming
         private void ImprimirContenido()
         {
             buttonInformacion.Enabled = true;
+            buttonEstadisticas.Enabled = true;
             toolStripStatusLabel1.Text = rutaArchivo;
             int fila = 0;
             
@@ -68,13 +71,11 @@ namespace estadisticasStreaming
                     fila++;
                 }
             }
-            ObtenerDatos(); //Es solo para probar
         }
-
 
         private void ObtenerDatos() 
         {
-            listaRegistros.Clear();
+            Reiniciar();
 
             using (StreamReader lector = new StreamReader(rutaArchivo))
             {
@@ -101,8 +102,8 @@ namespace estadisticasStreaming
 
             foreach (Registro r in listaRegistros)
             {
-                if(r.MinutosVistos <= (short)(r.Duracion*0.1)) Estadisticas.NoStarters++;
-                else if(r.MinutosVistos > (short)(r.Duracion * 0.1) && r.MinutosVistos < (short)(r.Duracion*.9)) Estadisticas.NoWatchers++; 
+                if (r.MinutosVistos <= (short)(r.Duracion * 0.1)) Estadisticas.NoStarters++;
+                else if (r.MinutosVistos < (short)(r.Duracion * .9)) Estadisticas.NoWatchers++;
                 else if (r.MinutosVistos >= (short)(r.Duracion * .9)) Estadisticas.NoCompleters++;
 
                 if (r.MinutosVistos == r.Duracion) Estadisticas.VerCompleto++;
@@ -135,7 +136,6 @@ namespace estadisticasStreaming
                     }
                 }
 
-
                 switch (r.Genero)
                 {
                     case "ROMANCE": Estadisticas.Romance++;
@@ -165,22 +165,125 @@ namespace estadisticasStreaming
                 switch (r.Pais)
                 {
                     case "MEXICO": Estadisticas.Mexico++;
+                        {
+                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais))
+                            {
+                                Estadisticas.PaisYCantidad[r.Pais]++;
+                            }
+                            else
+                            {
+                                Estadisticas.PaisYCantidad.Add(r.Pais, 1);
+                            }
+                        }
                         break;
                     case "EU": Estadisticas.Eu++;
+                        {
+                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais))
+                            {
+                                Estadisticas.PaisYCantidad[r.Pais]++;
+                            }
+                            else
+                            {
+                                Estadisticas.PaisYCantidad.Add(r.Pais, 1);
+                            }
+                        }
                         break;
                     case "CANADA": Estadisticas.Canada++;
+                        {
+                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais))
+                            {
+                                Estadisticas.PaisYCantidad[r.Pais]++;
+                            }
+                            else
+                            {
+                                Estadisticas.PaisYCantidad.Add(r.Pais, 1);
+                            }
+                        }
                         break;
                     case "COLOMBIA": Estadisticas.Colombia++;
+                        {
+                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais))
+                            {
+                                Estadisticas.PaisYCantidad[r.Pais]++;
+                            }
+                            else
+                            {
+                                Estadisticas.PaisYCantidad.Add(r.Pais, 1);
+                            }
+                        }
                         break;
                     case "CUBA": Estadisticas.Cuba++;
+                        {
+                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais))
+                            {
+                                Estadisticas.PaisYCantidad[r.Pais]++;
+                            }
+                            else
+                            {
+                                Estadisticas.PaisYCantidad.Add(r.Pais, 1);
+                            }
+                        }
                         break;
                     case "COSTA RICA": Estadisticas.CostaRica++;
+                        {
+                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais))
+                            {
+                                Estadisticas.PaisYCantidad[r.Pais]++;
+                            }
+                            else
+                            {
+                                Estadisticas.PaisYCantidad.Add(r.Pais, 1);
+                            }
+                        }
                         break;
                 }
             }
 
             Estadisticas.PeliculaPopular = Estadisticas.PeliculasYCantidad.Aggregate((l, r) => l.Value > r.Value ? l : r).Key; //Obtiene la pelicula con el valor (contador) más alto.
             Estadisticas.SeriePopular = Estadisticas.SeriesYCantidad.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
+            Estadisticas.PaisMasConsumo = Estadisticas.PaisYCantidad.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
+
+            MessageBox.Show("No Startes: " + Estadisticas.NoStarters);
+            MessageBox.Show("No Watchers: " + Estadisticas.NoWatchers);
+            MessageBox.Show("No Completers: " + Estadisticas.NoCompleters);
+            MessageBox.Show("Completo: " + (Estadisticas.VerCompleto * 100 / (Estadisticas.VerCompleto + Estadisticas.VerIncompleto)));
+            MessageBox.Show("Incompleto: " + (Estadisticas.VerIncompleto * 100 / (Estadisticas.VerCompleto + Estadisticas.VerIncompleto)));
+            MessageBox.Show("Pelicula: " + (Estadisticas.Peliculas * 100 / (Estadisticas.Peliculas + Estadisticas.Series)));
+            MessageBox.Show("Serie: " + (Estadisticas.Series * 100 / (Estadisticas.Peliculas + Estadisticas.Series)));
+            MessageBox.Show("Romance: " + Estadisticas.Romance);
+            MessageBox.Show("Drama: " + Estadisticas.Drama);
+            MessageBox.Show("Terror: " + Estadisticas.Terror);
+            MessageBox.Show("Suspenso: " + Estadisticas.Suspenso);
+            MessageBox.Show("Accion: " + Estadisticas.Accion);
+            MessageBox.Show("2020: " + Estadisticas.Anio2020);
+            MessageBox.Show("2021: " + Estadisticas.Anio2021);
+            MessageBox.Show("2022: " + Estadisticas.Anio2022);
+            MessageBox.Show("2023: " + Estadisticas.Anio2023);
+            MessageBox.Show("Pais+: " + Estadisticas.PaisMasConsumo);
+            MessageBox.Show("Pelicula+: " + Estadisticas.PeliculaPopular);
+            MessageBox.Show("Serie+: " + Estadisticas.SeriePopular);
+        }
+
+        private void buttonEstadisticas_Click(object sender, EventArgs e)
+        { 
+            ObtenerDatos();
+        }
+
+        private void Reiniciar()
+        {
+            listaRegistros.Clear();
+            Estadisticas.NoStarters = 0;
+            Estadisticas.NoWatchers = 0;
+            Estadisticas.NoCompleters = 0;
+            Estadisticas.Romance = 0;
+            Estadisticas.Drama = 0;
+            Estadisticas.Terror = 0;
+            Estadisticas.Suspenso = 0;
+            Estadisticas.Accion = 0;
+            Estadisticas.Anio2020 = 0;
+            Estadisticas.Anio2021 = 0;
+            Estadisticas.Anio2022 = 0;
+            Estadisticas.Anio2023 = 0;
         }
     }
 }
