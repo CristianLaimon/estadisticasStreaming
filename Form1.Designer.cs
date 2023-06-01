@@ -51,7 +51,7 @@
             this.clasificacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.duracion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.minutosVistos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonSeleccionar = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.buttonInformacion = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
@@ -66,8 +66,9 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1107, 71);
+            this.panel1.Size = new System.Drawing.Size(970, 53);
             this.panel1.TabIndex = 0;
             // 
             // label1
@@ -76,9 +77,9 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(367, 9);
+            this.label1.Location = new System.Drawing.Point(321, 7);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(355, 54);
+            this.label1.Size = new System.Drawing.Size(286, 45);
             this.label1.TabIndex = 0;
             this.label1.Text = "Registros Manager";
             // 
@@ -87,16 +88,17 @@
             this.statusStripPrincipal.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStripPrincipal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStripPrincipal.Location = new System.Drawing.Point(0, 628);
+            this.statusStripPrincipal.Location = new System.Drawing.Point(0, 474);
             this.statusStripPrincipal.Name = "statusStripPrincipal";
-            this.statusStripPrincipal.Size = new System.Drawing.Size(1107, 26);
+            this.statusStripPrincipal.Padding = new System.Windows.Forms.Padding(1, 0, 12, 0);
+            this.statusStripPrincipal.Size = new System.Drawing.Size(970, 22);
             this.statusStripPrincipal.TabIndex = 2;
             this.statusStripPrincipal.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(151, 20);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
             // menuStrip1
@@ -105,9 +107,10 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.abrirToolStripMenuItem,
             this.créditosToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 71);
+            this.menuStrip1.Location = new System.Drawing.Point(0, 53);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1107, 28);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(970, 24);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -116,13 +119,13 @@
             this.abrirToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.abrirNuevoArchivoToolStripMenuItem});
             this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
-            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(56, 24);
+            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
             this.abrirToolStripMenuItem.Text = "Abrir";
             // 
             // abrirNuevoArchivoToolStripMenuItem
             // 
             this.abrirNuevoArchivoToolStripMenuItem.Name = "abrirNuevoArchivoToolStripMenuItem";
-            this.abrirNuevoArchivoToolStripMenuItem.Size = new System.Drawing.Size(249, 26);
+            this.abrirNuevoArchivoToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
             this.abrirNuevoArchivoToolStripMenuItem.Text = "Abrir archivo existente...";
             this.abrirNuevoArchivoToolStripMenuItem.Click += new System.EventHandler(this.abrirNuevoArchivoToolStripMenuItem_Click);
             // 
@@ -133,25 +136,25 @@
             this.dianaYulissaSesmaSantiagoToolStripMenuItem,
             this.kristanRuízLimónToolStripMenuItem});
             this.créditosToolStripMenuItem.Name = "créditosToolStripMenuItem";
-            this.créditosToolStripMenuItem.Size = new System.Drawing.Size(78, 24);
+            this.créditosToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
             this.créditosToolStripMenuItem.Text = "Créditos";
             // 
             // hechoPorToolStripMenuItem
             // 
             this.hechoPorToolStripMenuItem.Name = "hechoPorToolStripMenuItem";
-            this.hechoPorToolStripMenuItem.Size = new System.Drawing.Size(289, 26);
+            this.hechoPorToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this.hechoPorToolStripMenuItem.Text = "Hecho por:";
             // 
             // dianaYulissaSesmaSantiagoToolStripMenuItem
             // 
             this.dianaYulissaSesmaSantiagoToolStripMenuItem.Name = "dianaYulissaSesmaSantiagoToolStripMenuItem";
-            this.dianaYulissaSesmaSantiagoToolStripMenuItem.Size = new System.Drawing.Size(289, 26);
+            this.dianaYulissaSesmaSantiagoToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this.dianaYulissaSesmaSantiagoToolStripMenuItem.Text = "Diana Yulissa Sesma Santiago";
             // 
             // kristanRuízLimónToolStripMenuItem
             // 
             this.kristanRuízLimónToolStripMenuItem.Name = "kristanRuízLimónToolStripMenuItem";
-            this.kristanRuízLimónToolStripMenuItem.Size = new System.Drawing.Size(289, 26);
+            this.kristanRuízLimónToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this.kristanRuízLimónToolStripMenuItem.Text = "Kristan Ruíz Limón";
             // 
             // dataGridView1
@@ -171,12 +174,13 @@
             this.clasificacion,
             this.duracion,
             this.minutosVistos});
-            this.dataGridView1.Location = new System.Drawing.Point(31, 130);
+            this.dataGridView1.Location = new System.Drawing.Point(27, 98);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 29;
-            this.dataGridView1.Size = new System.Drawing.Size(1039, 424);
+            this.dataGridView1.Size = new System.Drawing.Size(909, 318);
             this.dataGridView1.TabIndex = 4;
             // 
             // cuenta
@@ -267,15 +271,16 @@
             this.minutosVistos.ReadOnly = true;
             this.minutosVistos.Width = 125;
             // 
-            // button1
+            // buttonSeleccionar
             // 
-            this.button1.Location = new System.Drawing.Point(882, 577);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(168, 29);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Seleccionar archivo...";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonSeleccionar.Location = new System.Drawing.Point(772, 433);
+            this.buttonSeleccionar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonSeleccionar.Name = "buttonSeleccionar";
+            this.buttonSeleccionar.Size = new System.Drawing.Size(147, 22);
+            this.buttonSeleccionar.TabIndex = 5;
+            this.buttonSeleccionar.Text = "Seleccionar archivo...";
+            this.buttonSeleccionar.UseVisualStyleBackColor = true;
+            this.buttonSeleccionar.Click += new System.EventHandler(this.buttonSeleccionar_Click);
             // 
             // openFileDialog1
             // 
@@ -283,9 +288,10 @@
             // 
             // buttonInformacion
             // 
-            this.buttonInformacion.Location = new System.Drawing.Point(53, 577);
+            this.buttonInformacion.Location = new System.Drawing.Point(46, 433);
+            this.buttonInformacion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonInformacion.Name = "buttonInformacion";
-            this.buttonInformacion.Size = new System.Drawing.Size(170, 29);
+            this.buttonInformacion.Size = new System.Drawing.Size(149, 22);
             this.buttonInformacion.TabIndex = 6;
             this.buttonInformacion.Text = "Info. Del archivo";
             this.buttonInformacion.UseVisualStyleBackColor = true;
@@ -293,20 +299,21 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::estadisticasStreaming.Properties.Resources.BackGround;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1107, 654);
+            this.ClientSize = new System.Drawing.Size(970, 496);
             this.Controls.Add(this.buttonInformacion);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonSeleccionar);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.statusStripPrincipal);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1125, 701);
-            this.MinimumSize = new System.Drawing.Size(1125, 701);
+            this.MaximumSize = new System.Drawing.Size(986, 535);
+            this.MinimumSize = new System.Drawing.Size(986, 535);
             this.Name = "Form1";
             this.Text = "Manager";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -346,7 +353,7 @@
         private DataGridViewTextBoxColumn clasificacion;
         private DataGridViewTextBoxColumn duracion;
         private DataGridViewTextBoxColumn minutosVistos;
-        private Button button1;
+        private Button buttonSeleccionar;
         private OpenFileDialog openFileDialog1;
         private Label label1;
         private Button buttonInformacion;

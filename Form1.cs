@@ -21,9 +21,11 @@ namespace estadisticasStreaming
             buttonInformacion.Enabled = false;
         }
 
-        private void button1_Click(object sender, EventArgs e) => ObtenerRuta();
+        private void buttonSeleccionar_Click(object sender, EventArgs e) => ObtenerRuta();
+
         private void abrirNuevoArchivoToolStripMenuItem_Click(object sender, EventArgs e) => ObtenerRuta();
 
+        private void buttonInformacion_Click(object sender, EventArgs e) => ObtenerInfo();
 
         private void ObtenerRuta()
         {
@@ -34,13 +36,23 @@ namespace estadisticasStreaming
             }
         }
 
+        private void ObtenerInfo()
+        {
+            rutaArchivo = openFileDialog1.FileName;
+            MessageBox.Show(
+                "Ruta del Archivo: " + rutaArchivo + "\r\n\r\n" +
+                "Fecha y Hora de Creación: " + File.GetCreationTime(rutaArchivo) + "\r\n\r\n" +
+                "Ultima Modificación: " + File.GetLastWriteTime(rutaArchivo) + "\r\n\r\n" +
+                "Ultimo Acceso: " + File.GetLastAccessTime(rutaArchivo)
+                , "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
         private void ImprimirContenido()
         {
             buttonInformacion.Enabled = true;
             toolStripStatusLabel1.Text = rutaArchivo;
             int fila = 0;
-
-
+            
             using (StreamReader lector = new StreamReader(rutaArchivo))
             {
                 while (!lector.EndOfStream)
@@ -49,16 +61,13 @@ namespace estadisticasStreaming
                     string[] lineaElementos = linea.Split(','); 
                     dataGridView1.Rows.Add();
 
-                    for (int i = 0; i < lineaElementos.Length; i++) //Es -1 para que se consideren los índices de las filas, ya que estos empiezan en 0 y no en 1.
+                    for (int i = 0; i < lineaElementos.Length; i++) 
                     {
                         dataGridView1.Rows[fila].Cells[i].Value = lineaElementos[i];
                     }
-
                     fila++;
                 }
-            
             }
-
             ObtenerDatos(); //Es solo para probar
         }
 
@@ -90,10 +99,10 @@ namespace estadisticasStreaming
 
             Estadisticas.TotalUsuarios = listaRegistros.Count;
 
-            foreach (Registro r in listaRegistros) //Entre el 70% y el 90% no cuenta para ninguno de estos? omg //Comentario nuevo: Esto ya está corregido...
+            foreach (Registro r in listaRegistros)
             {
                 if(r.MinutosVistos <= (short)(r.Duracion*0.1)) Estadisticas.NoStarters++;
-                else if(r.MinutosVistos < (short)(r.Duracion*.9)) Estadisticas.NoWatchers++; 
+                else if(r.MinutosVistos > (short)(r.Duracion * 0.1) && r.MinutosVistos < (short)(r.Duracion*.9)) Estadisticas.NoWatchers++; 
                 else if (r.MinutosVistos >= (short)(r.Duracion * .9)) Estadisticas.NoCompleters++;
 
                 if (r.MinutosVistos == r.Duracion) Estadisticas.VerCompleto++;
@@ -111,7 +120,6 @@ namespace estadisticasStreaming
                     {
                         Estadisticas.PeliculasYCantidad.Add(r.ProductoVisto, 1); //Si no existe la llave, se crea y se le asigna el valor de 1.
                     }
-
                 }
                 else
                 {
@@ -169,22 +177,10 @@ namespace estadisticasStreaming
                     case "COSTA RICA": Estadisticas.CostaRica++;
                         break;
                 }
-
             }
 
             Estadisticas.PeliculaPopular = Estadisticas.PeliculasYCantidad.Aggregate((l, r) => l.Value > r.Value ? l : r).Key; //Obtiene la pelicula con el valor (contador) más alto.
             Estadisticas.SeriePopular = Estadisticas.SeriesYCantidad.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
-        }
-
-        private void buttonInformacion_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(
-                "Información: \r\n" +
-                "Ruta del Archivo: " + rutaArchivo + "\r\n" +
-                "Fecha y Hora de creación: " + File.GetCreationTime(rutaArchivo) + "\r\n" +
-                "Ultima edición " + File.GetLastWriteTime(rutaArchivo) + "\r\n" +
-                "Último Acceso " + File.GetLastAccessTime(rutaArchivo)
-                , "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
