@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.statusStripPrincipal = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -52,6 +53,8 @@
             this.minutosVistos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button1 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.buttonInformacion = new System.Windows.Forms.Button();
+            this.panel1.SuspendLayout();
             this.statusStripPrincipal.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -60,11 +63,24 @@
             // panel1
             // 
             this.panel1.BackgroundImage = global::estadisticasStreaming.Properties.Resources.Background_dark;
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1107, 71);
             this.panel1.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label1.Location = new System.Drawing.Point(367, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(355, 54);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Registros Manager";
             // 
             // statusStripPrincipal
             // 
@@ -265,6 +281,16 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // buttonInformacion
+            // 
+            this.buttonInformacion.Location = new System.Drawing.Point(53, 577);
+            this.buttonInformacion.Name = "buttonInformacion";
+            this.buttonInformacion.Size = new System.Drawing.Size(170, 29);
+            this.buttonInformacion.TabIndex = 6;
+            this.buttonInformacion.Text = "Info. Del archivo";
+            this.buttonInformacion.UseVisualStyleBackColor = true;
+            this.buttonInformacion.Click += new System.EventHandler(this.buttonInformacion_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -272,6 +298,7 @@
             this.BackgroundImage = global::estadisticasStreaming.Properties.Resources.BackGround;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1107, 654);
+            this.Controls.Add(this.buttonInformacion);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.statusStripPrincipal);
@@ -281,6 +308,8 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.statusStripPrincipal.ResumeLayout(false);
             this.statusStripPrincipal.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
@@ -317,5 +346,7 @@
         private DataGridViewTextBoxColumn minutosVistos;
         private Button button1;
         private OpenFileDialog openFileDialog1;
+        private Label label1;
+        private Button buttonInformacion;
     }
 }

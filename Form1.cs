@@ -18,6 +18,7 @@ namespace estadisticasStreaming
             toolStripStatusLabel1.Text = "Hecho por: Diana Yulissa Sesma Santiago y Kristan Ruíz Limón";
             openFileDialog1.InitialDirectory = Path.Combine(Application.StartupPath, "Data");
             listaRegistros = new List<Registro>();
+            buttonInformacion.Enabled = false;
         }
 
         private void button1_Click(object sender, EventArgs e) => ObtenerRuta();
@@ -35,6 +36,7 @@ namespace estadisticasStreaming
 
         private void ImprimirContenido()
         {
+            buttonInformacion.Enabled = true;
             toolStripStatusLabel1.Text = rutaArchivo;
             int fila = 0;
 
@@ -172,6 +174,17 @@ namespace estadisticasStreaming
 
             Estadisticas.PeliculaPopular = Estadisticas.PeliculasYCantidad.Aggregate((l, r) => l.Value > r.Value ? l : r).Key; //Obtiene la pelicula con el valor (contador) más alto.
             Estadisticas.SeriePopular = Estadisticas.SeriesYCantidad.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
+        }
+
+        private void buttonInformacion_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                "Información: \r\n" +
+                "Ruta del Archivo: " + rutaArchivo + "\r\n" +
+                "Fecha y Hora de creación: " + File.GetCreationTime(rutaArchivo) + "\r\n" +
+                "Ultima edición " + File.GetLastWriteTime(rutaArchivo) + "\r\n" +
+                "Último Acceso " + File.GetLastAccessTime(rutaArchivo)
+                , "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
