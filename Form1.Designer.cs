@@ -31,6 +31,7 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
@@ -74,25 +75,30 @@
             this.buttonInformacion = new System.Windows.Forms.Button();
             this.buttonEstadisticas = new System.Windows.Forms.Button();
             this.buttonCerrar = new System.Windows.Forms.Button();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chartTiposUsuarios = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.chart6 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.chart5 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.chart4 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.chart3 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.buttonSerieMasPopular = new System.Windows.Forms.Button();
+            this.buttonPeliculaMasPopular = new System.Windows.Forms.Button();
+            this.buttonPaisMasConsumo = new System.Windows.Forms.Button();
+            this.buttonTotalTerminaron = new System.Windows.Forms.Button();
+            this.buttonTotalTipoUsuario = new System.Windows.Forms.Button();
+            this.chartConsumoPais = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chartAnios = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chartConsumoGenero = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chartTipoProducto = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chartTerminaron = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.buttonSalir = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.statusStripPrincipal.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartTiposUsuarios)).BeginInit();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartConsumoPais)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartAnios)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartConsumoGenero)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartTipoProducto)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartTerminaron)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -352,114 +358,184 @@
             this.buttonCerrar.UseVisualStyleBackColor = true;
             this.buttonCerrar.Click += new System.EventHandler(this.buttonCerrar_Click);
             // 
-            // chart1
+            // chartTiposUsuarios
             // 
+            this.chartTiposUsuarios.BackColor = System.Drawing.Color.Transparent;
             chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
+            this.chartTiposUsuarios.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(0, 0);
-            this.chart1.Name = "chart1";
+            this.chartTiposUsuarios.Legends.Add(legend1);
+            this.chartTiposUsuarios.Location = new System.Drawing.Point(0, 0);
+            this.chartTiposUsuarios.Name = "chartTiposUsuarios";
+            this.chartTiposUsuarios.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(225, 175);
-            this.chart1.TabIndex = 0;
-            this.chart1.Text = "chart1";
+            this.chartTiposUsuarios.Series.Add(series1);
+            this.chartTiposUsuarios.Size = new System.Drawing.Size(225, 175);
+            this.chartTiposUsuarios.TabIndex = 0;
+            this.chartTiposUsuarios.Text = "chart1";
+            title1.Name = "Consumo por Pais%";
+            this.chartTiposUsuarios.Titles.Add(title1);
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.chart6);
-            this.panel2.Controls.Add(this.chart5);
-            this.panel2.Controls.Add(this.chart4);
-            this.panel2.Controls.Add(this.chart3);
-            this.panel2.Controls.Add(this.chart2);
-            this.panel2.Controls.Add(this.chart1);
+            this.panel2.BackgroundImage = global::estadisticasStreaming.Properties.Resources.BackGround;
+            this.panel2.Controls.Add(this.buttonSerieMasPopular);
+            this.panel2.Controls.Add(this.buttonPeliculaMasPopular);
+            this.panel2.Controls.Add(this.buttonPaisMasConsumo);
+            this.panel2.Controls.Add(this.buttonTotalTerminaron);
+            this.panel2.Controls.Add(this.buttonTotalTipoUsuario);
+            this.panel2.Controls.Add(this.chartConsumoPais);
+            this.panel2.Controls.Add(this.chartAnios);
+            this.panel2.Controls.Add(this.chartConsumoGenero);
+            this.panel2.Controls.Add(this.chartTipoProducto);
+            this.panel2.Controls.Add(this.chartTerminaron);
+            this.panel2.Controls.Add(this.chartTiposUsuarios);
             this.panel2.Location = new System.Drawing.Point(0, 53);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(970, 363);
             this.panel2.TabIndex = 2;
             // 
-            // chart6
+            // buttonSerieMasPopular
             // 
+            this.buttonSerieMasPopular.Location = new System.Drawing.Point(581, 224);
+            this.buttonSerieMasPopular.Name = "buttonSerieMasPopular";
+            this.buttonSerieMasPopular.Size = new System.Drawing.Size(75, 23);
+            this.buttonSerieMasPopular.TabIndex = 10;
+            this.buttonSerieMasPopular.Text = "Serie+";
+            this.buttonSerieMasPopular.UseVisualStyleBackColor = true;
+            this.buttonSerieMasPopular.Click += new System.EventHandler(this.buttonSerieMasPopular_Click);
+            // 
+            // buttonPeliculaMasPopular
+            // 
+            this.buttonPeliculaMasPopular.Location = new System.Drawing.Point(581, 264);
+            this.buttonPeliculaMasPopular.Name = "buttonPeliculaMasPopular";
+            this.buttonPeliculaMasPopular.Size = new System.Drawing.Size(75, 23);
+            this.buttonPeliculaMasPopular.TabIndex = 9;
+            this.buttonPeliculaMasPopular.Text = "Pelicula+";
+            this.buttonPeliculaMasPopular.UseVisualStyleBackColor = true;
+            this.buttonPeliculaMasPopular.Click += new System.EventHandler(this.buttonPeliculaMasPopular_Click);
+            // 
+            // buttonPaisMasConsumo
+            // 
+            this.buttonPaisMasConsumo.Location = new System.Drawing.Point(425, 319);
+            this.buttonPaisMasConsumo.Name = "buttonPaisMasConsumo";
+            this.buttonPaisMasConsumo.Size = new System.Drawing.Size(58, 23);
+            this.buttonPaisMasConsumo.TabIndex = 8;
+            this.buttonPaisMasConsumo.Text = "Pais+";
+            this.buttonPaisMasConsumo.UseVisualStyleBackColor = true;
+            this.buttonPaisMasConsumo.Click += new System.EventHandler(this.buttonPaisMasConsumo_Click);
+            // 
+            // buttonTotalTerminaron
+            // 
+            this.buttonTotalTerminaron.Location = new System.Drawing.Point(373, 102);
+            this.buttonTotalTerminaron.Name = "buttonTotalTerminaron";
+            this.buttonTotalTerminaron.Size = new System.Drawing.Size(58, 23);
+            this.buttonTotalTerminaron.TabIndex = 7;
+            this.buttonTotalTerminaron.Text = "Totales";
+            this.buttonTotalTerminaron.UseVisualStyleBackColor = true;
+            this.buttonTotalTerminaron.Click += new System.EventHandler(this.buttonTotalTerminaron_Click);
+            // 
+            // buttonTotalTipoUsuario
+            // 
+            this.buttonTotalTipoUsuario.Location = new System.Drawing.Point(141, 102);
+            this.buttonTotalTipoUsuario.Name = "buttonTotalTipoUsuario";
+            this.buttonTotalTipoUsuario.Size = new System.Drawing.Size(58, 23);
+            this.buttonTotalTipoUsuario.TabIndex = 6;
+            this.buttonTotalTipoUsuario.Text = "Totales";
+            this.buttonTotalTipoUsuario.UseVisualStyleBackColor = true;
+            this.buttonTotalTipoUsuario.Click += new System.EventHandler(this.buttonTotalTipoUsuario_Click);
+            // 
+            // chartConsumoPais
+            // 
+            this.chartConsumoPais.BackColor = System.Drawing.Color.Transparent;
             chartArea2.Name = "ChartArea1";
-            this.chart6.ChartAreas.Add(chartArea2);
+            this.chartConsumoPais.ChartAreas.Add(chartArea2);
             legend2.Name = "Legend1";
-            this.chart6.Legends.Add(legend2);
-            this.chart6.Location = new System.Drawing.Point(231, 188);
-            this.chart6.Name = "chart6";
+            this.chartConsumoPais.Legends.Add(legend2);
+            this.chartConsumoPais.Location = new System.Drawing.Point(231, 188);
+            this.chartConsumoPais.Name = "chartConsumoPais";
+            this.chartConsumoPais.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
             series2.ChartArea = "ChartArea1";
             series2.Legend = "Legend1";
             series2.Name = "Series1";
-            this.chart6.Series.Add(series2);
-            this.chart6.Size = new System.Drawing.Size(274, 175);
-            this.chart6.TabIndex = 5;
-            this.chart6.Text = "chart6";
+            this.chartConsumoPais.Series.Add(series2);
+            this.chartConsumoPais.Size = new System.Drawing.Size(274, 175);
+            this.chartConsumoPais.TabIndex = 5;
+            this.chartConsumoPais.Text = "chart6";
             // 
-            // chart5
+            // chartAnios
             // 
+            this.chartAnios.BackColor = System.Drawing.Color.Transparent;
             chartArea3.Name = "ChartArea1";
-            this.chart5.ChartAreas.Add(chartArea3);
+            this.chartAnios.ChartAreas.Add(chartArea3);
             legend3.Name = "Legend1";
-            this.chart5.Legends.Add(legend3);
-            this.chart5.Location = new System.Drawing.Point(0, 185);
-            this.chart5.Name = "chart5";
+            this.chartAnios.Legends.Add(legend3);
+            this.chartAnios.Location = new System.Drawing.Point(0, 188);
+            this.chartAnios.Name = "chartAnios";
+            this.chartAnios.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
             series3.ChartArea = "ChartArea1";
             series3.Legend = "Legend1";
             series3.Name = "Series1";
-            this.chart5.Series.Add(series3);
-            this.chart5.Size = new System.Drawing.Size(225, 175);
-            this.chart5.TabIndex = 4;
-            this.chart5.Text = "chart5";
+            this.chartAnios.Series.Add(series3);
+            this.chartAnios.Size = new System.Drawing.Size(225, 175);
+            this.chartAnios.TabIndex = 4;
+            this.chartAnios.Text = "chart5";
             // 
-            // chart4
+            // chartConsumoGenero
             // 
+            this.chartConsumoGenero.BackColor = System.Drawing.Color.Transparent;
             chartArea4.Name = "ChartArea1";
-            this.chart4.ChartAreas.Add(chartArea4);
+            this.chartConsumoGenero.ChartAreas.Add(chartArea4);
             legend4.Name = "Legend1";
-            this.chart4.Legends.Add(legend4);
-            this.chart4.Location = new System.Drawing.Point(693, 0);
-            this.chart4.Name = "chart4";
+            this.chartConsumoGenero.Legends.Add(legend4);
+            this.chartConsumoGenero.Location = new System.Drawing.Point(693, 0);
+            this.chartConsumoGenero.Name = "chartConsumoGenero";
+            this.chartConsumoGenero.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
             series4.ChartArea = "ChartArea1";
             series4.Legend = "Legend1";
             series4.Name = "Series1";
-            this.chart4.Series.Add(series4);
-            this.chart4.Size = new System.Drawing.Size(274, 175);
-            this.chart4.TabIndex = 3;
-            this.chart4.Text = "chart4";
+            this.chartConsumoGenero.Series.Add(series4);
+            this.chartConsumoGenero.Size = new System.Drawing.Size(274, 175);
+            this.chartConsumoGenero.TabIndex = 3;
+            this.chartConsumoGenero.Text = "chart4";
             // 
-            // chart3
+            // chartTipoProducto
             // 
+            this.chartTipoProducto.BackColor = System.Drawing.Color.Transparent;
             chartArea5.Name = "ChartArea1";
-            this.chart3.ChartAreas.Add(chartArea5);
+            this.chartTipoProducto.ChartAreas.Add(chartArea5);
             legend5.Name = "Legend1";
-            this.chart3.Legends.Add(legend5);
-            this.chart3.Location = new System.Drawing.Point(462, 0);
-            this.chart3.Name = "chart3";
+            this.chartTipoProducto.Legends.Add(legend5);
+            this.chartTipoProducto.Location = new System.Drawing.Point(462, 0);
+            this.chartTipoProducto.Name = "chartTipoProducto";
+            this.chartTipoProducto.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
             series5.ChartArea = "ChartArea1";
             series5.Legend = "Legend1";
             series5.Name = "Series1";
-            this.chart3.Series.Add(series5);
-            this.chart3.Size = new System.Drawing.Size(225, 175);
-            this.chart3.TabIndex = 2;
-            this.chart3.Text = "chart3";
+            this.chartTipoProducto.Series.Add(series5);
+            this.chartTipoProducto.Size = new System.Drawing.Size(225, 175);
+            this.chartTipoProducto.TabIndex = 2;
+            this.chartTipoProducto.Text = "chart3";
             // 
-            // chart2
+            // chartTerminaron
             // 
+            this.chartTerminaron.BackColor = System.Drawing.Color.Transparent;
             chartArea6.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea6);
+            this.chartTerminaron.ChartAreas.Add(chartArea6);
             legend6.Name = "Legend1";
-            this.chart2.Legends.Add(legend6);
-            this.chart2.Location = new System.Drawing.Point(231, 0);
-            this.chart2.Name = "chart2";
+            this.chartTerminaron.Legends.Add(legend6);
+            this.chartTerminaron.Location = new System.Drawing.Point(231, 0);
+            this.chartTerminaron.Name = "chartTerminaron";
+            this.chartTerminaron.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
             series6.ChartArea = "ChartArea1";
             series6.Legend = "Legend1";
             series6.Name = "Series1";
-            this.chart2.Series.Add(series6);
-            this.chart2.Size = new System.Drawing.Size(225, 175);
-            this.chart2.TabIndex = 1;
-            this.chart2.Text = "chart2";
+            this.chartTerminaron.Series.Add(series6);
+            this.chartTerminaron.Size = new System.Drawing.Size(225, 175);
+            this.chartTerminaron.TabIndex = 1;
+            this.chartTerminaron.Text = "chart2";
             // 
             // buttonSalir
             // 
@@ -502,13 +578,13 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartTiposUsuarios)).EndInit();
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chart6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartConsumoPais)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartAnios)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartConsumoGenero)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartTipoProducto)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartTerminaron)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -544,13 +620,18 @@
         private Button buttonInformacion;
         private Button buttonEstadisticas;
         private Button buttonCerrar;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartTiposUsuarios;
         private Panel panel2;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart5;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart4;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart3;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart6;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartTerminaron;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartAnios;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartConsumoGenero;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartTipoProducto;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartConsumoPais;
         private Button buttonSalir;
+        private Button buttonPaisMasConsumo;
+        private Button buttonTotalTerminaron;
+        private Button buttonTotalTipoUsuario;
+        private Button buttonSerieMasPopular;
+        private Button buttonPeliculaMasPopular;
     }
 }

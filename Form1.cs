@@ -24,12 +24,12 @@ namespace estadisticasStreaming
             buttonEstadisticas.Enabled = false;
             buttonCerrar.Visible = false;
             panel2.Visible = false;
-            chart1.Visible = false;
-            chart2.Visible = false;
-            chart3.Visible = false;
-            chart4.Visible = false;
-            chart5.Visible = false;
-            chart6.Visible = false;
+            chartTiposUsuarios.Visible = false;
+            chartTerminaron.Visible = false;
+            chartTipoProducto.Visible = false;
+            chartConsumoGenero.Visible = false;
+            chartAnios.Visible = false;
+            chartConsumoPais.Visible = false;
             //chart7.Visible = false;
             //chart8.Visible = false;
         }
@@ -50,6 +50,36 @@ namespace estadisticasStreaming
             ObtenerDatos();
         }
 
+        private void buttonTotalTipoUsuario_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Startes: " + Estadisticas.NoStarters + "\r\n\r\n" +
+                "Watchers: " + Estadisticas.NoWatchers + "\r\n\r\n" +
+                "Completers: " + Estadisticas.NoCompleters,
+                "Total Tipos de Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void buttonTotalTerminaron_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Si Terminaron: " + Estadisticas.VerCompleto + "\r\n\r\n" +
+                "No Terminaron: " + Estadisticas.VerIncompleto + "\r\n\r\n",
+                "Total Terminaron", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void buttonPaisMasConsumo_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Pais: " + Estadisticas.PaisMasConsumo, "Pais que Mas Consume", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void buttonPeliculaMasPopular_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Pelicula: " + Estadisticas.PeliculaPopular, "Pelicula Mas Popular", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void buttonSerieMasPopular_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Serie: " + Estadisticas.SeriePopular, "Serie Mas Popular", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
         private void buttonCerrar_Click(object sender, EventArgs e)
         {
             panel2.Visible = false;
@@ -57,12 +87,12 @@ namespace estadisticasStreaming
             buttonEstadisticas.Visible = true;
             buttonSeleccionar.Visible = true;
             buttonSalir.Visible = true;
-            chart1.Visible = false;
-            chart2.Visible = false;
-            chart3.Visible = false;
-            chart4.Visible = false;
-            chart5.Visible = false;
-            chart6.Visible = false;
+            chartTiposUsuarios.Visible = false;
+            chartTerminaron.Visible = false;
+            chartTipoProducto.Visible = false;
+            chartConsumoGenero.Visible = false;
+            chartAnios.Visible = false;
+            chartConsumoPais.Visible = false;
             //chart7.Visible = false;
             //chart8.Visible = false;
             buttonCerrar.Visible = false;
@@ -292,80 +322,78 @@ namespace estadisticasStreaming
             Estadisticas.SeriePopular = Estadisticas.SeriesYCantidad.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
             Estadisticas.PaisMasConsumo = Estadisticas.PaisYCantidad.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
 
-            chart1.Visible = true;
-            string[] series = { "No Startes", "No Watchers", "No Completers" };
+            chartTiposUsuarios.Visible = true;
+            string[] series = { "Startes", "Watchers", "Completers" };
             int[] puntos = { Estadisticas.NoStarters * 100 / (Estadisticas.NoStarters + Estadisticas.NoWatchers + Estadisticas.NoCompleters), 
                 Estadisticas.NoWatchers * 100 / (Estadisticas.NoStarters + Estadisticas.NoWatchers + Estadisticas.NoCompleters), 
                 Estadisticas.NoCompleters * 100 / (Estadisticas.NoStarters + Estadisticas.NoWatchers + Estadisticas.NoCompleters) };
-            chart1.Palette = ChartColorPalette.Chocolate;
-            chart1.Titles.Add("Terminaron");
+            chartTiposUsuarios.Titles.Add("Tipos de Usuarios%");
 
             for (int i = 0; i < series.Length; i++)
             {
-                Series serie = chart1.Series.Add(series[i]);
+                Series serie = chartTiposUsuarios.Series.Add(series[i]);
                 serie.Label = puntos[i].ToString();
                 serie.Points.Add(puntos[i]);
             }
 
-            chart2.Visible = true;
+            chartTerminaron.Visible = true;
             string[] series2 = { "Completo", "Incompleto" };
             int[] puntos2 = { Estadisticas.VerCompleto * 100 / (Estadisticas.VerCompleto + Estadisticas.VerIncompleto),
             Estadisticas.VerIncompleto * 100 / (Estadisticas.VerCompleto + Estadisticas.VerIncompleto) };
-            chart2.Palette = ChartColorPalette.Chocolate;
-            chart2.Titles.Add("Com o In");
+            chartTerminaron.Titles.Add("Terminaron%");
 
             for (int i = 0; i < series2.Length; i++)
             {
-                Series serie2 = chart2.Series.Add(series2[i]);
+                Series serie2 = chartTerminaron.Series.Add(series2[i]);
                 serie2.Label = puntos2[i].ToString();
                 serie2.Points.Add(puntos2[i]);
             }
 
-            chart3.Visible = true;
+            chartTipoProducto.Visible = true;
             string[] series3 = { "Peliculas", "Series" };
             int[] puntos3 = { Estadisticas.Peliculas * 100 / (Estadisticas.Peliculas + Estadisticas.Series),
             Estadisticas.Series * 100 / (Estadisticas.Peliculas + Estadisticas.Series) };
-            chart3.Palette = ChartColorPalette.Chocolate;
-            chart3.Titles.Add("Pel o Ser");
+            chartTipoProducto.Titles.Add("Tipo de Producto%");
 
             for (int i = 0; i < series3.Length; i++)
             {
-                Series serie3 = chart3.Series.Add(series3[i]);
+                Series serie3 = chartTipoProducto.Series.Add(series3[i]);
                 serie3.Label = puntos3[i].ToString();
                 serie3.Points.Add(puntos3[i]);
             }
 
-            chart4.Visible = true;
+            chartConsumoGenero.Visible = true;
             string[] series4 = { "Romance", "Drama", "Terror", "Suspenso", "Accion" };
             int[] puntos4 = { Estadisticas.Romance * 100 / (Estadisticas.Romance + Estadisticas.Drama + Estadisticas.Terror + Estadisticas.Suspenso + Estadisticas.Accion),
                 Estadisticas.Drama * 100 / (Estadisticas.Romance + Estadisticas.Drama + Estadisticas.Terror + Estadisticas.Suspenso + Estadisticas.Accion),
                 Estadisticas.Terror * 100 / (Estadisticas.Romance + Estadisticas.Drama + Estadisticas.Terror + Estadisticas.Suspenso + Estadisticas.Accion),
                 Estadisticas.Suspenso * 100 / (Estadisticas.Romance + Estadisticas.Drama + Estadisticas.Terror + Estadisticas.Suspenso + Estadisticas.Accion),
                 Estadisticas.Accion * 100 / (Estadisticas.Romance + Estadisticas.Drama + Estadisticas.Terror + Estadisticas.Suspenso + Estadisticas.Accion) };
-            chart4.Palette = ChartColorPalette.Chocolate;
-            chart4.Titles.Add("Categorias");
+            chartConsumoGenero.Titles.Add("Consumo por Genero%");
 
             for (int i = 0; i < series4.Length; i++)
             {
-                Series serie4 = chart4.Series.Add(series4[i]);
+                Series serie4 = chartConsumoGenero.Series.Add(series4[i]);
                 serie4.Label = puntos4[i].ToString();
                 serie4.Points.Add(puntos4[i]);
             }
 
-            chart5.Visible = true;
+            chartAnios.Visible = true;
             string[] series5 = { "2020", "2021", "2022", "2023" };
-            int[] puntos5 = { Estadisticas.Anio2020, Estadisticas.Anio2021, Estadisticas.Anio2022, Estadisticas.Anio2023 };
-            chart5.Palette = ChartColorPalette.Chocolate;
-            chart5.Titles.Add("Años");
+            int[] puntos5 = { Estadisticas.Anio2020 * 100 / (Estadisticas.Anio2020 + Estadisticas.Anio2021 + Estadisticas.Anio2022 + Estadisticas.Anio2023), 
+                Estadisticas.Anio2021 * 100 / (Estadisticas.Anio2020 + Estadisticas.Anio2021 + Estadisticas.Anio2022 + Estadisticas.Anio2023), 
+                Estadisticas.Anio2022 * 100 / (Estadisticas.Anio2020 + Estadisticas.Anio2021 + Estadisticas.Anio2022 + Estadisticas.Anio2023), 
+                Estadisticas.Anio2023 * 100 / (Estadisticas.Anio2020 + Estadisticas.Anio2021 + Estadisticas.Anio2022 + Estadisticas.Anio2023) };
+            chartAnios.Titles.Add("Productos Estrenados");
 
             for (int i = 0; i < series5.Length; i++)
             {
-                Series serie5 = chart5.Series.Add(series5[i]);
+                Series serie5 = chartAnios.Series.Add(series5[i]);
                 serie5.Label = puntos5[i].ToString();
                 serie5.Points.Add(puntos5[i]);
             }
 
-            chart6.Visible = true;
+            chartConsumoPais.Visible = true;
             string[] series6 = { "Mexico", "EU", "Canada", "Colombia", "Cuba", "Costa Rica" };
             int[] puntos6 = { Estadisticas.Mexico * 100 / (Estadisticas.Mexico + Estadisticas.Eu + Estadisticas.Canada + Estadisticas.Colombia + Estadisticas.Cuba + Estadisticas.CostaRica),
             Estadisticas.Eu * 100 / (Estadisticas.Mexico + Estadisticas.Eu + Estadisticas.Canada + Estadisticas.Colombia + Estadisticas.Cuba + Estadisticas.CostaRica),
@@ -373,18 +401,14 @@ namespace estadisticasStreaming
             Estadisticas.Colombia * 100 / (Estadisticas.Mexico + Estadisticas.Eu + Estadisticas.Canada + Estadisticas.Colombia + Estadisticas.Cuba + Estadisticas.CostaRica),
             Estadisticas.Cuba * 100 / (Estadisticas.Mexico + Estadisticas.Eu + Estadisticas.Canada + Estadisticas.Colombia + Estadisticas.Cuba + Estadisticas.CostaRica),
             Estadisticas.CostaRica * 100 / (Estadisticas.Mexico + Estadisticas.Eu + Estadisticas.Canada + Estadisticas.Colombia + Estadisticas.Cuba + Estadisticas.CostaRica)};
-            chart6.Palette = ChartColorPalette.Chocolate;
-            chart6.Titles.Add("Paises");
+            chartConsumoPais.Titles.Add("Consumo por Pais%");
 
             for (int i = 0; i < series6.Length; i++)
             {
-                Series serie6 = chart6.Series.Add(series6[i]);
+                Series serie6 = chartConsumoPais.Series.Add(series6[i]);
                 serie6.Label = puntos6[i].ToString();
                 serie6.Points.Add(puntos6[i]);
             }
-
-            //MessageBox.Show("Pelicula+: " + Estadisticas.PeliculaPopular);
-            //MessageBox.Show("Serie+: " + Estadisticas.SeriePopular);
         }
 
         private void Reiniciar()
@@ -393,6 +417,10 @@ namespace estadisticasStreaming
             Estadisticas.NoStarters = 0;
             Estadisticas.NoWatchers = 0;
             Estadisticas.NoCompleters = 0;
+            Estadisticas.VerCompleto = 0;
+            Estadisticas.VerIncompleto = 0;
+            Estadisticas.Peliculas = 0;
+            Estadisticas.Series = 0;
             Estadisticas.Romance = 0;
             Estadisticas.Drama = 0;
             Estadisticas.Terror = 0;
@@ -402,14 +430,31 @@ namespace estadisticasStreaming
             Estadisticas.Anio2021 = 0;
             Estadisticas.Anio2022 = 0;
             Estadisticas.Anio2023 = 0;
-            chart1.Series.Clear();
-            chart2.Series.Clear();
-            chart3.Series.Clear();
-            chart4.Series.Clear();
-            chart5.Series.Clear();
-            chart6.Series.Clear();
+            Estadisticas.Mexico = 0;
+            Estadisticas.Eu = 0;
+            Estadisticas.Canada = 0;
+            Estadisticas.Colombia = 0;
+            Estadisticas.Cuba = 0;
+            Estadisticas.CostaRica = 0;
+            Estadisticas.PeliculaPopular = "";
+            Estadisticas.SeriePopular = "";
+            Estadisticas.PaisMasConsumo = "";
+            chartTiposUsuarios.Series.Clear();
+            chartTerminaron.Series.Clear();
+            chartTipoProducto.Series.Clear();
+            chartConsumoGenero.Series.Clear();
+            chartAnios.Series.Clear();
+            chartConsumoPais.Series.Clear();
             //chart7.Series.Clear();
             //chart8.Series.Clear();
+            chartTiposUsuarios.Titles.Clear();
+            chartTerminaron.Titles.Clear();
+            chartTipoProducto.Titles.Clear();
+            chartConsumoGenero.Titles.Clear();
+            chartAnios.Titles.Clear();
+            chartConsumoPais.Titles.Clear();
+            //chart7.Titles.Clear();
+            //chart8.Titles.Clear();
             buttonCerrar.Visible = true;
         }
     }
