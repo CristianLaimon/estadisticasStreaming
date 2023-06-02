@@ -1,5 +1,6 @@
 using estadisticasStreaming.Clases;
-using System.Diagnostics.CodeAnalysis;
+using System;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace estadisticasStreaming
 {
@@ -21,6 +22,16 @@ namespace estadisticasStreaming
             listaRegistros = new List<Registro>();
             buttonInformacion.Enabled = false;
             buttonEstadisticas.Enabled = false;
+            buttonCerrar.Visible = false;
+            panel2.Visible = false;
+            chart1.Visible = false;
+            chart2.Visible = false;
+            chart3.Visible = false;
+            chart4.Visible = false;
+            chart5.Visible = false;
+            chart6.Visible = false;
+            //chart7.Visible = false;
+            //chart8.Visible = false;
         }
 
         private void buttonSeleccionar_Click(object sender, EventArgs e) => ObtenerRuta();
@@ -28,6 +39,32 @@ namespace estadisticasStreaming
         private void abrirNuevoArchivoToolStripMenuItem_Click(object sender, EventArgs e) => ObtenerRuta();
 
         private void buttonInformacion_Click(object sender, EventArgs e) => ObtenerInfo();
+
+        private void buttonEstadisticas_Click(object sender, EventArgs e)
+        {
+            buttonInformacion.Visible = false;
+            buttonEstadisticas.Visible = false;
+            buttonSeleccionar.Visible = false;
+            panel2.Visible = true;
+            ObtenerDatos();
+        }
+
+        private void buttonCerrar_Click(object sender, EventArgs e)
+        {
+            panel2.Visible = false;
+            buttonInformacion.Visible = true;
+            buttonEstadisticas.Visible = true;
+            buttonSeleccionar.Visible = true;
+            chart1.Visible = false;
+            chart2.Visible = false;
+            chart3.Visible = false;
+            chart4.Visible = false;
+            chart5.Visible = false;
+            chart6.Visible = false;
+            //chart7.Visible = false;
+            //chart8.Visible = false;
+            buttonCerrar.Visible = false;
+        }
 
         private void ObtenerRuta()
         {
@@ -243,30 +280,99 @@ namespace estadisticasStreaming
             Estadisticas.SeriePopular = Estadisticas.SeriesYCantidad.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
             Estadisticas.PaisMasConsumo = Estadisticas.PaisYCantidad.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
 
-            MessageBox.Show("No Startes: " + Estadisticas.NoStarters);
-            MessageBox.Show("No Watchers: " + Estadisticas.NoWatchers);
-            MessageBox.Show("No Completers: " + Estadisticas.NoCompleters);
-            MessageBox.Show("Completo: " + (Estadisticas.VerCompleto * 100 / (Estadisticas.VerCompleto + Estadisticas.VerIncompleto)));
-            MessageBox.Show("Incompleto: " + (Estadisticas.VerIncompleto * 100 / (Estadisticas.VerCompleto + Estadisticas.VerIncompleto)));
-            MessageBox.Show("Pelicula: " + (Estadisticas.Peliculas * 100 / (Estadisticas.Peliculas + Estadisticas.Series)));
-            MessageBox.Show("Serie: " + (Estadisticas.Series * 100 / (Estadisticas.Peliculas + Estadisticas.Series)));
-            MessageBox.Show("Romance: " + Estadisticas.Romance);
-            MessageBox.Show("Drama: " + Estadisticas.Drama);
-            MessageBox.Show("Terror: " + Estadisticas.Terror);
-            MessageBox.Show("Suspenso: " + Estadisticas.Suspenso);
-            MessageBox.Show("Accion: " + Estadisticas.Accion);
-            MessageBox.Show("2020: " + Estadisticas.Anio2020);
-            MessageBox.Show("2021: " + Estadisticas.Anio2021);
-            MessageBox.Show("2022: " + Estadisticas.Anio2022);
-            MessageBox.Show("2023: " + Estadisticas.Anio2023);
-            MessageBox.Show("Pais+: " + Estadisticas.PaisMasConsumo);
-            MessageBox.Show("Pelicula+: " + Estadisticas.PeliculaPopular);
-            MessageBox.Show("Serie+: " + Estadisticas.SeriePopular);
-        }
+            chart1.Visible = true;
+            string[] series = { "No Startes", "No Watchers", "No Completers" };
+            int[] puntos = { Estadisticas.NoStarters * 100 / (Estadisticas.NoStarters + Estadisticas.NoWatchers + Estadisticas.NoCompleters), 
+                Estadisticas.NoWatchers * 100 / (Estadisticas.NoStarters + Estadisticas.NoWatchers + Estadisticas.NoCompleters), 
+                Estadisticas.NoCompleters * 100 / (Estadisticas.NoStarters + Estadisticas.NoWatchers + Estadisticas.NoCompleters) };
+            chart1.Palette = ChartColorPalette.Chocolate;
+            chart1.Titles.Add("Terminaron");
 
-        private void buttonEstadisticas_Click(object sender, EventArgs e)
-        { 
-            ObtenerDatos();
+            for (int i = 0; i < series.Length; i++)
+            {
+                Series serie = chart1.Series.Add(series[i]);
+                serie.Label = puntos[i].ToString();
+                serie.Points.Add(puntos[i]);
+            }
+
+            chart2.Visible = true;
+            string[] series2 = { "Completo", "Incompleto" };
+            int[] puntos2 = { Estadisticas.VerCompleto * 100 / (Estadisticas.VerCompleto + Estadisticas.VerIncompleto),
+            Estadisticas.VerIncompleto * 100 / (Estadisticas.VerCompleto + Estadisticas.VerIncompleto) };
+            chart2.Palette = ChartColorPalette.Chocolate;
+            chart2.Titles.Add("Com o In");
+
+            for (int i = 0; i < series2.Length; i++)
+            {
+                Series serie2 = chart2.Series.Add(series2[i]);
+                serie2.Label = puntos2[i].ToString();
+                serie2.Points.Add(puntos2[i]);
+            }
+
+            chart3.Visible = true;
+            string[] series3 = { "Peliculas", "Series" };
+            int[] puntos3 = { Estadisticas.Peliculas * 100 / (Estadisticas.Peliculas + Estadisticas.Series),
+            Estadisticas.Series * 100 / (Estadisticas.Peliculas + Estadisticas.Series) };
+            chart3.Palette = ChartColorPalette.Chocolate;
+            chart3.Titles.Add("Pel o Ser");
+
+            for (int i = 0; i < series3.Length; i++)
+            {
+                Series serie3 = chart3.Series.Add(series3[i]);
+                serie3.Label = puntos3[i].ToString();
+                serie3.Points.Add(puntos3[i]);
+            }
+
+            chart4.Visible = true;
+            string[] series4 = { "Romance", "Drama", "Terror", "Suspenso", "Accion" };
+            int[] puntos4 = { Estadisticas.Romance * 100 / (Estadisticas.Romance + Estadisticas.Drama + Estadisticas.Terror + Estadisticas.Suspenso + Estadisticas.Accion),
+                Estadisticas.Drama * 100 / (Estadisticas.Romance + Estadisticas.Drama + Estadisticas.Terror + Estadisticas.Suspenso + Estadisticas.Accion),
+                Estadisticas.Terror * 100 / (Estadisticas.Romance + Estadisticas.Drama + Estadisticas.Terror + Estadisticas.Suspenso + Estadisticas.Accion),
+                Estadisticas.Suspenso * 100 / (Estadisticas.Romance + Estadisticas.Drama + Estadisticas.Terror + Estadisticas.Suspenso + Estadisticas.Accion),
+                Estadisticas.Accion * 100 / (Estadisticas.Romance + Estadisticas.Drama + Estadisticas.Terror + Estadisticas.Suspenso + Estadisticas.Accion) };
+            chart4.Palette = ChartColorPalette.Chocolate;
+            chart4.Titles.Add("Categorias");
+
+            for (int i = 0; i < series4.Length; i++)
+            {
+                Series serie4 = chart4.Series.Add(series4[i]);
+                serie4.Label = puntos4[i].ToString();
+                serie4.Points.Add(puntos4[i]);
+            }
+
+            chart5.Visible = true;
+            string[] series5 = { "2020", "2021", "2022", "2023" };
+            int[] puntos5 = { Estadisticas.Anio2020, Estadisticas.Anio2021, Estadisticas.Anio2022, Estadisticas.Anio2023 };
+            chart5.Palette = ChartColorPalette.Chocolate;
+            chart5.Titles.Add("Años");
+
+            for (int i = 0; i < series5.Length; i++)
+            {
+                Series serie5 = chart5.Series.Add(series5[i]);
+                serie5.Label = puntos5[i].ToString();
+                serie5.Points.Add(puntos5[i]);
+            }
+
+            chart6.Visible = true;
+            string[] series6 = { "Mexico", "EU", "Canada", "Colombia", "Cuba", "Costa Rica" };
+            int[] puntos6 = { Estadisticas.Mexico * 100 / (Estadisticas.Mexico + Estadisticas.Eu + Estadisticas.Canada + Estadisticas.Colombia + Estadisticas.Cuba + Estadisticas.CostaRica),
+            Estadisticas.Eu * 100 / (Estadisticas.Mexico + Estadisticas.Eu + Estadisticas.Canada + Estadisticas.Colombia + Estadisticas.Cuba + Estadisticas.CostaRica),
+            Estadisticas.Canada * 100 / (Estadisticas.Mexico + Estadisticas.Eu + Estadisticas.Canada + Estadisticas.Colombia + Estadisticas.Cuba + Estadisticas.CostaRica),
+            Estadisticas.Colombia * 100 / (Estadisticas.Mexico + Estadisticas.Eu + Estadisticas.Canada + Estadisticas.Colombia + Estadisticas.Cuba + Estadisticas.CostaRica),
+            Estadisticas.Cuba * 100 / (Estadisticas.Mexico + Estadisticas.Eu + Estadisticas.Canada + Estadisticas.Colombia + Estadisticas.Cuba + Estadisticas.CostaRica),
+            Estadisticas.CostaRica * 100 / (Estadisticas.Mexico + Estadisticas.Eu + Estadisticas.Canada + Estadisticas.Colombia + Estadisticas.Cuba + Estadisticas.CostaRica)};
+            chart6.Palette = ChartColorPalette.Chocolate;
+            chart6.Titles.Add("Paises");
+
+            for (int i = 0; i < series6.Length; i++)
+            {
+                Series serie6 = chart6.Series.Add(series6[i]);
+                serie6.Label = puntos6[i].ToString();
+                serie6.Points.Add(puntos6[i]);
+            }
+
+            //MessageBox.Show("Pelicula+: " + Estadisticas.PeliculaPopular);
+            //MessageBox.Show("Serie+: " + Estadisticas.SeriePopular);
         }
 
         private void Reiniciar()
@@ -284,6 +390,18 @@ namespace estadisticasStreaming
             Estadisticas.Anio2021 = 0;
             Estadisticas.Anio2022 = 0;
             Estadisticas.Anio2023 = 0;
+            buttonCerrar.Visible = true;
+            //Reinicar graficas***PENDIENTE***
+        }
+
+        private void buttonSalir_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("¿Desea Salir?", "¿Salir?", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+            if (result == DialogResult.OK)
+            {
+                Application.Exit();
+            }
         }
     }
 }
