@@ -114,17 +114,10 @@ namespace estadisticasStreaming
 
         private void ObtenerRuta()
         {
-            try
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                if (openFileDialog1.ShowDialog() == DialogResult.OK)
-                {
-                    rutaArchivo = openFileDialog1.FileName;
-                    ImprimirContenido();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("" + ex);
+                rutaArchivo = openFileDialog1.FileName;
+                ImprimirContenido();
             }
         }
 
