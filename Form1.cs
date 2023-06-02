@@ -110,10 +110,17 @@ namespace estadisticasStreaming
 
         private void ObtenerRuta()
         {
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            try
             {
-                rutaArchivo = openFileDialog1.FileName;
-                ImprimirContenido();
+                if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    rutaArchivo = openFileDialog1.FileName;
+                    ImprimirContenido();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("" + ex);
             }
         }
 
@@ -125,7 +132,7 @@ namespace estadisticasStreaming
                 "Fecha y Hora de Creación: " + File.GetCreationTime(rutaArchivo) + "\r\n\r\n" +
                 "Ultima Modificación: " + File.GetLastWriteTime(rutaArchivo) + "\r\n\r\n" +
                 "Ultimo Acceso: " + File.GetLastAccessTime(rutaArchivo)
-                , "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ,"Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void ImprimirContenido()
@@ -134,16 +141,16 @@ namespace estadisticasStreaming
             buttonEstadisticas.Enabled = true;
             toolStripStatusLabel1.Text = rutaArchivo;
             int fila = 0;
-            
+
             using (StreamReader lector = new StreamReader(rutaArchivo))
             {
                 while (!lector.EndOfStream)
                 {
                     string linea = lector.ReadLine();
-                    string[] lineaElementos = linea.Split(','); 
+                    string[] lineaElementos = linea.Split(',');
                     dataGridView1.Rows.Add();
 
-                    for (int i = 0; i < lineaElementos.Length; i++) 
+                    for (int i = 0; i < lineaElementos.Length; i++)
                     {
                         dataGridView1.Rows[fila].Cells[i].Value = lineaElementos[i];
                     }
