@@ -30,8 +30,8 @@ namespace estadisticasStreaming
             chartConsumoGenero.Visible = false;
             chartAnios.Visible = false;
             chartConsumoPais.Visible = false;
-            //chart7.Visible = false;
-            //chart8.Visible = false;
+            chartPeliculaMasPopular.Visible = false;
+            chartSerieMasPopular.Visible = false;
         }
 
         private void buttonSeleccionar_Click(object sender, EventArgs e) => ObtenerRuta();
@@ -93,8 +93,8 @@ namespace estadisticasStreaming
             chartConsumoGenero.Visible = false;
             chartAnios.Visible = false;
             chartConsumoPais.Visible = false;
-            //chart7.Visible = false;
-            //chart8.Visible = false;
+            chartPeliculaMasPopular.Visible = false;
+            chartSerieMasPopular.Visible = false;
             buttonCerrar.Visible = false;
         }
 
@@ -110,17 +110,10 @@ namespace estadisticasStreaming
 
         private void ObtenerRuta()
         {
-            try
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                if (openFileDialog1.ShowDialog() == DialogResult.OK)
-                {
-                    rutaArchivo = openFileDialog1.FileName;
-                    ImprimirContenido();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("" + ex);
+                rutaArchivo = openFileDialog1.FileName;
+                ImprimirContenido();
             }
         }
 
@@ -199,13 +192,13 @@ namespace estadisticasStreaming
                 {
                     Estadisticas.Peliculas++;
 
-                    if (Estadisticas.PeliculasYCantidad.ContainsKey(r.ProductoVisto)) //Si ya existe la llave (la pelicula), se le suma 1 al valor de la llave a su contador.
+                    if (Estadisticas.PeliculasYCantidad.ContainsKey(r.ProductoVisto))
                     {
                         Estadisticas.PeliculasYCantidad[r.ProductoVisto]++;
                     }
                     else
                     {
-                        Estadisticas.PeliculasYCantidad.Add(r.ProductoVisto, 1); //Si no existe la llave, se crea y se le asigna el valor de 1.
+                        Estadisticas.PeliculasYCantidad.Add(r.ProductoVisto, 1); 
                     }
                 }
                 else
@@ -325,7 +318,7 @@ namespace estadisticasStreaming
                 }
             }
 
-            Estadisticas.PeliculaPopular = Estadisticas.PeliculasYCantidad.Aggregate((l, r) => l.Value > r.Value ? l : r).Key; //Obtiene la pelicula con el valor (contador) más alto.
+            Estadisticas.PeliculaPopular = Estadisticas.PeliculasYCantidad.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
             Estadisticas.SeriePopular = Estadisticas.SeriesYCantidad.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
             Estadisticas.PaisMasConsumo = Estadisticas.PaisYCantidad.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
 
@@ -416,6 +409,30 @@ namespace estadisticasStreaming
                 serie6.Label = puntos6[i].ToString();
                 serie6.Points.Add(puntos6[i]);
             }
+
+            chartPeliculaMasPopular.Visible = true;
+            string[] series7 = Estadisticas.PeliculasYCantidad.Keys.ToArray();
+            int[] puntos7 = Estadisticas.PeliculasYCantidad.Values.ToArray();
+            chartPeliculaMasPopular.Titles.Add("Peliculas");
+
+            for (int i = 0; i < series7.Length; i++)
+            {
+                Series serie7 = chartPeliculaMasPopular.Series.Add(series7[i]);
+                serie7.Label = puntos7[i].ToString();
+                serie7.Points.Add(puntos7[i]);
+            }
+
+            chartSerieMasPopular.Visible = true;
+            string[] series8 = Estadisticas.SeriesYCantidad.Keys.ToArray();
+            int[] puntos8 = Estadisticas.SeriesYCantidad.Values.ToArray();
+            chartSerieMasPopular.Titles.Add("Series");
+
+            for (int i = 0; i < series8.Length; i++)
+            {
+                Series serie8 = chartSerieMasPopular.Series.Add(series8[i]);
+                serie8.Label = puntos8[i].ToString();
+                serie8.Points.Add(puntos8[i]);
+            }
         }
 
         private void Reiniciar()
@@ -452,16 +469,16 @@ namespace estadisticasStreaming
             chartConsumoGenero.Series.Clear();
             chartAnios.Series.Clear();
             chartConsumoPais.Series.Clear();
-            //chart7.Series.Clear();
-            //chart8.Series.Clear();
+            chartPeliculaMasPopular.Series.Clear();
+            chartSerieMasPopular.Series.Clear();
             chartTiposUsuarios.Titles.Clear();
             chartTerminaron.Titles.Clear();
             chartTipoProducto.Titles.Clear();
             chartConsumoGenero.Titles.Clear();
             chartAnios.Titles.Clear();
             chartConsumoPais.Titles.Clear();
-            //chart7.Titles.Clear();
-            //chart8.Titles.Clear();
+            chartPeliculaMasPopular.Titles.Clear();
+            chartSerieMasPopular.Titles.Clear();
             buttonCerrar.Visible = true;
         }
     }
