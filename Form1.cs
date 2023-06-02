@@ -9,6 +9,8 @@ namespace estadisticasStreaming
         private string rutaArchivo;
         private static List<Registro> listaRegistros;
 
+        string[] lineaElementos;
+
 
         public Form1()
         {
@@ -17,7 +19,7 @@ namespace estadisticasStreaming
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            toolStripStatusLabel1.Text = "Hecho por: Diana Yulissa Sesma Santiago y Kristan Ru�z Lim�n";
+            toolStripStatusLabel1.Text = "Hecho por: Diana Yulissa Sesma Santiago y Kristan Ru�z Lim�n";
             openFileDialog1.InitialDirectory = Path.Combine(Application.StartupPath, "Data");
             listaRegistros = new List<Registro>();
             buttonInformacion.Enabled = false;
@@ -100,7 +102,7 @@ namespace estadisticasStreaming
 
         private void buttonSalir_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("�Desea Salir?", "�Salir?", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show("�Desea Salir?", "�Salir?", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
             if (result == DialogResult.OK)
             {
@@ -129,21 +131,63 @@ namespace estadisticasStreaming
             rutaArchivo = openFileDialog1.FileName;
             MessageBox.Show(
                 "Ruta del Archivo: " + rutaArchivo + "\r\n\r\n" +
-                "Fecha y Hora de Creaci�n: " + File.GetCreationTime(rutaArchivo) + "\r\n\r\n" +
-                "Ultima Modificaci�n: " + File.GetLastWriteTime(rutaArchivo) + "\r\n\r\n" +
+                "Fecha y Hora de Creaci�n: " + File.GetCreationTime(rutaArchivo) + "\r\n\r\n" +
+                "Ultima Modificaci�n: " + File.GetLastWriteTime(rutaArchivo) + "\r\n\r\n" +
                 "Ultimo Acceso: " + File.GetLastAccessTime(rutaArchivo)
-                ,"Informaci�n", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ,"Informaci�n", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void LeerDatos()
+        {
+            bool compatible = true; //por defecto false
+            lineaElementos = null;
+
+            while(!fs.EndOfStream) //Lo leerá hasta que vea que hay un campo en blanco, si es así, dejará de leer y no imprimirá nada.
+            {
+                using(StreamReader lector = new StreamReader(rutaArchivo)) 
+                {
+                    string linea = lector.ReadLine();
+                    string[] lineaElementos = lineaElementos.Split(',');
+
+                    foreach(string campo in lineaElementos)// Una vez teniendo leida la fila de esta iteración, comprobará en cada una de sus celdas
+                    {
+                        if(campo == "")
+                        {
+                           compatible = false;
+                           break; //Se sale del foreach
+                        }
+                    }
+
+                    if(compatible == false) //Se sale del while, porque vio que compatibl es false al haber encontrado un campo en blanco (parará de leer)
+                    {
+                        break;
+                    }
+
+                }
+            }
+
+            if(compatible)
+            {
+                ImprimirContenido(); //Ahora si lo imprime
+            }
+            else
+            {
+                MessageBox.Show("Ha seleccionado un archivo con un formato incompatible", "Error", MessageBoxButtons.OK, MessageBoxIcons.Error); //Se pudo haber puesto dentro del while, es cuestión de gusto mio
+            }
+
         }
 
         private void ImprimirContenido()
         {
+            fs.Seek(0, SeekOrigin.Begin); //Debido a que para revisar se leyó el puntero no estará claramente en el principio.
+            
             buttonInformacion.Enabled = true;
             buttonEstadisticas.Enabled = true;
             toolStripStatusLabel1.Text = rutaArchivo;
             int fila = 0;
 
-            using (StreamReader lector = new StreamReader(rutaArchivo))
-            {
+            using (StreamReader lector = new StreamReader(rutaArchivo)) //Esta es la segunda vez que lo lee ahora si completo ya habiendo verificado que podrá leerlo completo
+            { 
                 while (!lector.EndOfStream)
                 {
                     string linea = lector.ReadLine();
@@ -325,7 +369,7 @@ namespace estadisticasStreaming
                 }
             }
 
-            Estadisticas.PeliculaPopular = Estadisticas.PeliculasYCantidad.Aggregate((l, r) => l.Value > r.Value ? l : r).Key; //Obtiene la pelicula con el valor (contador) m�s alto.
+            Estadisticas.PeliculaPopular = Estadisticas.PeliculasYCantidad.Aggregate((l, r) => l.Value > r.Value ? l : r).Key; //Obtiene la pelicula con el valor (contador) m�s alto.
             Estadisticas.SeriePopular = Estadisticas.SeriesYCantidad.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
             Estadisticas.PaisMasConsumo = Estadisticas.PaisYCantidad.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
 
