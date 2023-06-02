@@ -8,8 +8,8 @@ namespace estadisticasStreaming
     {
         private string rutaArchivo;
         private static List<Registro> listaRegistros;
-
         string[] lineaElementos;
+        FileStream fs;
 
 
         public Form1()
@@ -19,6 +19,7 @@ namespace estadisticasStreaming
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            fs = new FileStream(rutaArchivo, FileMode.Open, FileAccess.Read);
             toolStripStatusLabel1.Text = "Hecho por: Diana Yulissa Sesma Santiago y Kristan Ru�z Lim�n";
             openFileDialog1.InitialDirectory = Path.Combine(Application.StartupPath, "Data");
             listaRegistros = new List<Registro>();
@@ -106,6 +107,7 @@ namespace estadisticasStreaming
 
             if (result == DialogResult.OK)
             {
+                fs.Close();
                 Application.Exit();
             }
         }
@@ -142,12 +144,13 @@ namespace estadisticasStreaming
             bool compatible = true; //por defecto false
             lineaElementos = null;
 
-            while(!fs.EndOfStream) //Lo leerá hasta que vea que hay un campo en blanco, si es así, dejará de leer y no imprimirá nada.
+            using (StreamReader lector = new StreamReader(rutaArchivo))
+                
             {
-                using(StreamReader lector = new StreamReader(rutaArchivo)) 
+                while (!lector.EndOfStream) //Lo leerá hasta que vea que hay un campo en blanco, si es así, dejará de leer y no imprimirá nada.
                 {
                     string linea = lector.ReadLine();
-                    string[] lineaElementos = lineaElementos.Split(',');
+                    string[] lineaElementos = linea.Split(',');
 
                     foreach(string campo in lineaElementos)// Una vez teniendo leida la fila de esta iteración, comprobará en cada una de sus celdas
                     {
@@ -172,7 +175,7 @@ namespace estadisticasStreaming
             }
             else
             {
-                MessageBox.Show("Ha seleccionado un archivo con un formato incompatible", "Error", MessageBoxButtons.OK, MessageBoxIcons.Error); //Se pudo haber puesto dentro del while, es cuestión de gusto mio
+                MessageBox.Show("Ha seleccionado un archivo con un formato incompatible", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); //Se pudo haber puesto dentro del while, es cuestión de gusto mio
             }
 
         }
