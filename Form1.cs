@@ -8,8 +8,8 @@ namespace estadisticasStreaming
     {
         private string rutaArchivo;
         private static List<Registro> listaRegistros;
-
         string[] lineaElementos;
+        FileStream fs;
 
 
         public Form1()
@@ -19,6 +19,7 @@ namespace estadisticasStreaming
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            fs = new FileStream(rutaArchivo, FileMode.Open, FileAccess.Read);
             toolStripStatusLabel1.Text = "Hecho por: Diana Yulissa Sesma Santiago y Kristan Ru�z Lim�n";
             openFileDialog1.InitialDirectory = Path.Combine(Application.StartupPath, "Data");
             listaRegistros = new List<Registro>();
@@ -49,7 +50,7 @@ namespace estadisticasStreaming
             buttonSeleccionar.Visible = false;
             buttonSalir.Visible = false;
             panel2.Visible = true;
-            ObtenerDatos();
+            ObtenerEstadisticas();
         }
 
         private void buttonTotalTipoUsuario_Click(object sender, EventArgs e)
@@ -106,23 +107,17 @@ namespace estadisticasStreaming
 
             if (result == DialogResult.OK)
             {
+                fs.Close();
                 Application.Exit();
             }
         }
 
         private void ObtenerRuta()
         {
-            try
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                if (openFileDialog1.ShowDialog() == DialogResult.OK)
-                {
-                    rutaArchivo = openFileDialog1.FileName;
-                    ImprimirContenido();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("" + ex);
+                rutaArchivo = openFileDialog1.FileName;
+                LeerDatos();
             }
         }
 
@@ -142,9 +137,9 @@ namespace estadisticasStreaming
             bool compatible = true; //por defecto false
             lineaElementos = new string[11];
 
-            using(StreamReader lector = new StreamReader(rutaArchivo)) 
+            using (StreamReader lector = new StreamReader(rutaArchivo))
             {
-                while(!lector.EndOfStream) //Lo leerá hasta que vea que hay un campo en blanco, si es así, dejará de leer y no imprimirá nada.
+                while (!lector.EndOfStream) //Lo leerá hasta que vea que hay un campo en blanco, si es así, dejará de leer y no imprimirá nada.
                 {
                     string linea = lector.ReadLine();
                     string[] lineaElementos = linea.Split(',');
@@ -201,7 +196,7 @@ namespace estadisticasStreaming
             }
         }
 
-        private void ObtenerDatos() 
+        private void ObtenerEstadisticas() 
         {
             Reiniciar();
 
