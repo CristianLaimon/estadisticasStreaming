@@ -45,6 +45,7 @@ namespace estadisticasStreaming
             buttonInformacion.Visible = false;
             buttonEstadisticas.Visible = false;
             buttonSeleccionar.Visible = false;
+            buttonSalir.Visible = false;
             panel2.Visible = true;
             ObtenerDatos();
         }
@@ -55,6 +56,7 @@ namespace estadisticasStreaming
             buttonInformacion.Visible = true;
             buttonEstadisticas.Visible = true;
             buttonSeleccionar.Visible = true;
+            buttonSalir.Visible = true;
             chart1.Visible = false;
             chart2.Visible = false;
             chart3.Visible = false;
@@ -64,6 +66,16 @@ namespace estadisticasStreaming
             //chart7.Visible = false;
             //chart8.Visible = false;
             buttonCerrar.Visible = false;
+        }
+
+        private void buttonSalir_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("¿Desea Salir?", "¿Salir?", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+            if (result == DialogResult.OK)
+            {
+                Application.Exit();
+            }
         }
 
         private void ObtenerRuta()
@@ -390,18 +402,15 @@ namespace estadisticasStreaming
             Estadisticas.Anio2021 = 0;
             Estadisticas.Anio2022 = 0;
             Estadisticas.Anio2023 = 0;
+            chart1.Series.Clear();
+            chart2.Series.Clear();
+            chart3.Series.Clear();
+            chart4.Series.Clear();
+            chart5.Series.Clear();
+            chart6.Series.Clear();
+            //chart7.Series.Clear();
+            //chart8.Series.Clear();
             buttonCerrar.Visible = true;
-            //Reinicar graficas***PENDIENTE***
-        }
-
-        private void buttonSalir_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show("¿Desea Salir?", "¿Salir?", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-
-            if (result == DialogResult.OK)
-            {
-                Application.Exit();
-            }
         }
     }
 }
