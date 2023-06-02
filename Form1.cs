@@ -9,7 +9,6 @@ namespace estadisticasStreaming
         private string rutaArchivo;
         private static List<Registro> listaRegistros;
         string[] lineaElementos;
-        FileStream fs;
 
 
         public Form1()
@@ -19,7 +18,6 @@ namespace estadisticasStreaming
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            fs = new FileStream(rutaArchivo, FileMode.Open, FileAccess.Read);
             toolStripStatusLabel1.Text = "Hecho por: Diana Yulissa Sesma Santiago y Kristan Ru�z Lim�n";
             openFileDialog1.InitialDirectory = Path.Combine(Application.StartupPath, "Data");
             listaRegistros = new List<Registro>();
@@ -107,7 +105,6 @@ namespace estadisticasStreaming
 
             if (result == DialogResult.OK)
             {
-                fs.Close();
                 Application.Exit();
             }
         }
