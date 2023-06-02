@@ -50,7 +50,7 @@ namespace estadisticasStreaming
             buttonSeleccionar.Visible = false;
             buttonSalir.Visible = false;
             panel2.Visible = true;
-            ObtenerDatos();
+            ObtenerEstadisticas();
         }
 
         private void buttonTotalTipoUsuario_Click(object sender, EventArgs e)
@@ -117,7 +117,7 @@ namespace estadisticasStreaming
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 rutaArchivo = openFileDialog1.FileName;
-                ImprimirContenido();
+                LeerDatos();
             }
         }
 
@@ -138,14 +138,13 @@ namespace estadisticasStreaming
             lineaElementos = null;
 
             using (StreamReader lector = new StreamReader(rutaArchivo))
-                
             {
                 while (!lector.EndOfStream) //Lo leerá hasta que vea que hay un campo en blanco, si es así, dejará de leer y no imprimirá nada.
                 {
                     string linea = lector.ReadLine();
                     string[] lineaElementos = linea.Split(',');
 
-                    foreach(string campo in lineaElementos)// Una vez teniendo leida la fila de esta iteración, comprobará en cada una de sus celdas
+                    foreach(string campo in lineaElementos)
                     {
                         if(campo == "")
                         {
@@ -154,7 +153,7 @@ namespace estadisticasStreaming
                         }
                     }
 
-                    if(compatible == false) //Se sale del while, porque vio que compatibl es false al haber encontrado un campo en blanco (parará de leer)
+                    if(compatible == false)
                     {
                         break;
                     }
@@ -175,8 +174,6 @@ namespace estadisticasStreaming
 
         private void ImprimirContenido()
         {
-            fs.Seek(0, SeekOrigin.Begin); //Debido a que para revisar se leyó el puntero no estará claramente en el principio.
-            
             buttonInformacion.Enabled = true;
             buttonEstadisticas.Enabled = true;
             toolStripStatusLabel1.Text = rutaArchivo;
@@ -199,12 +196,13 @@ namespace estadisticasStreaming
             }
         }
 
-        private void ObtenerDatos() 
+        private void ObtenerEstadisticas() 
         {
             Reiniciar();
 
             using (StreamReader lector = new StreamReader(rutaArchivo))
             {
+                lector.BaseStream.Seek(0, SeekOrigin.Begin);
                 while (!lector.EndOfStream)
                 {
                     string linea = lector.ReadLine();
