@@ -2,6 +2,7 @@ using estadisticasStreaming.Clases;
 using System;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using estadisticasStreaming.Forms;
 
 namespace estadisticasStreaming
 {
@@ -430,6 +431,13 @@ namespace estadisticasStreaming
                 serie8.Label = puntos8[i].ToString();
                 serie8.Points.Add(puntos8[i]);
             }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            FormAjustes formAjustes = new FormAjustes();
+            formAjustes.Show();
+            formAjustes.BringToFront();
         }
 
         private void Reiniciar()
