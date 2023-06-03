@@ -387,6 +387,7 @@
             this.chartTiposUsuarios.Text = "chart1";
             title1.Name = "Consumo por Pais%";
             this.chartTiposUsuarios.Titles.Add(title1);
+            this.chartTiposUsuarios.Click += new System.EventHandler(this.chartTiposUsuarios_Click);
             // 
             // panel2
             // 
@@ -456,6 +457,7 @@
             this.chartSerieMasPopular.Size = new System.Drawing.Size(250, 185);
             this.chartSerieMasPopular.TabIndex = 12;
             this.chartSerieMasPopular.Text = "chart8";
+            this.chartSerieMasPopular.Click += new System.EventHandler(this.chartSerieMasPopular_Click);
             // 
             // chartPeliculaMasPopular
             // 
@@ -474,6 +476,7 @@
             this.chartPeliculaMasPopular.Size = new System.Drawing.Size(250, 185);
             this.chartPeliculaMasPopular.TabIndex = 11;
             this.chartPeliculaMasPopular.Text = "chart7";
+            this.chartPeliculaMasPopular.Click += new System.EventHandler(this.chartPeliculaMasPopular_Click);
             // 
             // chartConsumoPais
             // 
@@ -492,6 +495,7 @@
             this.chartConsumoPais.Size = new System.Drawing.Size(250, 185);
             this.chartConsumoPais.TabIndex = 5;
             this.chartConsumoPais.Text = "chart6";
+            this.chartConsumoPais.Click += new System.EventHandler(this.chartConsumoPais_Click);
             // 
             // chartAnios
             // 
@@ -510,6 +514,7 @@
             this.chartAnios.Size = new System.Drawing.Size(215, 185);
             this.chartAnios.TabIndex = 4;
             this.chartAnios.Text = "chart5";
+            this.chartAnios.Click += new System.EventHandler(this.chartAnios_Click);
             // 
             // buttonTotalTipoUsuario
             // 
@@ -538,6 +543,7 @@
             this.chartConsumoGenero.Size = new System.Drawing.Size(230, 185);
             this.chartConsumoGenero.TabIndex = 3;
             this.chartConsumoGenero.Text = "chart4";
+            this.chartConsumoGenero.Click += new System.EventHandler(this.chartConsumoGenero_Click);
             // 
             // buttonTotalTerminaron
             // 
@@ -566,6 +572,7 @@
             this.chartTipoProducto.Size = new System.Drawing.Size(220, 185);
             this.chartTipoProducto.TabIndex = 2;
             this.chartTipoProducto.Text = "chart3";
+            this.chartTipoProducto.Click += new System.EventHandler(this.chartTipoProducto_Click);
             // 
             // chartTerminaron
             // 
@@ -584,6 +591,7 @@
             this.chartTerminaron.Size = new System.Drawing.Size(220, 185);
             this.chartTerminaron.TabIndex = 1;
             this.chartTerminaron.Text = "chart2";
+            this.chartTerminaron.Click += new System.EventHandler(this.chartTerminaron_Click);
             // 
             // buttonSalir
             // 

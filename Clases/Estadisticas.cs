@@ -37,6 +37,7 @@ namespace estadisticasStreaming.Clases
         private static string seriePopular = "";
         private static string paisMasConsumo = "";
         private static Dictionary<string, int> paisYCantidad = new Dictionary<string, int>();
+        private static string tipoChart = "";
 
         public static int TotalUsuarios { get => totalUsuarios; set => totalUsuarios = value; }
         public static int NoStarters { get => noStarters; set => noStarters = value; }
@@ -67,5 +68,6 @@ namespace estadisticasStreaming.Clases
         public static Dictionary<string, int> SeriesYCantidad { get => seriesYCantidad; set => seriesYCantidad = value; }
         public static string PaisMasConsumo { get => paisMasConsumo; set => paisMasConsumo = value; }
         public static Dictionary<string, int> PaisYCantidad { get => paisYCantidad; set => paisYCantidad = value; }
+        public static string TipoChart { get => tipoChart; set => tipoChart = value; }
     }
 }
