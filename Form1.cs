@@ -168,6 +168,7 @@ namespace estadisticasStreaming
             {
                 rutaArchivo = rutaAnterior;
                 buttonInformacion.Enabled = false;
+                buttonEstadisticas.Enabled = false;
                 MessageBox.Show("Ha seleccionado un archivo con un formato incompatible", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
