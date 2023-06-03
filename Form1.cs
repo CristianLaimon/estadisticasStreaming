@@ -16,6 +16,7 @@ namespace estadisticasStreaming
         {
             InitializeComponent();
             Instancia = this;
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         public static Form1 Instancia { get => instancia; set => instancia = value; }
@@ -441,6 +442,7 @@ namespace estadisticasStreaming
             if (!AjustesForm.AlreadyOpened)
             {
                 var ajustesForm = new AjustesForm();
+                ajustesForm.StartPosition = FormStartPosition.CenterScreen;
                 ajustesForm.Show();
                 ajustesForm.BringToFront();
             }
