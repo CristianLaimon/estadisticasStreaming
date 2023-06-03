@@ -2,7 +2,7 @@ using estadisticasStreaming.Clases;
 using System;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using estadisticasStreaming.Forms;
+using estadisticasStreaming.Formsitos;
 
 namespace estadisticasStreaming
 {
@@ -435,7 +435,7 @@ namespace estadisticasStreaming
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            FormAjustes formAjustes = new FormAjustes();
+            AjustesForm formAjustes = new AjustesForm();
             formAjustes.Show();
             formAjustes.BringToFront();
         }
