@@ -9,13 +9,16 @@ namespace estadisticasStreaming
     public partial class Form1 : Form
     {
         private string rutaArchivo, rutaAnterior;
+        private static Form1 instancia;
         private static List<Registro> listaRegistros;
-        
 
         public Form1()
         {
             InitializeComponent();
+            Instancia = this;
         }
+
+        public static Form1 Instancia { get => instancia; set => instancia = value; }
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -435,8 +438,16 @@ namespace estadisticasStreaming
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            AjustesForm.Instancia.Show();
-            AjustesForm.Instancia.BringToFront();
+            if (!AjustesForm.AlreadyOpened)
+            {
+                var ajustesForm = new AjustesForm();
+                ajustesForm.Show();
+                ajustesForm.BringToFront();
+            }
+            else
+            {
+                AjustesForm.Instancia.BringToFront();
+            }
         }
 
         private void Reiniciar()
