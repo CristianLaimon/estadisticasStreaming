@@ -8,7 +8,7 @@ namespace estadisticasStreaming
     {
         private string rutaArchivo;
         private static List<Registro> listaRegistros;
-        string[] lineaElementos;
+        
 
         public Form1()
         {
@@ -139,25 +139,23 @@ namespace estadisticasStreaming
 
         private void LeerDatos()
         {
-            bool compatible = true; 
-            lineaElementos = new string[11];
+            bool compatible = true;
+            string[] lineaElementos;
 
             using (StreamReader lector = new StreamReader(rutaArchivo))
             {
                 while (!lector.EndOfStream)
                 {
                     string linea = lector.ReadLine();
-                    string[] lineaElementos = linea.Split(',');
+                    lineaElementos = linea.Split(',');
 
-                    foreach(string campo in lineaElementos)
-                    {
-                        if (campo == "")
+                        if (lineaElementos.Length != 11)
                         {
                            compatible = false;
-                           break; //Se sale del foreach
+                           break; //Se sale del while
                         }
-                    }
-                    if (compatible == false) break;
+                    
+                    
                 }
             }
             if (compatible) ImprimirContenido(); //Ahora si lo imprime
