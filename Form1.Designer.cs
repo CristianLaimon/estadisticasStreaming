@@ -83,9 +83,9 @@
             this.buttonCerrar = new System.Windows.Forms.Button();
             this.chartTiposUsuarios = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.buttonSerieMasPopular = new System.Windows.Forms.Button();
             this.buttonPaisMasConsumo = new System.Windows.Forms.Button();
             this.buttonPeliculaMasPopular = new System.Windows.Forms.Button();
-            this.buttonSerieMasPopular = new System.Windows.Forms.Button();
             this.chartSerieMasPopular = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chartPeliculaMasPopular = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chartConsumoPais = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -391,9 +391,9 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Transparent;
+            this.panel2.Controls.Add(this.buttonSerieMasPopular);
             this.panel2.Controls.Add(this.buttonPaisMasConsumo);
             this.panel2.Controls.Add(this.buttonPeliculaMasPopular);
-            this.panel2.Controls.Add(this.buttonSerieMasPopular);
             this.panel2.Controls.Add(this.chartSerieMasPopular);
             this.panel2.Controls.Add(this.chartPeliculaMasPopular);
             this.panel2.Controls.Add(this.chartConsumoPais);
@@ -409,9 +409,19 @@
             this.panel2.Size = new System.Drawing.Size(968, 363);
             this.panel2.TabIndex = 2;
             // 
+            // buttonSerieMasPopular
+            // 
+            this.buttonSerieMasPopular.Location = new System.Drawing.Point(872, 280);
+            this.buttonSerieMasPopular.Name = "buttonSerieMasPopular";
+            this.buttonSerieMasPopular.Size = new System.Drawing.Size(73, 23);
+            this.buttonSerieMasPopular.TabIndex = 10;
+            this.buttonSerieMasPopular.Text = "Serie+";
+            this.buttonSerieMasPopular.UseVisualStyleBackColor = true;
+            this.buttonSerieMasPopular.Click += new System.EventHandler(this.buttonSerieMasPopular_Click);
+            // 
             // buttonPaisMasConsumo
             // 
-            this.buttonPaisMasConsumo.Location = new System.Drawing.Point(838, 133);
+            this.buttonPaisMasConsumo.Location = new System.Drawing.Point(837, 133);
             this.buttonPaisMasConsumo.Name = "buttonPaisMasConsumo";
             this.buttonPaisMasConsumo.Size = new System.Drawing.Size(56, 23);
             this.buttonPaisMasConsumo.TabIndex = 8;
@@ -421,23 +431,13 @@
             // 
             // buttonPeliculaMasPopular
             // 
-            this.buttonPeliculaMasPopular.Location = new System.Drawing.Point(625, 324);
+            this.buttonPeliculaMasPopular.Location = new System.Drawing.Point(613, 291);
             this.buttonPeliculaMasPopular.Name = "buttonPeliculaMasPopular";
             this.buttonPeliculaMasPopular.Size = new System.Drawing.Size(73, 23);
             this.buttonPeliculaMasPopular.TabIndex = 9;
             this.buttonPeliculaMasPopular.Text = "Pelicula+";
             this.buttonPeliculaMasPopular.UseVisualStyleBackColor = true;
             this.buttonPeliculaMasPopular.Click += new System.EventHandler(this.buttonPeliculaMasPopular_Click);
-            // 
-            // buttonSerieMasPopular
-            // 
-            this.buttonSerieMasPopular.Location = new System.Drawing.Point(883, 324);
-            this.buttonSerieMasPopular.Name = "buttonSerieMasPopular";
-            this.buttonSerieMasPopular.Size = new System.Drawing.Size(73, 23);
-            this.buttonSerieMasPopular.TabIndex = 10;
-            this.buttonSerieMasPopular.Text = "Serie+";
-            this.buttonSerieMasPopular.UseVisualStyleBackColor = true;
-            this.buttonSerieMasPopular.Click += new System.EventHandler(this.buttonSerieMasPopular_Click);
             // 
             // chartSerieMasPopular
             // 
@@ -513,7 +513,7 @@
             // 
             // buttonTotalTipoUsuario
             // 
-            this.buttonTotalTipoUsuario.Location = new System.Drawing.Point(137, 133);
+            this.buttonTotalTipoUsuario.Location = new System.Drawing.Point(137, 84);
             this.buttonTotalTipoUsuario.Name = "buttonTotalTipoUsuario";
             this.buttonTotalTipoUsuario.Size = new System.Drawing.Size(56, 23);
             this.buttonTotalTipoUsuario.TabIndex = 6;
@@ -541,7 +541,7 @@
             // 
             // buttonTotalTerminaron
             // 
-            this.buttonTotalTerminaron.Location = new System.Drawing.Point(364, 133);
+            this.buttonTotalTerminaron.Location = new System.Drawing.Point(361, 74);
             this.buttonTotalTerminaron.Name = "buttonTotalTerminaron";
             this.buttonTotalTerminaron.Size = new System.Drawing.Size(56, 23);
             this.buttonTotalTerminaron.TabIndex = 7;

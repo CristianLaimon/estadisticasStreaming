@@ -10,7 +10,6 @@ namespace estadisticasStreaming
         private static List<Registro> listaRegistros;
         string[] lineaElementos;
 
-
         public Form1()
         {
             InitializeComponent();
@@ -97,6 +96,7 @@ namespace estadisticasStreaming
         private void buttonCerrar_Click(object sender, EventArgs e)
         {
             panel2.Visible = false;
+            buttonCerrar.Visible = false;
             buttonInformacion.Visible = true;
             buttonEstadisticas.Visible = true;
             buttonSeleccionar.Visible = true;
@@ -109,7 +109,6 @@ namespace estadisticasStreaming
             chartConsumoPais.Visible = false;
             chartPeliculaMasPopular.Visible = false;
             chartSerieMasPopular.Visible = false;
-            buttonCerrar.Visible = false;
         }
 
         private void buttonSalir_Click(object sender, EventArgs e)
@@ -144,40 +143,39 @@ namespace estadisticasStreaming
 
         private void LeerDatos()
         {
-            bool compatible = true; //por defecto false
+            bool compatible = true; 
             lineaElementos = new string[11];
 
             using (StreamReader lector = new StreamReader(rutaArchivo))
             {
-                while (!lector.EndOfStream) //Lo leerá hasta que vea que hay un campo en blanco, si es así, dejará de leer y no imprimirá nada.
+                while (!lector.EndOfStream)
                 {
                     string linea = lector.ReadLine();
                     string[] lineaElementos = linea.Split(',');
 
                     foreach(string campo in lineaElementos)
                     {
-                        if(campo == "")
+                        if (campo == "")
                         {
                            compatible = false;
                            break; //Se sale del foreach
                         }
                     }
 
-                    if(compatible == false)
+                    if (compatible == false)
                     {
                         break;
                     }
-
                 }
             }
 
-            if(compatible)
+            if (compatible)
             {
                 ImprimirContenido(); //Ahora si lo imprime
             }
             else
             {
-                MessageBox.Show("Ha seleccionado un archivo con un formato incompatible", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); //Se pudo haber puesto dentro del while, es cuestión de gusto mio
+                MessageBox.Show("Ha seleccionado un archivo con un formato incompatible", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -247,27 +245,15 @@ namespace estadisticasStreaming
                 {
                     Estadisticas.Peliculas++;
 
-                    if (Estadisticas.PeliculasYCantidad.ContainsKey(r.ProductoVisto))
-                    {
-                        Estadisticas.PeliculasYCantidad[r.ProductoVisto]++;
-                    }
-                    else
-                    {
-                        Estadisticas.PeliculasYCantidad.Add(r.ProductoVisto, 1); 
-                    }
+                    if (Estadisticas.PeliculasYCantidad.ContainsKey(r.ProductoVisto)) Estadisticas.PeliculasYCantidad[r.ProductoVisto]++;
+                    else Estadisticas.PeliculasYCantidad.Add(r.ProductoVisto, 1); 
                 }
                 else
                 {
                     Estadisticas.Series++;
 
-                    if (Estadisticas.SeriesYCantidad.ContainsKey(r.ProductoVisto)) 
-                    { 
-                        Estadisticas.SeriesYCantidad[r.ProductoVisto]++;
-                    }
-                    else
-                    {
-                        Estadisticas.SeriesYCantidad.Add(r.ProductoVisto, 1);
-                    }
+                    if (Estadisticas.SeriesYCantidad.ContainsKey(r.ProductoVisto)) Estadisticas.SeriesYCantidad[r.ProductoVisto]++;
+                    else Estadisticas.SeriesYCantidad.Add(r.ProductoVisto, 1);
                 }
 
                 switch (r.Genero)
@@ -300,74 +286,44 @@ namespace estadisticasStreaming
                 {
                     case "MEXICO": Estadisticas.Mexico++;
                         {
-                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais))
-                            {
-                                Estadisticas.PaisYCantidad[r.Pais]++;
-                            }
-                            else
-                            {
-                                Estadisticas.PaisYCantidad.Add(r.Pais, 1);
-                            }
+                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
+                            
+                            else Estadisticas.PaisYCantidad.Add(r.Pais, 1); 
                         }
                         break;
                     case "EU": Estadisticas.Eu++;
                         {
-                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais))
-                            {
-                                Estadisticas.PaisYCantidad[r.Pais]++;
-                            }
-                            else
-                            {
-                                Estadisticas.PaisYCantidad.Add(r.Pais, 1);
-                            }
+                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
+                            
+                            else Estadisticas.PaisYCantidad.Add(r.Pais, 1); 
                         }
                         break;
                     case "CANADA": Estadisticas.Canada++;
                         {
-                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais))
-                            {
-                                Estadisticas.PaisYCantidad[r.Pais]++;
-                            }
-                            else
-                            {
-                                Estadisticas.PaisYCantidad.Add(r.Pais, 1);
-                            }
+                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
+                            
+                            else Estadisticas.PaisYCantidad.Add(r.Pais, 1);  
                         }
                         break;
                     case "COLOMBIA": Estadisticas.Colombia++;
                         {
-                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais))
-                            {
-                                Estadisticas.PaisYCantidad[r.Pais]++;
-                            }
-                            else
-                            {
-                                Estadisticas.PaisYCantidad.Add(r.Pais, 1);
-                            }
+                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
+                            
+                            else Estadisticas.PaisYCantidad.Add(r.Pais, 1);  
                         }
                         break;
                     case "CUBA": Estadisticas.Cuba++;
                         {
-                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais))
-                            {
-                                Estadisticas.PaisYCantidad[r.Pais]++;
-                            }
-                            else
-                            {
-                                Estadisticas.PaisYCantidad.Add(r.Pais, 1);
-                            }
+                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
+                            
+                            else Estadisticas.PaisYCantidad.Add(r.Pais, 1);
                         }
                         break;
                     case "COSTA RICA": Estadisticas.CostaRica++;
                         {
-                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais))
-                            {
-                                Estadisticas.PaisYCantidad[r.Pais]++;
-                            }
-                            else
-                            {
-                                Estadisticas.PaisYCantidad.Add(r.Pais, 1);
-                            }
+                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
+                            
+                            else Estadisticas.PaisYCantidad.Add(r.Pais, 1);
                         }
                         break;
                 }
@@ -524,7 +480,9 @@ namespace estadisticasStreaming
             chartConsumoGenero.Series.Clear();
             chartAnios.Series.Clear();
             chartConsumoPais.Series.Clear();
+            Estadisticas.PeliculasYCantidad.Clear();
             chartPeliculaMasPopular.Series.Clear();
+            Estadisticas.SeriesYCantidad.Clear();
             chartSerieMasPopular.Series.Clear();
             chartTiposUsuarios.Titles.Clear();
             chartTerminaron.Titles.Clear();
