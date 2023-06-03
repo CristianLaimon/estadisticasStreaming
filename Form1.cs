@@ -114,11 +114,7 @@ namespace estadisticasStreaming
         private void buttonSalir_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("¿Desea Salir?", "¿Salir?", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-
-            if (result == DialogResult.OK)
-            {
-                Application.Exit();
-            }
+            if (result == DialogResult.OK) Application.Exit();
         }
 
         private void ObtenerRuta()
@@ -161,23 +157,11 @@ namespace estadisticasStreaming
                            break; //Se sale del foreach
                         }
                     }
-
-                    if (compatible == false)
-                    {
-                        break;
-                    }
+                    if (compatible == false) break;
                 }
             }
-
-            if (compatible)
-            {
-                ImprimirContenido(); //Ahora si lo imprime
-            }
-            else
-            {
-                MessageBox.Show("Ha seleccionado un archivo con un formato incompatible", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
+            if (compatible) ImprimirContenido(); //Ahora si lo imprime
+            else MessageBox.Show("Ha seleccionado un archivo con un formato incompatible", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void ImprimirContenido()
@@ -244,14 +228,12 @@ namespace estadisticasStreaming
                 if (r.Tipo == "PELICULA")
                 {
                     Estadisticas.Peliculas++;
-
                     if (Estadisticas.PeliculasYCantidad.ContainsKey(r.ProductoVisto)) Estadisticas.PeliculasYCantidad[r.ProductoVisto]++;
                     else Estadisticas.PeliculasYCantidad.Add(r.ProductoVisto, 1); 
                 }
                 else
                 {
                     Estadisticas.Series++;
-
                     if (Estadisticas.SeriesYCantidad.ContainsKey(r.ProductoVisto)) Estadisticas.SeriesYCantidad[r.ProductoVisto]++;
                     else Estadisticas.SeriesYCantidad.Add(r.ProductoVisto, 1);
                 }
@@ -287,42 +269,36 @@ namespace estadisticasStreaming
                     case "MEXICO": Estadisticas.Mexico++;
                         {
                             if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
-                            
                             else Estadisticas.PaisYCantidad.Add(r.Pais, 1); 
                         }
                         break;
                     case "EU": Estadisticas.Eu++;
                         {
                             if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
-                            
                             else Estadisticas.PaisYCantidad.Add(r.Pais, 1); 
                         }
                         break;
                     case "CANADA": Estadisticas.Canada++;
                         {
                             if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
-                            
                             else Estadisticas.PaisYCantidad.Add(r.Pais, 1);  
                         }
                         break;
                     case "COLOMBIA": Estadisticas.Colombia++;
                         {
                             if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
-                            
                             else Estadisticas.PaisYCantidad.Add(r.Pais, 1);  
                         }
                         break;
                     case "CUBA": Estadisticas.Cuba++;
                         {
                             if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
-                            
                             else Estadisticas.PaisYCantidad.Add(r.Pais, 1);
                         }
                         break;
                     case "COSTA RICA": Estadisticas.CostaRica++;
                         {
                             if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
-                            
                             else Estadisticas.PaisYCantidad.Add(r.Pais, 1);
                         }
                         break;
