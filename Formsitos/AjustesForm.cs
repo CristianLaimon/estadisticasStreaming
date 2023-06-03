@@ -42,5 +42,17 @@ namespace estadisticasStreaming.Formsitos
         {
             AlreadyOpened = false;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var otrosForm = new AOtros();
+
+            otrosForm.TopLevel = false;
+            panelPrincipal.Controls.Add(otrosForm);
+            otrosForm.Dock = DockStyle.Fill;
+            otrosForm.FormBorderStyle = FormBorderStyle.None;
+            otrosForm.BringToFront();
+            otrosForm.Show();
+        }
     }
 }

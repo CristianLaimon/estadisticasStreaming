@@ -60,7 +60,7 @@
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label2.Location = new System.Drawing.Point(186, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(127, 46);
+            this.label2.Size = new System.Drawing.Size(124, 45);
             this.label2.TabIndex = 2;
             this.label2.Text = "Ajustes";
             // 
@@ -91,6 +91,7 @@
             this.button1.TabIndex = 1;
             this.button1.Text = "Otros...";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // buttonInterfaz
             // 
