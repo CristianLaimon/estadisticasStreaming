@@ -175,6 +175,7 @@ namespace estadisticasStreaming
 
         private void ImprimirContenido()
         {
+            dataGridView1.Rows.Clear();
             buttonInformacion.Enabled = true;
             buttonEstadisticas.Enabled = true;
             toolStripStatusLabel1.Text = rutaArchivo;
