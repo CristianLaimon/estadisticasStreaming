@@ -1,12 +1,13 @@
 using estadisticasStreaming.Clases;
 using System;
+using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
 namespace estadisticasStreaming
 {
     public partial class Form1 : Form
     {
-        private string rutaArchivo;
+        private string rutaArchivo, rutaAnterior;
         private static List<Registro> listaRegistros;
         
 
@@ -121,14 +122,18 @@ namespace estadisticasStreaming
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
+                if (rutaAnterior == null)
+                {
+                    rutaAnterior = openFileDialog1.FileName;
+                }
+
                 rutaArchivo = openFileDialog1.FileName;
-                LeerDatos();
+                ValidarDatos();
             }
         }
 
         private void ObtenerInfo()
         {
-            rutaArchivo = openFileDialog1.FileName;
             MessageBox.Show(
                 "Ruta del Archivo: " + rutaArchivo + "\r\n\r\n" +
                 "Fecha y Hora de Creacion: " + File.GetCreationTime(rutaArchivo) + "\r\n\r\n" +
@@ -137,7 +142,7 @@ namespace estadisticasStreaming
                 ,"Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void LeerDatos()
+        private void ValidarDatos()
         {
             bool compatible = true;
             string[] lineaElementos;
@@ -158,8 +163,13 @@ namespace estadisticasStreaming
                     
                 }
             }
-            if (compatible) ImprimirContenido(); //Ahora si lo imprime
-            else MessageBox.Show("Ha seleccionado un archivo con un formato incompatible", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (compatible)ImprimirContenido();
+            else
+            {
+                rutaArchivo = rutaAnterior;
+                buttonInformacion.Enabled = false;
+                MessageBox.Show("Ha seleccionado un archivo con un formato incompatible", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void ImprimirContenido()
