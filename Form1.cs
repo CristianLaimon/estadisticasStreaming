@@ -435,9 +435,8 @@ namespace estadisticasStreaming
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            AjustesForm formAjustes = new AjustesForm();
-            formAjustes.Show();
-            formAjustes.BringToFront();
+            AjustesForm.Instancia.Show();
+            AjustesForm.Instancia.BringToFront();
         }
 
         private void Reiniciar()
