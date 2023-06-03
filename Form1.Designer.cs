@@ -83,13 +83,13 @@
             this.buttonCerrar = new System.Windows.Forms.Button();
             this.chartTiposUsuarios = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.buttonPaisMasConsumo = new System.Windows.Forms.Button();
+            this.buttonPeliculaMasPopular = new System.Windows.Forms.Button();
+            this.buttonSerieMasPopular = new System.Windows.Forms.Button();
             this.chartSerieMasPopular = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chartPeliculaMasPopular = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.buttonPeliculaMasPopular = new System.Windows.Forms.Button();
             this.chartConsumoPais = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.buttonSerieMasPopular = new System.Windows.Forms.Button();
             this.chartAnios = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.buttonPaisMasConsumo = new System.Windows.Forms.Button();
             this.buttonTotalTipoUsuario = new System.Windows.Forms.Button();
             this.chartConsumoGenero = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.buttonTotalTerminaron = new System.Windows.Forms.Button();
@@ -370,7 +370,7 @@
             // 
             // chartTiposUsuarios
             // 
-            this.chartTiposUsuarios.BackColor = System.Drawing.Color.Black;
+            this.chartTiposUsuarios.BackColor = System.Drawing.Color.Transparent;
             chartArea1.Name = "ChartArea1";
             this.chartTiposUsuarios.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
@@ -382,7 +382,7 @@
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chartTiposUsuarios.Series.Add(series1);
-            this.chartTiposUsuarios.Size = new System.Drawing.Size(220, 180);
+            this.chartTiposUsuarios.Size = new System.Drawing.Size(220, 185);
             this.chartTiposUsuarios.TabIndex = 0;
             this.chartTiposUsuarios.Text = "chart1";
             title1.Name = "Consumo por Pais%";
@@ -390,14 +390,14 @@
             // 
             // panel2
             // 
-            this.panel2.BackgroundImage = global::estadisticasStreaming.Properties.Resources.BackGround;
+            this.panel2.BackColor = System.Drawing.Color.Transparent;
+            this.panel2.Controls.Add(this.buttonPaisMasConsumo);
+            this.panel2.Controls.Add(this.buttonPeliculaMasPopular);
+            this.panel2.Controls.Add(this.buttonSerieMasPopular);
             this.panel2.Controls.Add(this.chartSerieMasPopular);
             this.panel2.Controls.Add(this.chartPeliculaMasPopular);
-            this.panel2.Controls.Add(this.buttonPeliculaMasPopular);
             this.panel2.Controls.Add(this.chartConsumoPais);
-            this.panel2.Controls.Add(this.buttonSerieMasPopular);
             this.panel2.Controls.Add(this.chartAnios);
-            this.panel2.Controls.Add(this.buttonPaisMasConsumo);
             this.panel2.Controls.Add(this.buttonTotalTipoUsuario);
             this.panel2.Controls.Add(this.chartConsumoGenero);
             this.panel2.Controls.Add(this.buttonTotalTerminaron);
@@ -409,45 +409,19 @@
             this.panel2.Size = new System.Drawing.Size(968, 363);
             this.panel2.TabIndex = 2;
             // 
-            // chartSerieMasPopular
+            // buttonPaisMasConsumo
             // 
-            this.chartSerieMasPopular.BackColor = System.Drawing.Color.Black;
-            chartArea2.Name = "ChartArea1";
-            this.chartSerieMasPopular.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chartSerieMasPopular.Legends.Add(legend2);
-            this.chartSerieMasPopular.Location = new System.Drawing.Point(717, 183);
-            this.chartSerieMasPopular.Name = "chartSerieMasPopular";
-            this.chartSerieMasPopular.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chartSerieMasPopular.Series.Add(series2);
-            this.chartSerieMasPopular.Size = new System.Drawing.Size(250, 180);
-            this.chartSerieMasPopular.TabIndex = 12;
-            this.chartSerieMasPopular.Text = "chart8";
-            // 
-            // chartPeliculaMasPopular
-            // 
-            this.chartPeliculaMasPopular.BackColor = System.Drawing.Color.Black;
-            chartArea3.Name = "ChartArea1";
-            this.chartPeliculaMasPopular.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chartPeliculaMasPopular.Legends.Add(legend3);
-            this.chartPeliculaMasPopular.Location = new System.Drawing.Point(462, 183);
-            this.chartPeliculaMasPopular.Name = "chartPeliculaMasPopular";
-            this.chartPeliculaMasPopular.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.chartPeliculaMasPopular.Series.Add(series3);
-            this.chartPeliculaMasPopular.Size = new System.Drawing.Size(250, 180);
-            this.chartPeliculaMasPopular.TabIndex = 11;
-            this.chartPeliculaMasPopular.Text = "chart7";
+            this.buttonPaisMasConsumo.Location = new System.Drawing.Point(838, 133);
+            this.buttonPaisMasConsumo.Name = "buttonPaisMasConsumo";
+            this.buttonPaisMasConsumo.Size = new System.Drawing.Size(56, 23);
+            this.buttonPaisMasConsumo.TabIndex = 8;
+            this.buttonPaisMasConsumo.Text = "Pais+";
+            this.buttonPaisMasConsumo.UseVisualStyleBackColor = true;
+            this.buttonPaisMasConsumo.Click += new System.EventHandler(this.buttonPaisMasConsumo_Click);
             // 
             // buttonPeliculaMasPopular
             // 
-            this.buttonPeliculaMasPopular.Location = new System.Drawing.Point(883, 114);
+            this.buttonPeliculaMasPopular.Location = new System.Drawing.Point(625, 324);
             this.buttonPeliculaMasPopular.Name = "buttonPeliculaMasPopular";
             this.buttonPeliculaMasPopular.Size = new System.Drawing.Size(73, 23);
             this.buttonPeliculaMasPopular.TabIndex = 9;
@@ -455,9 +429,55 @@
             this.buttonPeliculaMasPopular.UseVisualStyleBackColor = true;
             this.buttonPeliculaMasPopular.Click += new System.EventHandler(this.buttonPeliculaMasPopular_Click);
             // 
+            // buttonSerieMasPopular
+            // 
+            this.buttonSerieMasPopular.Location = new System.Drawing.Point(883, 324);
+            this.buttonSerieMasPopular.Name = "buttonSerieMasPopular";
+            this.buttonSerieMasPopular.Size = new System.Drawing.Size(73, 23);
+            this.buttonSerieMasPopular.TabIndex = 10;
+            this.buttonSerieMasPopular.Text = "Serie+";
+            this.buttonSerieMasPopular.UseVisualStyleBackColor = true;
+            this.buttonSerieMasPopular.Click += new System.EventHandler(this.buttonSerieMasPopular_Click);
+            // 
+            // chartSerieMasPopular
+            // 
+            this.chartSerieMasPopular.BackColor = System.Drawing.Color.Transparent;
+            chartArea2.Name = "ChartArea1";
+            this.chartSerieMasPopular.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chartSerieMasPopular.Legends.Add(legend2);
+            this.chartSerieMasPopular.Location = new System.Drawing.Point(718, 191);
+            this.chartSerieMasPopular.Name = "chartSerieMasPopular";
+            this.chartSerieMasPopular.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chartSerieMasPopular.Series.Add(series2);
+            this.chartSerieMasPopular.Size = new System.Drawing.Size(250, 185);
+            this.chartSerieMasPopular.TabIndex = 12;
+            this.chartSerieMasPopular.Text = "chart8";
+            // 
+            // chartPeliculaMasPopular
+            // 
+            this.chartPeliculaMasPopular.BackColor = System.Drawing.Color.Transparent;
+            chartArea3.Name = "ChartArea1";
+            this.chartPeliculaMasPopular.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chartPeliculaMasPopular.Legends.Add(legend3);
+            this.chartPeliculaMasPopular.Location = new System.Drawing.Point(462, 191);
+            this.chartPeliculaMasPopular.Name = "chartPeliculaMasPopular";
+            this.chartPeliculaMasPopular.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chartPeliculaMasPopular.Series.Add(series3);
+            this.chartPeliculaMasPopular.Size = new System.Drawing.Size(250, 185);
+            this.chartPeliculaMasPopular.TabIndex = 11;
+            this.chartPeliculaMasPopular.Text = "chart7";
+            // 
             // chartConsumoPais
             // 
-            this.chartConsumoPais.BackColor = System.Drawing.Color.Black;
+            this.chartConsumoPais.BackColor = System.Drawing.Color.Transparent;
             chartArea4.Name = "ChartArea1";
             this.chartConsumoPais.ChartAreas.Add(chartArea4);
             legend4.Name = "Legend1";
@@ -469,23 +489,13 @@
             series4.Legend = "Legend1";
             series4.Name = "Series1";
             this.chartConsumoPais.Series.Add(series4);
-            this.chartConsumoPais.Size = new System.Drawing.Size(240, 180);
+            this.chartConsumoPais.Size = new System.Drawing.Size(250, 185);
             this.chartConsumoPais.TabIndex = 5;
             this.chartConsumoPais.Text = "chart6";
             // 
-            // buttonSerieMasPopular
-            // 
-            this.buttonSerieMasPopular.Location = new System.Drawing.Point(883, 154);
-            this.buttonSerieMasPopular.Name = "buttonSerieMasPopular";
-            this.buttonSerieMasPopular.Size = new System.Drawing.Size(73, 23);
-            this.buttonSerieMasPopular.TabIndex = 10;
-            this.buttonSerieMasPopular.Text = "Serie+";
-            this.buttonSerieMasPopular.UseVisualStyleBackColor = true;
-            this.buttonSerieMasPopular.Click += new System.EventHandler(this.buttonSerieMasPopular_Click);
-            // 
             // chartAnios
             // 
-            this.chartAnios.BackColor = System.Drawing.Color.Black;
+            this.chartAnios.BackColor = System.Drawing.Color.Transparent;
             chartArea5.Name = "ChartArea1";
             this.chartAnios.ChartAreas.Add(chartArea5);
             legend5.Name = "Legend1";
@@ -497,23 +507,13 @@
             series5.Legend = "Legend1";
             series5.Name = "Series1";
             this.chartAnios.Series.Add(series5);
-            this.chartAnios.Size = new System.Drawing.Size(215, 180);
+            this.chartAnios.Size = new System.Drawing.Size(215, 185);
             this.chartAnios.TabIndex = 4;
             this.chartAnios.Text = "chart5";
             // 
-            // buttonPaisMasConsumo
-            // 
-            this.buttonPaisMasConsumo.Location = new System.Drawing.Point(823, 5);
-            this.buttonPaisMasConsumo.Name = "buttonPaisMasConsumo";
-            this.buttonPaisMasConsumo.Size = new System.Drawing.Size(56, 23);
-            this.buttonPaisMasConsumo.TabIndex = 8;
-            this.buttonPaisMasConsumo.Text = "Pais+";
-            this.buttonPaisMasConsumo.UseVisualStyleBackColor = true;
-            this.buttonPaisMasConsumo.Click += new System.EventHandler(this.buttonPaisMasConsumo_Click);
-            // 
             // buttonTotalTipoUsuario
             // 
-            this.buttonTotalTipoUsuario.Location = new System.Drawing.Point(139, 45);
+            this.buttonTotalTipoUsuario.Location = new System.Drawing.Point(137, 133);
             this.buttonTotalTipoUsuario.Name = "buttonTotalTipoUsuario";
             this.buttonTotalTipoUsuario.Size = new System.Drawing.Size(56, 23);
             this.buttonTotalTipoUsuario.TabIndex = 6;
@@ -523,25 +523,25 @@
             // 
             // chartConsumoGenero
             // 
-            this.chartConsumoGenero.BackColor = System.Drawing.Color.Black;
+            this.chartConsumoGenero.BackColor = System.Drawing.Color.Transparent;
             chartArea6.Name = "ChartArea1";
             this.chartConsumoGenero.ChartAreas.Add(chartArea6);
             legend6.Name = "Legend1";
             this.chartConsumoGenero.Legends.Add(legend6);
-            this.chartConsumoGenero.Location = new System.Drawing.Point(226, 183);
+            this.chartConsumoGenero.Location = new System.Drawing.Point(226, 191);
             this.chartConsumoGenero.Name = "chartConsumoGenero";
             this.chartConsumoGenero.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
             series6.ChartArea = "ChartArea1";
             series6.Legend = "Legend1";
             series6.Name = "Series1";
             this.chartConsumoGenero.Series.Add(series6);
-            this.chartConsumoGenero.Size = new System.Drawing.Size(230, 180);
+            this.chartConsumoGenero.Size = new System.Drawing.Size(230, 185);
             this.chartConsumoGenero.TabIndex = 3;
             this.chartConsumoGenero.Text = "chart4";
             // 
             // buttonTotalTerminaron
             // 
-            this.buttonTotalTerminaron.Location = new System.Drawing.Point(378, 3);
+            this.buttonTotalTerminaron.Location = new System.Drawing.Point(364, 133);
             this.buttonTotalTerminaron.Name = "buttonTotalTerminaron";
             this.buttonTotalTerminaron.Size = new System.Drawing.Size(56, 23);
             this.buttonTotalTerminaron.TabIndex = 7;
@@ -551,25 +551,25 @@
             // 
             // chartTipoProducto
             // 
-            this.chartTipoProducto.BackColor = System.Drawing.Color.Black;
+            this.chartTipoProducto.BackColor = System.Drawing.Color.Transparent;
             chartArea7.Name = "ChartArea1";
             this.chartTipoProducto.ChartAreas.Add(chartArea7);
             legend7.Name = "Legend1";
             this.chartTipoProducto.Legends.Add(legend7);
-            this.chartTipoProducto.Location = new System.Drawing.Point(0, 181);
+            this.chartTipoProducto.Location = new System.Drawing.Point(0, 191);
             this.chartTipoProducto.Name = "chartTipoProducto";
             this.chartTipoProducto.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
             series7.ChartArea = "ChartArea1";
             series7.Legend = "Legend1";
             series7.Name = "Series1";
             this.chartTipoProducto.Series.Add(series7);
-            this.chartTipoProducto.Size = new System.Drawing.Size(220, 180);
+            this.chartTipoProducto.Size = new System.Drawing.Size(220, 185);
             this.chartTipoProducto.TabIndex = 2;
             this.chartTipoProducto.Text = "chart3";
             // 
             // chartTerminaron
             // 
-            this.chartTerminaron.BackColor = System.Drawing.Color.Black;
+            this.chartTerminaron.BackColor = System.Drawing.Color.Transparent;
             chartArea8.Name = "ChartArea1";
             this.chartTerminaron.ChartAreas.Add(chartArea8);
             legend8.Name = "Legend1";
@@ -581,7 +581,7 @@
             series8.Legend = "Legend1";
             series8.Name = "Series1";
             this.chartTerminaron.Series.Add(series8);
-            this.chartTerminaron.Size = new System.Drawing.Size(220, 180);
+            this.chartTerminaron.Size = new System.Drawing.Size(220, 185);
             this.chartTerminaron.TabIndex = 1;
             this.chartTerminaron.Text = "chart2";
             // 

@@ -18,7 +18,8 @@ namespace estadisticasStreaming
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            toolStripStatusLabel1.Text = "Hecho por: Diana Yulissa Sesma Santiago y Kristan Ru�z Lim�n";
+            toolStripStatusLabel1.Text = "Hecho por: Diana Yulissa Sesma Santiago y Kristan Ruiz Limon";
+            openFileDialog1.Filter = "Archivos de texto(*.txt)|*.txt";
             openFileDialog1.InitialDirectory = Path.Combine(Application.StartupPath, "Data");
             listaRegistros = new List<Registro>();
             buttonInformacion.Enabled = false;
@@ -48,7 +49,19 @@ namespace estadisticasStreaming
             buttonSeleccionar.Visible = false;
             buttonSalir.Visible = false;
             panel2.Visible = true;
-            ObtenerEstadisticas();
+            try
+            {
+                ObtenerEstadisticas();
+            }
+            catch
+            {
+                buttonTotalTipoUsuario.Visible = false;
+                buttonTotalTerminaron.Visible = false;
+                buttonPaisMasConsumo.Visible = false;
+                buttonPeliculaMasPopular.Visible = false;
+                buttonSerieMasPopular.Visible = false;
+                MessageBox.Show("Error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void buttonTotalTipoUsuario_Click(object sender, EventArgs e)
@@ -101,7 +114,7 @@ namespace estadisticasStreaming
 
         private void buttonSalir_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("�Desea Salir?", "�Salir?", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show("¿Desea Salir?", "¿Salir?", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
             if (result == DialogResult.OK)
             {
@@ -123,10 +136,10 @@ namespace estadisticasStreaming
             rutaArchivo = openFileDialog1.FileName;
             MessageBox.Show(
                 "Ruta del Archivo: " + rutaArchivo + "\r\n\r\n" +
-                "Fecha y Hora de Creaci�n: " + File.GetCreationTime(rutaArchivo) + "\r\n\r\n" +
-                "Ultima Modificaci�n: " + File.GetLastWriteTime(rutaArchivo) + "\r\n\r\n" +
+                "Fecha y Hora de Creacion: " + File.GetCreationTime(rutaArchivo) + "\r\n\r\n" +
+                "Ultima Modificacion: " + File.GetLastWriteTime(rutaArchivo) + "\r\n\r\n" +
                 "Ultimo Acceso: " + File.GetLastAccessTime(rutaArchivo)
-                ,"Informaci�n", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ,"Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void LeerDatos()
@@ -395,7 +408,7 @@ namespace estadisticasStreaming
             string[] series3 = { "Peliculas", "Series" };
             int[] puntos3 = { Estadisticas.Peliculas * 100 / (Estadisticas.Peliculas + Estadisticas.Series),
             Estadisticas.Series * 100 / (Estadisticas.Peliculas + Estadisticas.Series) };
-            chartTipoProducto.Titles.Add("Tipo de Producto%");
+            chartTipoProducto.Titles.Add("Consumo Tipo de Producto%");
 
             for (int i = 0; i < series3.Length; i++)
             {
@@ -426,7 +439,7 @@ namespace estadisticasStreaming
                 Estadisticas.Anio2021 * 100 / (Estadisticas.Anio2020 + Estadisticas.Anio2021 + Estadisticas.Anio2022 + Estadisticas.Anio2023), 
                 Estadisticas.Anio2022 * 100 / (Estadisticas.Anio2020 + Estadisticas.Anio2021 + Estadisticas.Anio2022 + Estadisticas.Anio2023), 
                 Estadisticas.Anio2023 * 100 / (Estadisticas.Anio2020 + Estadisticas.Anio2021 + Estadisticas.Anio2022 + Estadisticas.Anio2023) };
-            chartAnios.Titles.Add("Productos Estrenados");
+            chartAnios.Titles.Add("#Productos Estrenados");
 
             for (int i = 0; i < series5.Length; i++)
             {
@@ -455,7 +468,7 @@ namespace estadisticasStreaming
             chartPeliculaMasPopular.Visible = true;
             string[] series7 = Estadisticas.PeliculasYCantidad.Keys.ToArray();
             int[] puntos7 = Estadisticas.PeliculasYCantidad.Values.ToArray();
-            chartPeliculaMasPopular.Titles.Add("Peliculas");
+            chartPeliculaMasPopular.Titles.Add("#Peliculas");
 
             for (int i = 0; i < series7.Length; i++)
             {
@@ -467,7 +480,7 @@ namespace estadisticasStreaming
             chartSerieMasPopular.Visible = true;
             string[] series8 = Estadisticas.SeriesYCantidad.Keys.ToArray();
             int[] puntos8 = Estadisticas.SeriesYCantidad.Values.ToArray();
-            chartSerieMasPopular.Titles.Add("Series");
+            chartSerieMasPopular.Titles.Add("#Series");
 
             for (int i = 0; i < series8.Length; i++)
             {
