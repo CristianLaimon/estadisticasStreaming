@@ -22,20 +22,11 @@ namespace estadisticasStreaming.Formsitos.VentanasAjustes
 
         private void buttonAplicar_Click(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedItem != null && comboBox1.SelectedItem.ToString() == "Pastel")
-            {
-                Estadisticas.TipoGrafica = "Pastel";
-                Estadisticas.Activar = true;
-            }
-            else if (comboBox1.SelectedItem != null && comboBox1.SelectedItem.ToString() == "Barras")
-            {
-                Estadisticas.TipoGrafica = "Barras";
-                Estadisticas.Activar = true;
-            }
-            else if (comboBox1.SelectedItem == null)
-            {
-                MessageBox.Show("No ha seleccionado nada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            if (comboBox1.SelectedItem != null && comboBox1.SelectedItem.ToString() == "Pastel") Estadisticas.TipoGrafica = "Pastel";
+            else if (comboBox1.SelectedItem != null && comboBox1.SelectedItem.ToString() == "Barras") Estadisticas.TipoGrafica = "Barras";
+            
+            else if (comboBox1.SelectedItem == null) MessageBox.Show("No ha seleccionado nada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            
         }
 
         private void AOtros_Load(object sender, EventArgs e)
