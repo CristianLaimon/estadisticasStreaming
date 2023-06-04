@@ -386,6 +386,7 @@
             this.chartTiposUsuarios.BackColor = System.Drawing.Color.Transparent;
             chartArea1.Name = "ChartArea1";
             this.chartTiposUsuarios.ChartAreas.Add(chartArea1);
+            this.chartTiposUsuarios.Cursor = System.Windows.Forms.Cursors.Hand;
             legend1.Name = "Legend1";
             this.chartTiposUsuarios.Legends.Add(legend1);
             this.chartTiposUsuarios.Location = new System.Drawing.Point(0, 0);
@@ -401,6 +402,7 @@
             this.chartTiposUsuarios.Text = "chart1";
             title1.Name = "Consumo por Pais%";
             this.chartTiposUsuarios.Titles.Add(title1);
+            this.chartTiposUsuarios.Click += new System.EventHandler(this.chartTiposUsuarios_Click);
             // 
             // panel2
             // 
@@ -462,6 +464,7 @@
             this.chartSerieMasPopular.BackColor = System.Drawing.Color.Transparent;
             chartArea2.Name = "ChartArea1";
             this.chartSerieMasPopular.ChartAreas.Add(chartArea2);
+            this.chartSerieMasPopular.Cursor = System.Windows.Forms.Cursors.Hand;
             legend2.Name = "Legend1";
             this.chartSerieMasPopular.Legends.Add(legend2);
             this.chartSerieMasPopular.Location = new System.Drawing.Point(821, 255);
@@ -475,12 +478,14 @@
             this.chartSerieMasPopular.Size = new System.Drawing.Size(286, 247);
             this.chartSerieMasPopular.TabIndex = 12;
             this.chartSerieMasPopular.Text = "chart8";
+            this.chartSerieMasPopular.Click += new System.EventHandler(this.chartSerieMasPopular_Click);
             // 
             // chartPeliculaMasPopular
             // 
             this.chartPeliculaMasPopular.BackColor = System.Drawing.Color.Transparent;
             chartArea3.Name = "ChartArea1";
             this.chartPeliculaMasPopular.ChartAreas.Add(chartArea3);
+            this.chartPeliculaMasPopular.Cursor = System.Windows.Forms.Cursors.Hand;
             legend3.Name = "Legend1";
             this.chartPeliculaMasPopular.Legends.Add(legend3);
             this.chartPeliculaMasPopular.Location = new System.Drawing.Point(528, 255);
@@ -494,12 +499,14 @@
             this.chartPeliculaMasPopular.Size = new System.Drawing.Size(286, 247);
             this.chartPeliculaMasPopular.TabIndex = 11;
             this.chartPeliculaMasPopular.Text = "chart7";
+            this.chartPeliculaMasPopular.Click += new System.EventHandler(this.chartPeliculaMasPopular_Click);
             // 
             // chartConsumoPais
             // 
             this.chartConsumoPais.BackColor = System.Drawing.Color.Transparent;
             chartArea4.Name = "ChartArea1";
             this.chartConsumoPais.ChartAreas.Add(chartArea4);
+            this.chartConsumoPais.Cursor = System.Windows.Forms.Cursors.Hand;
             legend4.Name = "Legend1";
             this.chartConsumoPais.Legends.Add(legend4);
             this.chartConsumoPais.Location = new System.Drawing.Point(769, 0);
@@ -513,12 +520,14 @@
             this.chartConsumoPais.Size = new System.Drawing.Size(286, 247);
             this.chartConsumoPais.TabIndex = 5;
             this.chartConsumoPais.Text = "chart6";
+            this.chartConsumoPais.Click += new System.EventHandler(this.chartConsumoPais_Click);
             // 
             // chartAnios
             // 
             this.chartAnios.BackColor = System.Drawing.Color.Transparent;
             chartArea5.Name = "ChartArea1";
             this.chartAnios.ChartAreas.Add(chartArea5);
+            this.chartAnios.Cursor = System.Windows.Forms.Cursors.Hand;
             legend5.Name = "Legend1";
             this.chartAnios.Legends.Add(legend5);
             this.chartAnios.Location = new System.Drawing.Point(517, 0);
@@ -532,6 +541,7 @@
             this.chartAnios.Size = new System.Drawing.Size(246, 247);
             this.chartAnios.TabIndex = 4;
             this.chartAnios.Text = "chart5";
+            this.chartAnios.Click += new System.EventHandler(this.chartAnios_Click);
             // 
             // buttonTotalTipoUsuario
             // 
@@ -549,6 +559,7 @@
             this.chartConsumoGenero.BackColor = System.Drawing.Color.Transparent;
             chartArea6.Name = "ChartArea1";
             this.chartConsumoGenero.ChartAreas.Add(chartArea6);
+            this.chartConsumoGenero.Cursor = System.Windows.Forms.Cursors.Hand;
             legend6.Name = "Legend1";
             this.chartConsumoGenero.Legends.Add(legend6);
             this.chartConsumoGenero.Location = new System.Drawing.Point(258, 255);
@@ -562,6 +573,7 @@
             this.chartConsumoGenero.Size = new System.Drawing.Size(263, 247);
             this.chartConsumoGenero.TabIndex = 3;
             this.chartConsumoGenero.Text = "chart4";
+            this.chartConsumoGenero.Click += new System.EventHandler(this.chartConsumoGenero_Click);
             // 
             // buttonTotalTerminaron
             // 
@@ -579,6 +591,7 @@
             this.chartTipoProducto.BackColor = System.Drawing.Color.Transparent;
             chartArea7.Name = "ChartArea1";
             this.chartTipoProducto.ChartAreas.Add(chartArea7);
+            this.chartTipoProducto.Cursor = System.Windows.Forms.Cursors.Hand;
             legend7.Name = "Legend1";
             this.chartTipoProducto.Legends.Add(legend7);
             this.chartTipoProducto.Location = new System.Drawing.Point(0, 255);
@@ -592,12 +605,14 @@
             this.chartTipoProducto.Size = new System.Drawing.Size(251, 247);
             this.chartTipoProducto.TabIndex = 2;
             this.chartTipoProducto.Text = "chart3";
+            this.chartTipoProducto.Click += new System.EventHandler(this.chartTipoProducto_Click);
             // 
             // chartTerminaron
             // 
             this.chartTerminaron.BackColor = System.Drawing.Color.Transparent;
             chartArea8.Name = "ChartArea1";
             this.chartTerminaron.ChartAreas.Add(chartArea8);
+            this.chartTerminaron.Cursor = System.Windows.Forms.Cursors.Hand;
             legend8.Name = "Legend1";
             this.chartTerminaron.Legends.Add(legend8);
             this.chartTerminaron.Location = new System.Drawing.Point(258, 0);
@@ -611,6 +626,7 @@
             this.chartTerminaron.Size = new System.Drawing.Size(251, 247);
             this.chartTerminaron.TabIndex = 1;
             this.chartTerminaron.Text = "chart2";
+            this.chartTerminaron.Click += new System.EventHandler(this.chartTerminaron_Click);
             // 
             // buttonSalir
             // 

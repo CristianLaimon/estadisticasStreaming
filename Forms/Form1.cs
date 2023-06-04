@@ -1,4 +1,5 @@
 using estadisticasStreaming.Clases;
+using estadisticasStreaming.Forms;
 using System;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
@@ -435,6 +436,62 @@ namespace estadisticasStreaming
                 serie8.Label = puntos8[i].ToString();
                 serie8.Points.Add(puntos8[i]);
             }
+        }
+
+        private void chartTiposUsuarios_Click(object sender, EventArgs e)
+        {
+            Estadisticas.TipoChart = "tiposUsuarios";
+            AbrirForm2();
+        }
+
+        private void chartTerminaron_Click(object sender, EventArgs e)
+        {
+            Estadisticas.TipoChart = "terminaron";
+            AbrirForm2();
+        }
+
+        private void chartTipoProducto_Click(object sender, EventArgs e)
+        {
+            Estadisticas.TipoChart = "tipoProducto";
+            AbrirForm2();
+        }
+
+        private void chartConsumoGenero_Click(object sender, EventArgs e)
+        {
+            Estadisticas.TipoChart = "consumoGenero";
+            AbrirForm2();
+        }
+
+        private void chartAnios_Click(object sender, EventArgs e)
+        {
+            Estadisticas.TipoChart = "anios";
+            AbrirForm2();
+        }
+
+        private void chartConsumoPais_Click(object sender, EventArgs e)
+        {
+            Estadisticas.TipoChart = "consumoPais";
+            AbrirForm2();
+        }
+
+        private void chartPeliculaMasPopular_Click(object sender, EventArgs e)
+        {
+            Estadisticas.TipoChart = "peliculaMasPopular";
+            AbrirForm2();
+        }
+
+        private void chartSerieMasPopular_Click(object sender, EventArgs e)
+        {
+            Estadisticas.TipoChart = "serieMasPopular";
+            AbrirForm2();
+        }
+
+        public void AbrirForm2()
+        {
+            Form2 form2 = new Form2();
+            form2.StartPosition = FormStartPosition.Manual;
+            form2.Location = new Point(this.Location.X, this.Location.Y);
+            form2.ShowDialog();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
