@@ -254,5 +254,80 @@ namespace estadisticasStreaming.Clases
             Estadisticas.PeliculasYCantidad.Clear();
             Estadisticas.SeriesYCantidad.Clear();
         }
+
+        public static void Test()
+        {
+            //------------------------------------------------------------------------------------------------------
+            chartTiposUsuarios.Visible = true;
+            string[] series = { "Startes", "Watchers", "Completers" };
+            int[] puntos = { Estadisticas.NoStarters * 100 / (Estadisticas.NoStarters + Estadisticas.NoWatchers + Estadisticas.NoCompleters),
+                Estadisticas.NoWatchers * 100 / (Estadisticas.NoStarters + Estadisticas.NoWatchers + Estadisticas.NoCompleters),
+                Estadisticas.NoCompleters * 100 / (Estadisticas.NoStarters + Estadisticas.NoWatchers + Estadisticas.NoCompleters) };
+            chartTiposUsuarios.Titles.Add("Tipos de Usuarios%");
+            //------------------------------------------------------------------------------------------------------
+
+            //------------------------------------------------------------------------------------------------------
+            chartTerminaron.Visible = true;
+            string[] series2 = { "Completo", "Incompleto" };
+            int[] puntos2 = { Estadisticas.VerCompleto * 100 / (Estadisticas.VerCompleto + Estadisticas.VerIncompleto),
+                Estadisticas.VerIncompleto * 100 / (Estadisticas.VerCompleto + Estadisticas.VerIncompleto) };
+            chartTerminaron.Titles.Add("Terminaron%");
+            //------------------------------------------------------------------------------------------------------
+
+            //------------------------------------------------------------------------------------------------------
+            chartTipoProducto.Visible = true;
+            string[] series3 = { "Peliculas", "Series" };
+            int[] puntos3 = { Estadisticas.Peliculas * 100 / (Estadisticas.Peliculas + Estadisticas.Series),
+                Estadisticas.Series * 100 / (Estadisticas.Peliculas + Estadisticas.Series) };
+            chartTipoProducto.Titles.Add("Consumo Tipo de Producto%");
+            //------------------------------------------------------------------------------------------------------
+
+            //------------------------------------------------------------------------------------------------------
+            chartConsumoGenero.Visible = true;
+            string[] series4 = { "Romance", "Drama", "Terror", "Suspenso", "Accion" };
+            int[] puntos4 = { Estadisticas.Romance * 100 / (Estadisticas.Romance + Estadisticas.Drama + Estadisticas.Terror + Estadisticas.Suspenso + Estadisticas.Accion),
+                Estadisticas.Drama * 100 / (Estadisticas.Romance + Estadisticas.Drama + Estadisticas.Terror + Estadisticas.Suspenso + Estadisticas.Accion),
+                Estadisticas.Terror * 100 / (Estadisticas.Romance + Estadisticas.Drama + Estadisticas.Terror + Estadisticas.Suspenso + Estadisticas.Accion),
+                Estadisticas.Suspenso * 100 / (Estadisticas.Romance + Estadisticas.Drama + Estadisticas.Terror + Estadisticas.Suspenso + Estadisticas.Accion),
+                Estadisticas.Accion * 100 / (Estadisticas.Romance + Estadisticas.Drama + Estadisticas.Terror + Estadisticas.Suspenso + Estadisticas.Accion) };
+            chartConsumoGenero.Titles.Add("Consumo por Genero%");
+            //------------------------------------------------------------------------------------------------------
+
+            //------------------------------------------------------------------------------------------------------
+            chartAnios.Visible = true;
+            string[] series5 = { "2020", "2021", "2022", "2023" };
+            int[] puntos5 = { Estadisticas.Anio2020 * 100 / (Estadisticas.Anio2020 + Estadisticas.Anio2021 + Estadisticas.Anio2022 + Estadisticas.Anio2023),
+                Estadisticas.Anio2021 * 100 / (Estadisticas.Anio2020 + Estadisticas.Anio2021 + Estadisticas.Anio2022 + Estadisticas.Anio2023),
+                Estadisticas.Anio2022 * 100 / (Estadisticas.Anio2020 + Estadisticas.Anio2021 + Estadisticas.Anio2022 + Estadisticas.Anio2023),
+                Estadisticas.Anio2023 * 100 / (Estadisticas.Anio2020 + Estadisticas.Anio2021 + Estadisticas.Anio2022 + Estadisticas.Anio2023) };
+            chartAnios.Titles.Add("#Productos Estrenados");
+            //------------------------------------------------------------------------------------------------------
+
+            //------------------------------------------------------------------------------------------------------
+            chartConsumoPais.Visible = true;
+            string[] series6 = { "Mexico", "EU", "Canada", "Colombia", "Cuba", "Costa Rica" };
+            int[] puntos6 = { Estadisticas.Mexico * 100 / (Estadisticas.Mexico + Estadisticas.Eu + Estadisticas.Canada + Estadisticas.Colombia + Estadisticas.Cuba + Estadisticas.CostaRica),
+                Estadisticas.Eu * 100 / (Estadisticas.Mexico + Estadisticas.Eu + Estadisticas.Canada + Estadisticas.Colombia + Estadisticas.Cuba + Estadisticas.CostaRica),
+                Estadisticas.Canada * 100 / (Estadisticas.Mexico + Estadisticas.Eu + Estadisticas.Canada + Estadisticas.Colombia + Estadisticas.Cuba + Estadisticas.CostaRica),
+                Estadisticas.Colombia * 100 / (Estadisticas.Mexico + Estadisticas.Eu + Estadisticas.Canada + Estadisticas.Colombia + Estadisticas.Cuba + Estadisticas.CostaRica),
+                Estadisticas.Cuba * 100 / (Estadisticas.Mexico + Estadisticas.Eu + Estadisticas.Canada + Estadisticas.Colombia + Estadisticas.Cuba + Estadisticas.CostaRica),
+                Estadisticas.CostaRica * 100 / (Estadisticas.Mexico + Estadisticas.Eu + Estadisticas.Canada + Estadisticas.Colombia + Estadisticas.Cuba + Estadisticas.CostaRica)};
+            chartConsumoPais.Titles.Add("Consumo por Pais%");
+            //------------------------------------------------------------------------------------------------------
+
+            //------------------------------------------------------------------------------------------------------
+            chartPeliculaMasPopular.Visible = true;
+            string[] series7 = Estadisticas.PeliculasYCantidad.Keys.ToArray();
+            int[] puntos7 = Estadisticas.PeliculasYCantidad.Values.ToArray();
+            chartPeliculaMasPopular.Titles.Add("#Peliculas");
+            //------------------------------------------------------------------------------------------------------
+
+            //------------------------------------------------------------------------------------------------------
+            chartSerieMasPopular.Visible = true;
+            string[] series8 = Estadisticas.SeriesYCantidad.Keys.ToArray();
+            int[] puntos8 = Estadisticas.SeriesYCantidad.Values.ToArray();
+            chartSerieMasPopular.Titles.Add("#Series");
+            //------------------------------------------------------------------------------------------------------
+        }
     }
 }
