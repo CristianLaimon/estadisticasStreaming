@@ -21,6 +21,7 @@ namespace estadisticasStreaming
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            #region InicializaciónFrom
             toolStripStatusLabel1.Text = "Hecho por: Diana Yulissa Sesma Santiago y Kristan Ruiz Limon";
             openFileDialog1.Filter = "Archivos de texto(*.txt)|*.txt";
             openFileDialog1.InitialDirectory = Path.Combine(Application.StartupPath, "Data");
@@ -37,6 +38,7 @@ namespace estadisticasStreaming
             chartConsumoPais.Visible = false;
             chartPeliculaMasPopular.Visible = false;
             chartSerieMasPopular.Visible = false;
+            #endregion
         }
 
         #region ChartsClicks
@@ -304,6 +306,8 @@ namespace estadisticasStreaming
 
         private void MostrarGraficas()
         {
+            //------------------------------------------------------------------------------------------------------
+
             if (Estadisticas.TipoGrafica == "")
             {
                 chartTiposUsuarios.Visible = true;
@@ -419,6 +423,8 @@ namespace estadisticasStreaming
                 }
             }
 
+            //------------------------------------------------------------------------------------------------------
+
             if (Estadisticas.TipoGrafica == "Pastel")
             {
                 chartTiposUsuarios.Visible = true;
@@ -428,7 +434,9 @@ namespace estadisticasStreaming
                     Estadisticas.NoCompleters * 100 / (Estadisticas.NoStarters + Estadisticas.NoWatchers + Estadisticas.NoCompleters) };
                 chartTiposUsuarios.Titles.Add("Tipos de Usuarios%");
 
-                Series serie = new Series();
+
+                Series serie = new Series(); //Esto no esta en el ""
+
                 serie.ChartType = SeriesChartType.Pie;
 
                 for (int i = 0; i < series.Length; i++)
@@ -549,6 +557,8 @@ namespace estadisticasStreaming
                 }
                 chartSerieMasPopular.Series.Add(serie8);
             }
+            //------------------------------------------------------------------------------------------------------
+
             else if (Estadisticas.TipoGrafica == "Barras")
             {
                 chartTiposUsuarios.Visible = true;
