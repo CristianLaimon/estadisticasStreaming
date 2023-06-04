@@ -379,6 +379,5 @@ namespace estadisticasStreaming.Clases
             puntitos.Add(puntos7);
             puntitos.Add(puntos8);
         }
-        
     }
 }
