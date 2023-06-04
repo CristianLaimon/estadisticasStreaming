@@ -1,4 +1,5 @@
 ﻿using estadisticasStreaming.Clases;
+using estadisticasStreaming.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,6 +27,7 @@ namespace estadisticasStreaming.Formsitos.VentanasAjustes
                 label1.Text = "Aplicado";
                 timer1.Start();
                 Estadisticas.TipoGrafica = "Pastel";
+                Estadisticas.Activado = true;
             }
 
             else if (comboBox1.SelectedItem != null && comboBox1.SelectedItem.ToString() == "Barras")
@@ -33,6 +35,7 @@ namespace estadisticasStreaming.Formsitos.VentanasAjustes
                 label1.Text = "Aplicado";
                 timer1.Start();
                 Estadisticas.TipoGrafica = "Barras";
+                Estadisticas.Activado = true;
             }
 
             else if (comboBox1.SelectedItem == null) MessageBox.Show("No ha seleccionado nada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
