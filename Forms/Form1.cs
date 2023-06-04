@@ -4,6 +4,7 @@ using System;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using estadisticasStreaming.Formsitos;
+using System.Linq;
 
 namespace estadisticasStreaming
 {
@@ -135,6 +136,7 @@ namespace estadisticasStreaming
 
                 rutaArchivo = openFileDialog1.FileName;
                 ValidarDatos();
+                Estadisticas.Activar = true;
             }
         }
 
@@ -160,13 +162,11 @@ namespace estadisticasStreaming
                     string linea = lector.ReadLine();
                     lineaElementos = linea.Split(',');
 
-                        if (lineaElementos.Length != 11)
-                        {
-                           compatible = false;
-                           break; //Se sale del while
-                        }
-                    
-                    
+                    if (lineaElementos.Length != 11)
+                    {
+                        compatible = false;
+                        break;
+                    }
                 }
             }
             if (compatible)ImprimirContenido();
@@ -204,7 +204,7 @@ namespace estadisticasStreaming
             }
         }
 
-        private void ObtenerEstadisticas() 
+        private void ObtenerEstadisticas()
         {
             Reiniciar();
 
@@ -245,7 +245,7 @@ namespace estadisticasStreaming
                 {
                     Estadisticas.Peliculas++;
                     if (Estadisticas.PeliculasYCantidad.ContainsKey(r.ProductoVisto)) Estadisticas.PeliculasYCantidad[r.ProductoVisto]++;
-                    else Estadisticas.PeliculasYCantidad.Add(r.ProductoVisto, 1); 
+                    else Estadisticas.PeliculasYCantidad.Add(r.ProductoVisto, 1);
                 }
                 else
                 {
@@ -256,63 +256,78 @@ namespace estadisticasStreaming
 
                 switch (r.Genero)
                 {
-                    case "ROMANCE": Estadisticas.Romance++;
+                    case "ROMANCE":
+                        Estadisticas.Romance++;
                         break;
-                    case "DRAMA": Estadisticas.Drama++;
+                    case "DRAMA":
+                        Estadisticas.Drama++;
                         break;
-                    case "TERROR": Estadisticas.Terror++;
+                    case "TERROR":
+                        Estadisticas.Terror++;
                         break;
-                    case "SUSPENSO": Estadisticas.Suspenso++;
+                    case "SUSPENSO":
+                        Estadisticas.Suspenso++;
                         break;
-                    case "ACCION": Estadisticas.Accion++;
+                    case "ACCION":
+                        Estadisticas.Accion++;
                         break;
                 }
 
                 switch (r.AnioEstreno)
                 {
-                    case "2020": Estadisticas.Anio2020++;
+                    case "2020":
+                        Estadisticas.Anio2020++;
                         break;
-                    case "2021": Estadisticas.Anio2021++;
+                    case "2021":
+                        Estadisticas.Anio2021++;
                         break;
-                    case "2022": Estadisticas.Anio2022++;
+                    case "2022":
+                        Estadisticas.Anio2022++;
                         break;
-                    case "2023": Estadisticas.Anio2023++;
+                    case "2023":
+                        Estadisticas.Anio2023++;
                         break;
                 }
 
                 switch (r.Pais)
                 {
-                    case "MEXICO": Estadisticas.Mexico++;
-                        {
-                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
-                            else Estadisticas.PaisYCantidad.Add(r.Pais, 1); 
-                        }
-                        break;
-                    case "EU": Estadisticas.Eu++;
-                        {
-                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
-                            else Estadisticas.PaisYCantidad.Add(r.Pais, 1); 
-                        }
-                        break;
-                    case "CANADA": Estadisticas.Canada++;
-                        {
-                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
-                            else Estadisticas.PaisYCantidad.Add(r.Pais, 1);  
-                        }
-                        break;
-                    case "COLOMBIA": Estadisticas.Colombia++;
-                        {
-                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
-                            else Estadisticas.PaisYCantidad.Add(r.Pais, 1);  
-                        }
-                        break;
-                    case "CUBA": Estadisticas.Cuba++;
+                    case "MEXICO":
+                        Estadisticas.Mexico++;
                         {
                             if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
                             else Estadisticas.PaisYCantidad.Add(r.Pais, 1);
                         }
                         break;
-                    case "COSTA RICA": Estadisticas.CostaRica++;
+                    case "EU":
+                        Estadisticas.Eu++;
+                        {
+                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
+                            else Estadisticas.PaisYCantidad.Add(r.Pais, 1);
+                        }
+                        break;
+                    case "CANADA":
+                        Estadisticas.Canada++;
+                        {
+                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
+                            else Estadisticas.PaisYCantidad.Add(r.Pais, 1);
+                        }
+                        break;
+                    case "COLOMBIA":
+                        Estadisticas.Colombia++;
+                        {
+                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
+                            else Estadisticas.PaisYCantidad.Add(r.Pais, 1);
+                        }
+                        break;
+                    case "CUBA":
+                        Estadisticas.Cuba++;
+                        {
+                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
+                            else Estadisticas.PaisYCantidad.Add(r.Pais, 1);
+                        }
+                        break;
+                    case "COSTA RICA":
+                        Estadisticas.CostaRica++;
                         {
                             if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
                             else Estadisticas.PaisYCantidad.Add(r.Pais, 1);
@@ -325,116 +340,256 @@ namespace estadisticasStreaming
             Estadisticas.SeriePopular = Estadisticas.SeriesYCantidad.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
             Estadisticas.PaisMasConsumo = Estadisticas.PaisYCantidad.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
 
-            chartTiposUsuarios.Visible = true;
-            string[] series = { "Startes", "Watchers", "Completers" };
-            int[] puntos = { Estadisticas.NoStarters * 100 / (Estadisticas.NoStarters + Estadisticas.NoWatchers + Estadisticas.NoCompleters), 
-                Estadisticas.NoWatchers * 100 / (Estadisticas.NoStarters + Estadisticas.NoWatchers + Estadisticas.NoCompleters), 
-                Estadisticas.NoCompleters * 100 / (Estadisticas.NoStarters + Estadisticas.NoWatchers + Estadisticas.NoCompleters) };
-            chartTiposUsuarios.Titles.Add("Tipos de Usuarios%");
-
-            for (int i = 0; i < series.Length; i++)
+            if (Estadisticas.TipoGrafica == "Pastel")
             {
-                Series serie = chartTiposUsuarios.Series.Add(series[i]);
-                serie.Label = puntos[i].ToString();
-                serie.Points.Add(puntos[i]);
-            }
+                chartTiposUsuarios.Visible = true;
+                string[] series = { "Startes", "Watchers", "Completers" };
+                int[] puntos = { Estadisticas.NoStarters * 100 / (Estadisticas.NoStarters + Estadisticas.NoWatchers + Estadisticas.NoCompleters),
+                    Estadisticas.NoWatchers * 100 / (Estadisticas.NoStarters + Estadisticas.NoWatchers + Estadisticas.NoCompleters),
+                    Estadisticas.NoCompleters * 100 / (Estadisticas.NoStarters + Estadisticas.NoWatchers + Estadisticas.NoCompleters) };
+                chartTiposUsuarios.Titles.Add("Tipos de Usuarios%");
 
-            chartTerminaron.Visible = true;
-            string[] series2 = { "Completo", "Incompleto" };
-            int[] puntos2 = { Estadisticas.VerCompleto * 100 / (Estadisticas.VerCompleto + Estadisticas.VerIncompleto),
+                Series serie = new Series();
+                serie.ChartType = SeriesChartType.Pie;
+
+                for (int i = 0; i < series.Length; i++)
+                {
+                    serie.Points.Add(new DataPoint(0, puntos[i]) { LegendText = series[i], Label = puntos[i].ToString() + "%" });
+                }
+                chartTiposUsuarios.Series.Add(serie);
+
+
+                chartTerminaron.Visible = true;
+                string[] series2 = { "Completo", "Incompleto" };
+                int[] puntos2 = { Estadisticas.VerCompleto * 100 / (Estadisticas.VerCompleto + Estadisticas.VerIncompleto),
             Estadisticas.VerIncompleto * 100 / (Estadisticas.VerCompleto + Estadisticas.VerIncompleto) };
-            chartTerminaron.Titles.Add("Terminaron%");
+                chartTerminaron.Titles.Add("Terminaron%");
 
-            for (int i = 0; i < series2.Length; i++)
-            {
-                Series serie2 = chartTerminaron.Series.Add(series2[i]);
-                serie2.Label = puntos2[i].ToString();
-                serie2.Points.Add(puntos2[i]);
-            }
+                Series serie2 = new Series();
+                serie2.ChartType = SeriesChartType.Pie;
 
-            chartTipoProducto.Visible = true;
-            string[] series3 = { "Peliculas", "Series" };
-            int[] puntos3 = { Estadisticas.Peliculas * 100 / (Estadisticas.Peliculas + Estadisticas.Series),
+                for (int i = 0; i < series2.Length; i++)
+                {
+                    serie2.Points.Add(new DataPoint(0, puntos2[i]) { LegendText = series2[i], Label = puntos2[i].ToString() + "%" });
+                }
+                chartTerminaron.Series.Add(serie2);
+
+                
+                chartTipoProducto.Visible = true;
+                string[] series3 = { "Peliculas", "Series" };
+                int[] puntos3 = { Estadisticas.Peliculas * 100 / (Estadisticas.Peliculas + Estadisticas.Series),
             Estadisticas.Series * 100 / (Estadisticas.Peliculas + Estadisticas.Series) };
-            chartTipoProducto.Titles.Add("Consumo Tipo de Producto%");
+                chartTipoProducto.Titles.Add("Consumo Tipo de Producto%");
 
-            for (int i = 0; i < series3.Length; i++)
-            {
-                Series serie3 = chartTipoProducto.Series.Add(series3[i]);
-                serie3.Label = puntos3[i].ToString();
-                serie3.Points.Add(puntos3[i]);
-            }
+                Series serie3 = new Series();
+                serie3.ChartType = SeriesChartType.Pie;
 
-            chartConsumoGenero.Visible = true;
-            string[] series4 = { "Romance", "Drama", "Terror", "Suspenso", "Accion" };
-            int[] puntos4 = { Estadisticas.Romance * 100 / (Estadisticas.Romance + Estadisticas.Drama + Estadisticas.Terror + Estadisticas.Suspenso + Estadisticas.Accion),
+                for (int i = 0; i < series3.Length; i++)
+                {
+                    serie3.Points.Add(new DataPoint(0, puntos3[i]) { LegendText = series3[i], Label = puntos3[i].ToString() + "%" });
+                }
+                chartTipoProducto.Series.Add(serie3);
+
+                
+                chartConsumoGenero.Visible = true;
+                string[] series4 = { "Romance", "Drama", "Terror", "Suspenso", "Accion" };
+                int[] puntos4 = { Estadisticas.Romance * 100 / (Estadisticas.Romance + Estadisticas.Drama + Estadisticas.Terror + Estadisticas.Suspenso + Estadisticas.Accion),
                 Estadisticas.Drama * 100 / (Estadisticas.Romance + Estadisticas.Drama + Estadisticas.Terror + Estadisticas.Suspenso + Estadisticas.Accion),
                 Estadisticas.Terror * 100 / (Estadisticas.Romance + Estadisticas.Drama + Estadisticas.Terror + Estadisticas.Suspenso + Estadisticas.Accion),
                 Estadisticas.Suspenso * 100 / (Estadisticas.Romance + Estadisticas.Drama + Estadisticas.Terror + Estadisticas.Suspenso + Estadisticas.Accion),
                 Estadisticas.Accion * 100 / (Estadisticas.Romance + Estadisticas.Drama + Estadisticas.Terror + Estadisticas.Suspenso + Estadisticas.Accion) };
-            chartConsumoGenero.Titles.Add("Consumo por Genero%");
+                chartConsumoGenero.Titles.Add("Consumo por Genero%");
 
-            for (int i = 0; i < series4.Length; i++)
-            {
-                Series serie4 = chartConsumoGenero.Series.Add(series4[i]);
-                serie4.Label = puntos4[i].ToString();
-                serie4.Points.Add(puntos4[i]);
-            }
+                Series serie4 = new Series();
+                serie4.ChartType = SeriesChartType.Pie;
 
-            chartAnios.Visible = true;
-            string[] series5 = { "2020", "2021", "2022", "2023" };
-            int[] puntos5 = { Estadisticas.Anio2020 * 100 / (Estadisticas.Anio2020 + Estadisticas.Anio2021 + Estadisticas.Anio2022 + Estadisticas.Anio2023), 
-                Estadisticas.Anio2021 * 100 / (Estadisticas.Anio2020 + Estadisticas.Anio2021 + Estadisticas.Anio2022 + Estadisticas.Anio2023), 
-                Estadisticas.Anio2022 * 100 / (Estadisticas.Anio2020 + Estadisticas.Anio2021 + Estadisticas.Anio2022 + Estadisticas.Anio2023), 
+                for (int i = 0; i < series4.Length; i++)
+                {
+                    serie4.Points.Add(new DataPoint(0, puntos4[i]) { LegendText = series4[i], Label = puntos4[i].ToString() + "%" });
+                }
+                chartConsumoGenero.Series.Add(serie4);
+
+
+                chartAnios.Visible = true;
+                string[] series5 = { "2020", "2021", "2022", "2023" };
+                int[] puntos5 = { Estadisticas.Anio2020 * 100 / (Estadisticas.Anio2020 + Estadisticas.Anio2021 + Estadisticas.Anio2022 + Estadisticas.Anio2023),
+                Estadisticas.Anio2021 * 100 / (Estadisticas.Anio2020 + Estadisticas.Anio2021 + Estadisticas.Anio2022 + Estadisticas.Anio2023),
+                Estadisticas.Anio2022 * 100 / (Estadisticas.Anio2020 + Estadisticas.Anio2021 + Estadisticas.Anio2022 + Estadisticas.Anio2023),
                 Estadisticas.Anio2023 * 100 / (Estadisticas.Anio2020 + Estadisticas.Anio2021 + Estadisticas.Anio2022 + Estadisticas.Anio2023) };
-            chartAnios.Titles.Add("#Productos Estrenados");
+                chartAnios.Titles.Add("#Productos Estrenados");
 
-            for (int i = 0; i < series5.Length; i++)
-            {
-                Series serie5 = chartAnios.Series.Add(series5[i]);
-                serie5.Label = puntos5[i].ToString();
-                serie5.Points.Add(puntos5[i]);
-            }
+                Series serie5 = new Series();
+                serie5.ChartType = SeriesChartType.Pie;
 
-            chartConsumoPais.Visible = true;
-            string[] series6 = { "Mexico", "EU", "Canada", "Colombia", "Cuba", "Costa Rica" };
-            int[] puntos6 = { Estadisticas.Mexico * 100 / (Estadisticas.Mexico + Estadisticas.Eu + Estadisticas.Canada + Estadisticas.Colombia + Estadisticas.Cuba + Estadisticas.CostaRica),
+                for (int i = 0; i < series5.Length; i++)
+                {
+                    serie5.Points.Add(new DataPoint(0, puntos5[i]) { LegendText = series5[i], Label = puntos5[i].ToString() + "%" });
+                }
+                chartAnios.Series.Add(serie5);
+
+
+                chartConsumoPais.Visible = true;
+                string[] series6 = { "Mexico", "EU", "Canada", "Colombia", "Cuba", "Costa Rica" };
+                int[] puntos6 = { Estadisticas.Mexico * 100 / (Estadisticas.Mexico + Estadisticas.Eu + Estadisticas.Canada + Estadisticas.Colombia + Estadisticas.Cuba + Estadisticas.CostaRica),
             Estadisticas.Eu * 100 / (Estadisticas.Mexico + Estadisticas.Eu + Estadisticas.Canada + Estadisticas.Colombia + Estadisticas.Cuba + Estadisticas.CostaRica),
             Estadisticas.Canada * 100 / (Estadisticas.Mexico + Estadisticas.Eu + Estadisticas.Canada + Estadisticas.Colombia + Estadisticas.Cuba + Estadisticas.CostaRica),
             Estadisticas.Colombia * 100 / (Estadisticas.Mexico + Estadisticas.Eu + Estadisticas.Canada + Estadisticas.Colombia + Estadisticas.Cuba + Estadisticas.CostaRica),
             Estadisticas.Cuba * 100 / (Estadisticas.Mexico + Estadisticas.Eu + Estadisticas.Canada + Estadisticas.Colombia + Estadisticas.Cuba + Estadisticas.CostaRica),
             Estadisticas.CostaRica * 100 / (Estadisticas.Mexico + Estadisticas.Eu + Estadisticas.Canada + Estadisticas.Colombia + Estadisticas.Cuba + Estadisticas.CostaRica)};
-            chartConsumoPais.Titles.Add("Consumo por Pais%");
+                chartConsumoPais.Titles.Add("Consumo por Pais%");
 
-            for (int i = 0; i < series6.Length; i++)
-            {
-                Series serie6 = chartConsumoPais.Series.Add(series6[i]);
-                serie6.Label = puntos6[i].ToString();
-                serie6.Points.Add(puntos6[i]);
+                Series serie6 = new Series();
+                serie6.ChartType = SeriesChartType.Pie;
+
+                for (int i = 0; i < series6.Length; i++)
+                {
+                    serie6.Points.Add(new DataPoint(0, puntos6[i]) { LegendText = series6[i], Label = puntos6[i].ToString() + "%" });
+                }
+                chartConsumoPais.Series.Add(serie6);
+
+
+                chartPeliculaMasPopular.Visible = true;
+                string[] series7 = Estadisticas.PeliculasYCantidad.Keys.ToArray();
+                int[] puntos7 = Estadisticas.PeliculasYCantidad.Values.ToArray();
+                chartPeliculaMasPopular.Titles.Add("#Peliculas");
+
+                Series serie7 = new Series();
+                serie7.ChartType = SeriesChartType.Pie;
+
+                for (int i = 0; i < series7.Length; i++)
+                {
+                    serie7.Points.Add(new DataPoint(0, puntos7[i]) { LegendText = series7[i], Label = puntos7[i].ToString() + "%" });
+                }
+                chartPeliculaMasPopular.Series.Add(serie7);
+
+
+                chartSerieMasPopular.Visible = true;
+                string[] series8 = Estadisticas.SeriesYCantidad.Keys.ToArray();
+                int[] puntos8 = Estadisticas.SeriesYCantidad.Values.ToArray();
+                chartSerieMasPopular.Titles.Add("#Series");
+
+                Series serie8 = new Series();
+                serie8.ChartType = SeriesChartType.Pie;
+
+                for (int i = 0; i < series8.Length; i++)
+                {
+                    serie8.Points.Add(new DataPoint(0, puntos8[i]) { LegendText = series8[i], Label = puntos8[i].ToString() + "%" });
+                }
+                chartSerieMasPopular.Series.Add(serie8);
             }
-
-            chartPeliculaMasPopular.Visible = true;
-            string[] series7 = Estadisticas.PeliculasYCantidad.Keys.ToArray();
-            int[] puntos7 = Estadisticas.PeliculasYCantidad.Values.ToArray();
-            chartPeliculaMasPopular.Titles.Add("#Peliculas");
-
-            for (int i = 0; i < series7.Length; i++)
+            else
             {
-                Series serie7 = chartPeliculaMasPopular.Series.Add(series7[i]);
-                serie7.Label = puntos7[i].ToString();
-                serie7.Points.Add(puntos7[i]);
-            }
+                chartTiposUsuarios.Visible = true;
+                string[] series = { "Startes", "Watchers", "Completers" };
+                int[] puntos = { Estadisticas.NoStarters * 100 / (Estadisticas.NoStarters + Estadisticas.NoWatchers + Estadisticas.NoCompleters),
+                Estadisticas.NoWatchers * 100 / (Estadisticas.NoStarters + Estadisticas.NoWatchers + Estadisticas.NoCompleters),
+                Estadisticas.NoCompleters * 100 / (Estadisticas.NoStarters + Estadisticas.NoWatchers + Estadisticas.NoCompleters) };
+                chartTiposUsuarios.Titles.Add("Tipos de Usuarios%");
 
-            chartSerieMasPopular.Visible = true;
-            string[] series8 = Estadisticas.SeriesYCantidad.Keys.ToArray();
-            int[] puntos8 = Estadisticas.SeriesYCantidad.Values.ToArray();
-            chartSerieMasPopular.Titles.Add("#Series");
+                for (int i = 0; i < series.Length; i++)
+                {
+                    Series serie = chartTiposUsuarios.Series.Add(series[i]);
+                    serie.Label = puntos[i].ToString();
+                    serie.Points.Add(puntos[i]);
+                }
 
-            for (int i = 0; i < series8.Length; i++)
-            {
-                Series serie8 = chartSerieMasPopular.Series.Add(series8[i]);
-                serie8.Label = puntos8[i].ToString();
-                serie8.Points.Add(puntos8[i]);
+                chartTerminaron.Visible = true;
+                string[] series2 = { "Completo", "Incompleto" };
+                int[] puntos2 = { Estadisticas.VerCompleto * 100 / (Estadisticas.VerCompleto + Estadisticas.VerIncompleto),
+            Estadisticas.VerIncompleto * 100 / (Estadisticas.VerCompleto + Estadisticas.VerIncompleto) };
+                chartTerminaron.Titles.Add("Terminaron%");
+
+                for (int i = 0; i < series2.Length; i++)
+                {
+                    Series serie2 = chartTerminaron.Series.Add(series2[i]);
+                    serie2.Label = puntos2[i].ToString();
+                    serie2.Points.Add(puntos2[i]);
+                }
+
+                chartTipoProducto.Visible = true;
+                string[] series3 = { "Peliculas", "Series" };
+                int[] puntos3 = { Estadisticas.Peliculas * 100 / (Estadisticas.Peliculas + Estadisticas.Series),
+            Estadisticas.Series * 100 / (Estadisticas.Peliculas + Estadisticas.Series) };
+                chartTipoProducto.Titles.Add("Consumo Tipo de Producto%");
+
+                for (int i = 0; i < series3.Length; i++)
+                {
+                    Series serie3 = chartTipoProducto.Series.Add(series3[i]);
+                    serie3.Label = puntos3[i].ToString();
+                    serie3.Points.Add(puntos3[i]);
+                }
+
+                chartConsumoGenero.Visible = true;
+                string[] series4 = { "Romance", "Drama", "Terror", "Suspenso", "Accion" };
+                int[] puntos4 = { Estadisticas.Romance * 100 / (Estadisticas.Romance + Estadisticas.Drama + Estadisticas.Terror + Estadisticas.Suspenso + Estadisticas.Accion),
+                Estadisticas.Drama * 100 / (Estadisticas.Romance + Estadisticas.Drama + Estadisticas.Terror + Estadisticas.Suspenso + Estadisticas.Accion),
+                Estadisticas.Terror * 100 / (Estadisticas.Romance + Estadisticas.Drama + Estadisticas.Terror + Estadisticas.Suspenso + Estadisticas.Accion),
+                Estadisticas.Suspenso * 100 / (Estadisticas.Romance + Estadisticas.Drama + Estadisticas.Terror + Estadisticas.Suspenso + Estadisticas.Accion),
+                Estadisticas.Accion * 100 / (Estadisticas.Romance + Estadisticas.Drama + Estadisticas.Terror + Estadisticas.Suspenso + Estadisticas.Accion) };
+                chartConsumoGenero.Titles.Add("Consumo por Genero%");
+
+                for (int i = 0; i < series4.Length; i++)
+                {
+                    Series serie4 = chartConsumoGenero.Series.Add(series4[i]);
+                    serie4.Label = puntos4[i].ToString();
+                    serie4.Points.Add(puntos4[i]);
+                }
+
+                chartAnios.Visible = true;
+                string[] series5 = { "2020", "2021", "2022", "2023" };
+                int[] puntos5 = { Estadisticas.Anio2020 * 100 / (Estadisticas.Anio2020 + Estadisticas.Anio2021 + Estadisticas.Anio2022 + Estadisticas.Anio2023),
+                Estadisticas.Anio2021 * 100 / (Estadisticas.Anio2020 + Estadisticas.Anio2021 + Estadisticas.Anio2022 + Estadisticas.Anio2023),
+                Estadisticas.Anio2022 * 100 / (Estadisticas.Anio2020 + Estadisticas.Anio2021 + Estadisticas.Anio2022 + Estadisticas.Anio2023),
+                Estadisticas.Anio2023 * 100 / (Estadisticas.Anio2020 + Estadisticas.Anio2021 + Estadisticas.Anio2022 + Estadisticas.Anio2023) };
+                chartAnios.Titles.Add("#Productos Estrenados");
+
+                for (int i = 0; i < series5.Length; i++)
+                {
+                    Series serie5 = chartAnios.Series.Add(series5[i]);
+                    serie5.Label = puntos5[i].ToString();
+                    serie5.Points.Add(puntos5[i]);
+                }
+
+                chartConsumoPais.Visible = true;
+                string[] series6 = { "Mexico", "EU", "Canada", "Colombia", "Cuba", "Costa Rica" };
+                int[] puntos6 = { Estadisticas.Mexico * 100 / (Estadisticas.Mexico + Estadisticas.Eu + Estadisticas.Canada + Estadisticas.Colombia + Estadisticas.Cuba + Estadisticas.CostaRica),
+            Estadisticas.Eu * 100 / (Estadisticas.Mexico + Estadisticas.Eu + Estadisticas.Canada + Estadisticas.Colombia + Estadisticas.Cuba + Estadisticas.CostaRica),
+            Estadisticas.Canada * 100 / (Estadisticas.Mexico + Estadisticas.Eu + Estadisticas.Canada + Estadisticas.Colombia + Estadisticas.Cuba + Estadisticas.CostaRica),
+            Estadisticas.Colombia * 100 / (Estadisticas.Mexico + Estadisticas.Eu + Estadisticas.Canada + Estadisticas.Colombia + Estadisticas.Cuba + Estadisticas.CostaRica),
+            Estadisticas.Cuba * 100 / (Estadisticas.Mexico + Estadisticas.Eu + Estadisticas.Canada + Estadisticas.Colombia + Estadisticas.Cuba + Estadisticas.CostaRica),
+            Estadisticas.CostaRica * 100 / (Estadisticas.Mexico + Estadisticas.Eu + Estadisticas.Canada + Estadisticas.Colombia + Estadisticas.Cuba + Estadisticas.CostaRica)};
+                chartConsumoPais.Titles.Add("Consumo por Pais%");
+
+                for (int i = 0; i < series6.Length; i++)
+                {
+                    Series serie6 = chartConsumoPais.Series.Add(series6[i]);
+                    serie6.Label = puntos6[i].ToString();
+                    serie6.Points.Add(puntos6[i]);
+                }
+
+                chartPeliculaMasPopular.Visible = true;
+                string[] series7 = Estadisticas.PeliculasYCantidad.Keys.ToArray();
+                int[] puntos7 = Estadisticas.PeliculasYCantidad.Values.ToArray();
+                chartPeliculaMasPopular.Titles.Add("#Peliculas");
+
+                for (int i = 0; i < series7.Length; i++)
+                {
+                    Series serie7 = chartPeliculaMasPopular.Series.Add(series7[i]);
+                    serie7.Label = puntos7[i].ToString();
+                    serie7.Points.Add(puntos7[i]);
+                }
+
+                chartSerieMasPopular.Visible = true;
+                string[] series8 = Estadisticas.SeriesYCantidad.Keys.ToArray();
+                int[] puntos8 = Estadisticas.SeriesYCantidad.Values.ToArray();
+                chartSerieMasPopular.Titles.Add("#Series");
+
+                for (int i = 0; i < series8.Length; i++)
+                {
+                    Series serie8 = chartSerieMasPopular.Series.Add(series8[i]);
+                    serie8.Label = puntos8[i].ToString();
+                    serie8.Points.Add(puntos8[i]);
+                }
             }
         }
 
@@ -490,7 +645,7 @@ namespace estadisticasStreaming
         {
             Form2 form2 = new Form2();
             form2.StartPosition = FormStartPosition.Manual;
-            form2.Location = new Point(this.Location.X, this.Location.Y);
+            form2.Location = new Point(this.Location.X + 25, this.Location.Y + 25);
             form2.ShowDialog();
         }
 

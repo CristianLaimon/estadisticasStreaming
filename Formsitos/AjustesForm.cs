@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using estadisticasStreaming.Clases;
 using estadisticasStreaming.Formsitos.VentanasAjustes;
 
 namespace estadisticasStreaming.Formsitos
@@ -53,6 +54,12 @@ namespace estadisticasStreaming.Formsitos
             otrosForm.FormBorderStyle = FormBorderStyle.None;
             otrosForm.BringToFront();
             otrosForm.Show();
+        }
+
+        private void AjustesForm_Load(object sender, EventArgs e)
+        {
+            if (Estadisticas.Activar == false) buttonTipoGrafica.Enabled = false;
+            else buttonTipoGrafica.Enabled = true;
         }
     }
 }

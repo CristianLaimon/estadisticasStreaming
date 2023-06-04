@@ -29,11 +29,13 @@ namespace estadisticasStreaming.Formsitos.VentanasAjustes
         private void pictureBoxOpcion1_Click(object sender, EventArgs e)
         {
             Form1.Instancia.BackgroundImage = pictureBoxOpcion1.Image;
+            this.Close();
         }
 
         private void pictureOpcion2_Click(object sender, EventArgs e)
         {
             Form1.Instancia.BackgroundImage = pictureOpcion2.Image;
+            this.Close();
         }
 
         private void AInterfaz_Load(object sender, EventArgs e)
