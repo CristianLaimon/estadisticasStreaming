@@ -248,33 +248,33 @@ namespace estadisticasStreaming.Clases
             PaisMasConsumo = "";
             PeliculasYCantidad.Clear();
             SeriesYCantidad.Clear();
-            Estadisticas.NoStarters = 0;
-            Estadisticas.NoWatchers = 0;
-            Estadisticas.NoCompleters = 0;
-            Estadisticas.VerCompleto = 0;
-            Estadisticas.VerIncompleto = 0;
-            Estadisticas.Peliculas = 0;
-            Estadisticas.Series = 0;
-            Estadisticas.Romance = 0;
-            Estadisticas.Drama = 0;
-            Estadisticas.Terror = 0;
-            Estadisticas.Suspenso = 0;
-            Estadisticas.Accion = 0;
-            Estadisticas.Anio2020 = 0;
-            Estadisticas.Anio2021 = 0;
-            Estadisticas.Anio2022 = 0;
-            Estadisticas.Anio2023 = 0;
-            Estadisticas.Mexico = 0;
-            Estadisticas.Eu = 0;
-            Estadisticas.Canada = 0;
-            Estadisticas.Colombia = 0;
-            Estadisticas.Cuba = 0;
-            Estadisticas.CostaRica = 0;
-            Estadisticas.PeliculaPopular = "";
-            Estadisticas.SeriePopular = "";
-            Estadisticas.PaisMasConsumo = "";
-            Estadisticas.PeliculasYCantidad.Clear();
-            Estadisticas.SeriesYCantidad.Clear();
+            NoStarters = 0;
+            NoWatchers = 0;
+            NoCompleters = 0;
+            VerCompleto = 0;
+            VerIncompleto = 0;
+            Peliculas = 0;
+            Series = 0;
+            Romance = 0;
+            Drama = 0;
+            Terror = 0;
+            Suspenso = 0;
+            Accion = 0;
+            Anio2020 = 0;
+            Anio2021 = 0;
+            Anio2022 = 0;
+            Anio2023 = 0;
+            Mexico = 0;
+            Eu = 0;
+            Canada = 0;
+            Colombia = 0;
+            Cuba = 0;
+            CostaRica = 0;
+            PeliculaPopular = "";
+            SeriePopular = "";
+            PaisMasConsumo = "";
+            PeliculasYCantidad.Clear();
+            SeriesYCantidad.Clear();
             seriesitas = null;
             puntitos = null;
             seriesitas = null;
@@ -289,78 +289,78 @@ namespace estadisticasStreaming.Clases
             string[] series = { "Startes", "Watchers", "Completers" };
             int[] puntos =
             {
-                Estadisticas.NoStarters * 100 /
-                (Estadisticas.NoStarters + Estadisticas.NoWatchers + Estadisticas.NoCompleters),
-                Estadisticas.NoWatchers * 100 /
-                (Estadisticas.NoStarters + Estadisticas.NoWatchers + Estadisticas.NoCompleters),
-                Estadisticas.NoCompleters * 100 /
-                (Estadisticas.NoStarters + Estadisticas.NoWatchers + Estadisticas.NoCompleters)
+                 NoStarters * 100 /
+                ( NoStarters +  NoWatchers +  NoCompleters),
+                 NoWatchers * 100 /
+                ( NoStarters +  NoWatchers +  NoCompleters),
+                 NoCompleters * 100 /
+                ( NoStarters +  NoWatchers +  NoCompleters)
             };
 
             string[] series2 = { "Completo", "Incompleto" };
             int[] puntos2 =
             {
-                Estadisticas.VerCompleto * 100 / (Estadisticas.VerCompleto + Estadisticas.VerIncompleto),
-                Estadisticas.VerIncompleto * 100 / (Estadisticas.VerCompleto + Estadisticas.VerIncompleto)
+                 VerCompleto * 100 / ( VerCompleto +  VerIncompleto),
+                 VerIncompleto * 100 / ( VerCompleto +  VerIncompleto)
             };
 
             string[] series3 = { "Peliculas", "Series" };
             int[] puntos3 =
             {
-                Estadisticas.Peliculas * 100 / (Estadisticas.Peliculas + Estadisticas.Series),
-                Estadisticas.Series * 100 / (Estadisticas.Peliculas + Estadisticas.Series)
+                 Peliculas * 100 / ( Peliculas +  Series),
+                 Series * 100 / ( Peliculas +  Series)
             };
 
             string[] series4 = { "Romance", "Drama", "Terror", "Suspenso", "Accion" };
             int[] puntos4 =
             {
-                Estadisticas.Romance * 100 / (Estadisticas.Romance + Estadisticas.Drama + Estadisticas.Terror +
-                                              Estadisticas.Suspenso + Estadisticas.Accion),
-                Estadisticas.Drama * 100 / (Estadisticas.Romance + Estadisticas.Drama + Estadisticas.Terror +
-                                            Estadisticas.Suspenso + Estadisticas.Accion),
-                Estadisticas.Terror * 100 / (Estadisticas.Romance + Estadisticas.Drama + Estadisticas.Terror +
-                                             Estadisticas.Suspenso + Estadisticas.Accion),
-                Estadisticas.Suspenso * 100 / (Estadisticas.Romance + Estadisticas.Drama + Estadisticas.Terror +
-                                               Estadisticas.Suspenso + Estadisticas.Accion),
-                Estadisticas.Accion * 100 / (Estadisticas.Romance + Estadisticas.Drama + Estadisticas.Terror +
-                                             Estadisticas.Suspenso + Estadisticas.Accion)
+                 Romance * 100 / ( Romance +  Drama +  Terror +
+                                               Suspenso +  Accion),
+                 Drama * 100 / ( Romance +  Drama +  Terror +
+                                             Suspenso +  Accion),
+                 Terror * 100 / ( Romance +  Drama +  Terror +
+                                              Suspenso +  Accion),
+                 Suspenso * 100 / ( Romance +  Drama +  Terror +
+                                                Suspenso +  Accion),
+                 Accion * 100 / ( Romance +  Drama +  Terror +
+                                              Suspenso +  Accion)
             };
 
             string[] series5 = { "2020", "2021", "2022", "2023" };
             int[] puntos5 =
             {
-                Estadisticas.Anio2020 * 100 / (Estadisticas.Anio2020 + Estadisticas.Anio2021 + Estadisticas.Anio2022 +
-                                               Estadisticas.Anio2023),
-                Estadisticas.Anio2021 * 100 / (Estadisticas.Anio2020 + Estadisticas.Anio2021 + Estadisticas.Anio2022 +
-                                               Estadisticas.Anio2023),
-                Estadisticas.Anio2022 * 100 / (Estadisticas.Anio2020 + Estadisticas.Anio2021 + Estadisticas.Anio2022 +
-                                               Estadisticas.Anio2023),
-                Estadisticas.Anio2023 * 100 / (Estadisticas.Anio2020 + Estadisticas.Anio2021 + Estadisticas.Anio2022 +
-                                               Estadisticas.Anio2023)
+                 Anio2020 * 100 / ( Anio2020 +  Anio2021 +  Anio2022 +
+                                                Anio2023),
+                 Anio2021 * 100 / ( Anio2020 +  Anio2021 +  Anio2022 +
+                                                Anio2023),
+                 Anio2022 * 100 / ( Anio2020 +  Anio2021 +  Anio2022 +
+                                                Anio2023),
+                 Anio2023 * 100 / ( Anio2020 +  Anio2021 +  Anio2022 +
+                                                Anio2023)
             };
 
             string[] series6 = { "Mexico", "EU", "Canada", "Colombia", "Cuba", "Costa Rica" };
             int[] puntos6 =
             {
-                Estadisticas.Mexico * 100 / (Estadisticas.Mexico + Estadisticas.Eu + Estadisticas.Canada +
-                                             Estadisticas.Colombia + Estadisticas.Cuba + Estadisticas.CostaRica),
-                Estadisticas.Eu * 100 / (Estadisticas.Mexico + Estadisticas.Eu + Estadisticas.Canada +
-                                         Estadisticas.Colombia + Estadisticas.Cuba + Estadisticas.CostaRica),
-                Estadisticas.Canada * 100 / (Estadisticas.Mexico + Estadisticas.Eu + Estadisticas.Canada +
-                                             Estadisticas.Colombia + Estadisticas.Cuba + Estadisticas.CostaRica),
-                Estadisticas.Colombia * 100 / (Estadisticas.Mexico + Estadisticas.Eu + Estadisticas.Canada +
-                                               Estadisticas.Colombia + Estadisticas.Cuba + Estadisticas.CostaRica),
-                Estadisticas.Cuba * 100 / (Estadisticas.Mexico + Estadisticas.Eu + Estadisticas.Canada +
-                                           Estadisticas.Colombia + Estadisticas.Cuba + Estadisticas.CostaRica),
-                Estadisticas.CostaRica * 100 / (Estadisticas.Mexico + Estadisticas.Eu + Estadisticas.Canada +
-                                                Estadisticas.Colombia + Estadisticas.Cuba + Estadisticas.CostaRica)
+                 Mexico * 100 / ( Mexico +  Eu +  Canada +
+                                              Colombia +  Cuba +  CostaRica),
+                 Eu * 100 / ( Mexico +  Eu +  Canada +
+                                          Colombia +  Cuba +  CostaRica),
+                 Canada * 100 / ( Mexico +  Eu +  Canada +
+                                              Colombia +  Cuba +  CostaRica),
+                 Colombia * 100 / ( Mexico +  Eu +  Canada +
+                                                Colombia +  Cuba +  CostaRica),
+                 Cuba * 100 / ( Mexico +  Eu +  Canada +
+                                            Colombia +  Cuba +  CostaRica),
+                 CostaRica * 100 / ( Mexico +  Eu +  Canada +
+                                                 Colombia +  Cuba +  CostaRica)
             };
 
-            string[] series7 = Estadisticas.PeliculasYCantidad.Keys.ToArray();
-            int[] puntos7 = Estadisticas.PeliculasYCantidad.Values.ToArray();
+            string[] series7 =  PeliculasYCantidad.Keys.ToArray();
+            int[] puntos7 =  PeliculasYCantidad.Values.ToArray();
 
-            string[] series8 = Estadisticas.SeriesYCantidad.Keys.ToArray();
-            int[] puntos8 = Estadisticas.SeriesYCantidad.Values.ToArray();
+            string[] series8 =  SeriesYCantidad.Keys.ToArray();
+            int[] puntos8 =  SeriesYCantidad.Values.ToArray();
 
             seriesitas.Add(series);
             seriesitas.Add(series2);
@@ -378,7 +378,6 @@ namespace estadisticasStreaming.Clases
             puntitos.Add(puntos6);
             puntitos.Add(puntos7);
             puntitos.Add(puntos8);
-
         }
         
     }
