@@ -55,11 +55,5 @@ namespace estadisticasStreaming.Formsitos
             otrosForm.BringToFront();
             otrosForm.Show();
         }
-
-        private void AjustesForm_Load(object sender, EventArgs e)
-        {
-            if (Estadisticas.Activar == false) buttonTipoGrafica.Enabled = false;
-            else buttonTipoGrafica.Enabled = true;
-        }
     }
 }

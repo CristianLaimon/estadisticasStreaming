@@ -156,7 +156,6 @@
             this.Name = "AjustesForm";
             this.Text = "AjustesForm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AjustesForm_FormClosed);
-            this.Load += new System.EventHandler(this.AjustesForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

@@ -24,12 +24,20 @@ namespace estadisticasStreaming.Formsitos.VentanasAjustes
             if (comboBox1.SelectedItem != null && comboBox1.SelectedItem.ToString() == "Pastel")
             {
                 Estadisticas.TipoGrafica = "Pastel";
-                this.Close();
+            }
+            else if (comboBox1.SelectedItem != null && comboBox1.SelectedItem.ToString() == "Barras")
+            {
+                Estadisticas.TipoGrafica = "Barras";
             }
             else if (comboBox1.SelectedItem == null)
             {
                 MessageBox.Show("No ha seleccionado nada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void AOtros_Load(object sender, EventArgs e)
+        {
+            comboBox1.Text = "Barras";
         }
     }
 }
