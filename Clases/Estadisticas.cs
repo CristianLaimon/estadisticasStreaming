@@ -73,5 +73,186 @@ namespace estadisticasStreaming.Clases
         public static string TipoChart { get => tipoChart; set => tipoChart = value; }
         public static string TipoGrafica { get => tipoGrafica; set => tipoGrafica = value; }
         public static bool Activar { get => activar; set => activar = value; }
+
+        public static void ObtenerEstadisticas(string rutaArchivo, List<Registro> listaRegistros)
+        {
+
+
+            using (StreamReader lector = new StreamReader(rutaArchivo))
+            {
+                lector.BaseStream.Seek(0, SeekOrigin.Begin);
+                while (!lector.EndOfStream)
+                {
+                    string linea = lector.ReadLine();
+                    string[] lineaElementos = linea.Split(',');
+                    listaRegistros.Add(new Registro(
+                        lineaElementos[0],
+                      byte.Parse(lineaElementos[1]),
+                      lineaElementos[2],
+                      lineaElementos[3],
+                      lineaElementos[4],
+                      lineaElementos[5],
+                      lineaElementos[6],
+                      lineaElementos[7],
+                      lineaElementos[8],
+                      short.Parse(lineaElementos[9]),
+                      short.Parse(lineaElementos[10])));
+                }
+            }
+
+            Estadisticas.TotalUsuarios = listaRegistros.Count;
+
+            foreach (Registro r in listaRegistros)
+            {
+                if (r.MinutosVistos <= (short)(r.Duracion * 0.1)) Estadisticas.NoStarters++;
+                else if (r.MinutosVistos < (short)(r.Duracion * .9)) Estadisticas.NoWatchers++;
+                else if (r.MinutosVistos >= (short)(r.Duracion * .9)) Estadisticas.NoCompleters++;
+
+                if (r.MinutosVistos == r.Duracion) Estadisticas.VerCompleto++;
+                else Estadisticas.VerIncompleto++;
+
+                if (r.Tipo == "PELICULA")
+                {
+                    Estadisticas.Peliculas++;
+                    if (Estadisticas.PeliculasYCantidad.ContainsKey(r.ProductoVisto)) Estadisticas.PeliculasYCantidad[r.ProductoVisto]++;
+                    else Estadisticas.PeliculasYCantidad.Add(r.ProductoVisto, 1);
+                }
+                else
+                {
+                    Estadisticas.Series++;
+                    if (Estadisticas.SeriesYCantidad.ContainsKey(r.ProductoVisto)) Estadisticas.SeriesYCantidad[r.ProductoVisto]++;
+                    else Estadisticas.SeriesYCantidad.Add(r.ProductoVisto, 1);
+                }
+
+                switch (r.Genero)
+                {
+                    case "ROMANCE":
+                        Estadisticas.Romance++;
+                        break;
+
+                    case "DRAMA":
+                        Estadisticas.Drama++;
+                        break;
+
+                    case "TERROR":
+                        Estadisticas.Terror++;
+                        break;
+
+                    case "SUSPENSO":
+                        Estadisticas.Suspenso++;
+                        break;
+
+                    case "ACCION":
+                        Estadisticas.Accion++;
+                        break;
+                }
+
+                switch (r.AnioEstreno)
+                {
+                    case "2020":
+                        Estadisticas.Anio2020++;
+                        break;
+
+                    case "2021":
+                        Estadisticas.Anio2021++;
+                        break;
+
+                    case "2022":
+                        Estadisticas.Anio2022++;
+                        break;
+
+                    case "2023":
+                        Estadisticas.Anio2023++;
+                        break;
+                }
+
+                switch (r.Pais)
+                {
+                    case "MEXICO":
+                        Estadisticas.Mexico++;
+                        {
+                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
+                            else Estadisticas.PaisYCantidad.Add(r.Pais, 1);
+                        }
+                        break;
+
+                    case "EU":
+                        Estadisticas.Eu++;
+                        {
+                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
+                            else Estadisticas.PaisYCantidad.Add(r.Pais, 1);
+                        }
+                        break;
+
+                    case "CANADA":
+                        Estadisticas.Canada++;
+                        {
+                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
+                            else Estadisticas.PaisYCantidad.Add(r.Pais, 1);
+                        }
+                        break;
+
+                    case "COLOMBIA":
+                        Estadisticas.Colombia++;
+                        {
+                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
+                            else Estadisticas.PaisYCantidad.Add(r.Pais, 1);
+                        }
+                        break;
+
+                    case "CUBA":
+                        Estadisticas.Cuba++;
+                        {
+                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
+                            else Estadisticas.PaisYCantidad.Add(r.Pais, 1);
+                        }
+                        break;
+
+                    case "COSTA RICA":
+                        Estadisticas.CostaRica++;
+                        {
+                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
+                            else Estadisticas.PaisYCantidad.Add(r.Pais, 1);
+                        }
+                        break;
+                }
+            }
+
+            Estadisticas.PeliculaPopular = Estadisticas.PeliculasYCantidad.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
+            Estadisticas.SeriePopular = Estadisticas.SeriesYCantidad.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
+            Estadisticas.PaisMasConsumo = Estadisticas.PaisYCantidad.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
+
+        }
+
+        public static void ReiniciarEstadisticas()
+        {
+            Estadisticas.NoStarters = 0;
+            Estadisticas.NoWatchers = 0;
+            Estadisticas.NoCompleters = 0;
+            Estadisticas.VerCompleto = 0;
+            Estadisticas.VerIncompleto = 0;
+            Estadisticas.Peliculas = 0;
+            Estadisticas.Series = 0;
+            Estadisticas.Romance = 0;
+            Estadisticas.Drama = 0;
+            Estadisticas.Terror = 0;
+            Estadisticas.Suspenso = 0;
+            Estadisticas.Accion = 0;
+            Estadisticas.Anio2020 = 0;
+            Estadisticas.Anio2021 = 0;
+            Estadisticas.Anio2022 = 0;
+            Estadisticas.Anio2023 = 0;
+            Estadisticas.Mexico = 0;
+            Estadisticas.Eu = 0;
+            Estadisticas.Canada = 0;
+            Estadisticas.Colombia = 0;
+            Estadisticas.Cuba = 0;
+            Estadisticas.CostaRica = 0;
+            Estadisticas.PeliculaPopular = "";
+            Estadisticas.SeriePopular = "";
+            Estadisticas.PaisMasConsumo = "";
+            Estadisticas.PeliculasYCantidad.Clear();
+            Estadisticas.SeriesYCantidad.Clear();
+        }
     }
 }

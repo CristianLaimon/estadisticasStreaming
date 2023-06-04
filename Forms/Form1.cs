@@ -1,17 +1,14 @@
 using estadisticasStreaming.Clases;
 using estadisticasStreaming.Forms;
-using System;
-using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
 using estadisticasStreaming.Formsitos;
-using System.Linq;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace estadisticasStreaming
 {
     public partial class Form1 : Form
     {
+        public static Form1 Instancia { get; set; } 
         private string rutaArchivo, rutaAnterior;
-        private static Form1 instancia;
         private static List<Registro> listaRegistros;
 
         public Form1()
@@ -21,7 +18,6 @@ namespace estadisticasStreaming
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
-        public static Form1 Instancia { get => instancia; set => instancia = value; }
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -43,34 +39,84 @@ namespace estadisticasStreaming
             chartSerieMasPopular.Visible = false;
         }
 
+        #region ChartsClicks
+        private void chartTiposUsuarios_Click(object sender, EventArgs e)
+        {
+            Estadisticas.TipoChart = "tiposUsuarios";
+            AbrirForm2();
+        }
+
+        private void chartTerminaron_Click(object sender, EventArgs e)
+        {
+            Estadisticas.TipoChart = "terminaron";
+            AbrirForm2();
+        }
+
+        private void chartTipoProducto_Click(object sender, EventArgs e)
+        {
+            Estadisticas.TipoChart = "tipoProducto";
+            AbrirForm2();
+        }
+
+        private void chartConsumoGenero_Click(object sender, EventArgs e)
+        {
+            Estadisticas.TipoChart = "consumoGenero";
+            AbrirForm2();
+        }
+
+        private void chartAnios_Click(object sender, EventArgs e)
+        {
+            Estadisticas.TipoChart = "anios";
+            AbrirForm2();
+        }
+
+        private void chartConsumoPais_Click(object sender, EventArgs e)
+        {
+            Estadisticas.TipoChart = "consumoPais";
+            AbrirForm2();
+        }
+
+        private void chartPeliculaMasPopular_Click(object sender, EventArgs e)
+        {
+            Estadisticas.TipoChart = "peliculaMasPopular";
+            AbrirForm2();
+        }
+
+        private void chartSerieMasPopular_Click(object sender, EventArgs e)
+        {
+            Estadisticas.TipoChart = "serieMasPopular";
+            AbrirForm2();
+        }
+        #endregion
+
+        #region ClickEventos
         private void buttonSeleccionar_Click(object sender, EventArgs e) => ObtenerRuta();
 
         private void abrirNuevoArchivoToolStripMenuItem_Click(object sender, EventArgs e) => ObtenerRuta();
 
         private void buttonInformacion_Click(object sender, EventArgs e) => ObtenerInfo();
 
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            if (!AjustesForm.AlreadyOpened)
+            {
+                var ajustesForm = new AjustesForm();
+                ajustesForm.StartPosition = FormStartPosition.CenterScreen;
+                ajustesForm.Show();
+                ajustesForm.BringToFront();
+            }
+            else
+            {
+                AjustesForm.Instancia.BringToFront();
+            }
+        }
         private void buttonEstadisticas_Click(object sender, EventArgs e)
         {
-            buttonInformacion.Visible = false;
-            buttonEstadisticas.Visible = false;
-            buttonSeleccionar.Visible = false;
-            buttonSalir.Visible = false;
-            panel2.Visible = true;
-            //try
-            //{
-                Reiniciar();
-                ObtenerEstadisticas();
-                MostrarGraficas();
-            //}
-            //catch
-            //{
-                buttonTotalTipoUsuario.Visible = false;
-                buttonTotalTerminaron.Visible = false;
-                buttonPaisMasConsumo.Visible = false;
-                buttonPeliculaMasPopular.Visible = false;
-                buttonSerieMasPopular.Visible = false;
-                //MessageBox.Show("Error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
+            EsconderBotones();
+            Estadisticas.ReiniciarEstadisticas();
+            ReiniciarCharts();
+            Estadisticas.ObtenerEstadisticas(rutaArchivo, listaRegistros);
+            MostrarGraficas();
         }
 
         private void buttonTotalTipoUsuario_Click(object sender, EventArgs e)
@@ -126,7 +172,22 @@ namespace estadisticasStreaming
             DialogResult result = MessageBox.Show("¿Desea Salir?", "¿Salir?", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (result == DialogResult.OK) Application.Exit();
         }
+        #endregion
 
+        #region Funcionalidades
+        private void EsconderBotones()
+        {
+            buttonInformacion.Visible = false;
+            buttonEstadisticas.Visible = false;
+            buttonSeleccionar.Visible = false;
+            buttonSalir.Visible = false;
+            panel2.Visible = true;
+            buttonTotalTipoUsuario.Visible = false;
+            buttonTotalTerminaron.Visible = false;
+            buttonPaisMasConsumo.Visible = false;
+            buttonPeliculaMasPopular.Visible = false;
+            buttonSerieMasPopular.Visible = false;
+        }
         private void ObtenerRuta()
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -138,10 +199,9 @@ namespace estadisticasStreaming
 
                 rutaArchivo = openFileDialog1.FileName;
                 ValidarDatos();
-                Estadisticas.Activar = true;
+                //Estadisticas.Activar = true;
             }
         }
-
         private void ObtenerInfo()
         {
             MessageBox.Show(
@@ -152,6 +212,40 @@ namespace estadisticasStreaming
                 , "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        public void ReiniciarCharts()
+        {
+            listaRegistros.Clear();
+            buttonCerrar.Visible = true;
+            chartSerieMasPopular.Series.Clear();
+            chartTiposUsuarios.Titles.Clear();
+            chartPeliculaMasPopular.Series.Clear();
+            chartTerminaron.Titles.Clear();
+            chartTipoProducto.Titles.Clear();
+            chartConsumoGenero.Titles.Clear();
+            chartAnios.Titles.Clear();
+            chartConsumoPais.Titles.Clear();
+            chartPeliculaMasPopular.Titles.Clear();
+            chartTiposUsuarios.Series.Clear();
+            chartTerminaron.Series.Clear();
+            chartTipoProducto.Series.Clear();
+            chartConsumoGenero.Series.Clear();
+            chartAnios.Series.Clear();
+            chartConsumoPais.Series.Clear();
+            chartSerieMasPopular.Titles.Clear();
+
+        }
+
+        public void AbrirForm2()
+        {
+            Form2 form2 = new Form2();
+            form2.StartPosition = FormStartPosition.Manual;
+            form2.Location = new Point(this.Location.X + 25, this.Location.Y + 25);
+            form2.ShowDialog();
+        }
+
+        #endregion
+
+        #region Datos
         private void ValidarDatos()
         {
             bool compatible = true;
@@ -171,7 +265,7 @@ namespace estadisticasStreaming
                     }
                 }
             }
-            if (compatible) ImprimirContenido();
+            if (compatible) ImprimirDatos();
             else
             {
                 rutaArchivo = rutaAnterior;
@@ -181,7 +275,7 @@ namespace estadisticasStreaming
             }
         }
 
-        private void ImprimirContenido()
+        private void ImprimirDatos()
         {
             dataGridView1.Rows.Clear();
             buttonInformacion.Enabled = true;
@@ -205,143 +299,8 @@ namespace estadisticasStreaming
                 }
             }
         }
+        #endregion
 
-        private void ObtenerEstadisticas()
-        {
-            using (StreamReader lector = new StreamReader(rutaArchivo))
-            {
-                lector.BaseStream.Seek(0, SeekOrigin.Begin);
-                while (!lector.EndOfStream)
-                {
-                    string linea = lector.ReadLine();
-                    string[] lineaElementos = linea.Split(',');
-                    listaRegistros.Add(new Registro(
-                        lineaElementos[0],
-                      byte.Parse(lineaElementos[1]),
-                      lineaElementos[2],
-                      lineaElementos[3],
-                      lineaElementos[4],
-                      lineaElementos[5],
-                      lineaElementos[6],
-                      lineaElementos[7],
-                      lineaElementos[8],
-                      short.Parse(lineaElementos[9]),
-                      short.Parse(lineaElementos[10])));
-                }
-            }
-
-            Estadisticas.TotalUsuarios = listaRegistros.Count;
-
-            foreach (Registro r in listaRegistros)
-            {
-                if (r.MinutosVistos <= (short)(r.Duracion * 0.1)) Estadisticas.NoStarters++;
-                else if (r.MinutosVistos < (short)(r.Duracion * .9)) Estadisticas.NoWatchers++;
-                else if (r.MinutosVistos >= (short)(r.Duracion * .9)) Estadisticas.NoCompleters++;
-
-                if (r.MinutosVistos == r.Duracion) Estadisticas.VerCompleto++;
-                else Estadisticas.VerIncompleto++;
-
-                if (r.Tipo == "PELICULA")
-                {
-                    Estadisticas.Peliculas++;
-                    if (Estadisticas.PeliculasYCantidad.ContainsKey(r.ProductoVisto)) Estadisticas.PeliculasYCantidad[r.ProductoVisto]++;
-                    else Estadisticas.PeliculasYCantidad.Add(r.ProductoVisto, 1);
-                }
-                else
-                {
-                    Estadisticas.Series++;
-                    if (Estadisticas.SeriesYCantidad.ContainsKey(r.ProductoVisto)) Estadisticas.SeriesYCantidad[r.ProductoVisto]++;
-                    else Estadisticas.SeriesYCantidad.Add(r.ProductoVisto, 1);
-                }
-
-                switch (r.Genero)
-                {
-                    case "ROMANCE":
-                        Estadisticas.Romance++;
-                        break;
-                    case "DRAMA":
-                        Estadisticas.Drama++;
-                        break;
-                    case "TERROR":
-                        Estadisticas.Terror++;
-                        break;
-                    case "SUSPENSO":
-                        Estadisticas.Suspenso++;
-                        break;
-                    case "ACCION":
-                        Estadisticas.Accion++;
-                        break;
-                }
-
-                switch (r.AnioEstreno)
-                {
-                    case "2020":
-                        Estadisticas.Anio2020++;
-                        break;
-                    case "2021":
-                        Estadisticas.Anio2021++;
-                        break;
-                    case "2022":
-                        Estadisticas.Anio2022++;
-                        break;
-                    case "2023":
-                        Estadisticas.Anio2023++;
-                        break;
-                }
-
-                switch (r.Pais)
-                {
-                    case "MEXICO":
-                        Estadisticas.Mexico++;
-                        {
-                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
-                            else Estadisticas.PaisYCantidad.Add(r.Pais, 1);
-                        }
-                        break;
-                    case "EU":
-                        Estadisticas.Eu++;
-                        {
-                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
-                            else Estadisticas.PaisYCantidad.Add(r.Pais, 1);
-                        }
-                        break;
-                    case "CANADA":
-                        Estadisticas.Canada++;
-                        {
-                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
-                            else Estadisticas.PaisYCantidad.Add(r.Pais, 1);
-                        }
-                        break;
-                    case "COLOMBIA":
-                        Estadisticas.Colombia++;
-                        {
-                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
-                            else Estadisticas.PaisYCantidad.Add(r.Pais, 1);
-                        }
-                        break;
-                    case "CUBA":
-                        Estadisticas.Cuba++;
-                        {
-                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
-                            else Estadisticas.PaisYCantidad.Add(r.Pais, 1);
-                        }
-                        break;
-                    case "COSTA RICA":
-                        Estadisticas.CostaRica++;
-                        {
-                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
-                            else Estadisticas.PaisYCantidad.Add(r.Pais, 1);
-                        }
-                        break;
-                }
-            }
-
-            Estadisticas.PeliculaPopular = Estadisticas.PeliculasYCantidad.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
-            Estadisticas.SeriePopular = Estadisticas.SeriesYCantidad.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
-            Estadisticas.PaisMasConsumo = Estadisticas.PaisYCantidad.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
-
-            MostrarGraficas();
-        }
 
         private void MostrarGraficas()
         {
@@ -478,7 +437,6 @@ namespace estadisticasStreaming
                 }
                 chartTiposUsuarios.Series.Add(serie);
 
-
                 chartTerminaron.Visible = true;
                 string[] series2 = { "Completo", "Incompleto" };
                 int[] puntos2 = { Estadisticas.VerCompleto * 100 / (Estadisticas.VerCompleto + Estadisticas.VerIncompleto),
@@ -494,7 +452,6 @@ namespace estadisticasStreaming
                 }
                 chartTerminaron.Series.Add(serie2);
 
-
                 chartTipoProducto.Visible = true;
                 string[] series3 = { "Peliculas", "Series" };
                 int[] puntos3 = { Estadisticas.Peliculas * 100 / (Estadisticas.Peliculas + Estadisticas.Series),
@@ -509,7 +466,6 @@ namespace estadisticasStreaming
                     serie3.Points.Add(new DataPoint(0, puntos3[i]) { LegendText = series3[i], Label = puntos3[i].ToString() + "%" });
                 }
                 chartTipoProducto.Series.Add(serie3);
-
 
                 chartConsumoGenero.Visible = true;
                 string[] series4 = { "Romance", "Drama", "Terror", "Suspenso", "Accion" };
@@ -529,7 +485,6 @@ namespace estadisticasStreaming
                 }
                 chartConsumoGenero.Series.Add(serie4);
 
-
                 chartAnios.Visible = true;
                 string[] series5 = { "2020", "2021", "2022", "2023" };
                 int[] puntos5 = { Estadisticas.Anio2020 * 100 / (Estadisticas.Anio2020 + Estadisticas.Anio2021 + Estadisticas.Anio2022 + Estadisticas.Anio2023),
@@ -546,7 +501,6 @@ namespace estadisticasStreaming
                     serie5.Points.Add(new DataPoint(0, puntos5[i]) { LegendText = series5[i], Label = puntos5[i].ToString() + "%" });
                 }
                 chartAnios.Series.Add(serie5);
-
 
                 chartConsumoPais.Visible = true;
                 string[] series6 = { "Mexico", "EU", "Canada", "Colombia", "Cuba", "Costa Rica" };
@@ -567,7 +521,6 @@ namespace estadisticasStreaming
                 }
                 chartConsumoPais.Series.Add(serie6);
 
-
                 chartPeliculaMasPopular.Visible = true;
                 string[] series7 = Estadisticas.PeliculasYCantidad.Keys.ToArray();
                 int[] puntos7 = Estadisticas.PeliculasYCantidad.Values.ToArray();
@@ -581,7 +534,6 @@ namespace estadisticasStreaming
                     serie7.Points.Add(new DataPoint(0, puntos7[i]) { LegendText = series7[i], Label = puntos7[i].ToString() + "%" });
                 }
                 chartPeliculaMasPopular.Series.Add(serie7);
-
 
                 chartSerieMasPopular.Visible = true;
                 string[] series8 = Estadisticas.SeriesYCantidad.Keys.ToArray();
@@ -711,126 +663,6 @@ namespace estadisticasStreaming
                     serie8.Points.Add(puntos8[i]);
                 }
             }
-        }
-
-        private void chartTiposUsuarios_Click(object sender, EventArgs e)
-        {
-            Estadisticas.TipoChart = "tiposUsuarios";
-            AbrirForm2();
-        }
-
-        private void chartTerminaron_Click(object sender, EventArgs e)
-        {
-            Estadisticas.TipoChart = "terminaron";
-            AbrirForm2();
-        }
-
-        private void chartTipoProducto_Click(object sender, EventArgs e)
-        {
-            Estadisticas.TipoChart = "tipoProducto";
-            AbrirForm2();
-        }
-
-        private void chartConsumoGenero_Click(object sender, EventArgs e)
-        {
-            Estadisticas.TipoChart = "consumoGenero";
-            AbrirForm2();
-        }
-
-        private void chartAnios_Click(object sender, EventArgs e)
-        {
-            Estadisticas.TipoChart = "anios";
-            AbrirForm2();
-        }
-
-        private void chartConsumoPais_Click(object sender, EventArgs e)
-        {
-            Estadisticas.TipoChart = "consumoPais";
-            AbrirForm2();
-        }
-
-        private void chartPeliculaMasPopular_Click(object sender, EventArgs e)
-        {
-            Estadisticas.TipoChart = "peliculaMasPopular";
-            AbrirForm2();
-        }
-
-        private void chartSerieMasPopular_Click(object sender, EventArgs e)
-        {
-            Estadisticas.TipoChart = "serieMasPopular";
-            AbrirForm2();
-        }
-
-        public void AbrirForm2()
-        {
-            Form2 form2 = new Form2();
-            form2.StartPosition = FormStartPosition.Manual;
-            form2.Location = new Point(this.Location.X + 25, this.Location.Y + 25);
-            form2.ShowDialog();
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            if (!AjustesForm.AlreadyOpened)
-            {
-                var ajustesForm = new AjustesForm();
-                ajustesForm.StartPosition = FormStartPosition.CenterScreen;
-                ajustesForm.Show();
-                ajustesForm.BringToFront();
-            }
-            else
-            {
-                AjustesForm.Instancia.BringToFront();
-            }
-        }
-
-        private void Reiniciar()
-        {
-            listaRegistros.Clear();
-            Estadisticas.NoStarters = 0;
-            Estadisticas.NoWatchers = 0;
-            Estadisticas.NoCompleters = 0;
-            Estadisticas.VerCompleto = 0;
-            Estadisticas.VerIncompleto = 0;
-            Estadisticas.Peliculas = 0;
-            Estadisticas.Series = 0;
-            Estadisticas.Romance = 0;
-            Estadisticas.Drama = 0;
-            Estadisticas.Terror = 0;
-            Estadisticas.Suspenso = 0;
-            Estadisticas.Accion = 0;
-            Estadisticas.Anio2020 = 0;
-            Estadisticas.Anio2021 = 0;
-            Estadisticas.Anio2022 = 0;
-            Estadisticas.Anio2023 = 0;
-            Estadisticas.Mexico = 0;
-            Estadisticas.Eu = 0;
-            Estadisticas.Canada = 0;
-            Estadisticas.Colombia = 0;
-            Estadisticas.Cuba = 0;
-            Estadisticas.CostaRica = 0;
-            Estadisticas.PeliculaPopular = "";
-            Estadisticas.SeriePopular = "";
-            Estadisticas.PaisMasConsumo = "";
-            chartTiposUsuarios.Series.Clear();
-            chartTerminaron.Series.Clear();
-            chartTipoProducto.Series.Clear();
-            chartConsumoGenero.Series.Clear();
-            chartAnios.Series.Clear();
-            chartConsumoPais.Series.Clear();
-            Estadisticas.PeliculasYCantidad.Clear();
-            chartPeliculaMasPopular.Series.Clear();
-            Estadisticas.SeriesYCantidad.Clear();
-            chartSerieMasPopular.Series.Clear();
-            chartTiposUsuarios.Titles.Clear();
-            chartTerminaron.Titles.Clear();
-            chartTipoProducto.Titles.Clear();
-            chartConsumoGenero.Titles.Clear();
-            chartAnios.Titles.Clear();
-            chartConsumoPais.Titles.Clear();
-            chartPeliculaMasPopular.Titles.Clear();
-            chartSerieMasPopular.Titles.Clear();
-            buttonCerrar.Visible = true;
         }
     }
 }
