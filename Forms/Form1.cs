@@ -56,19 +56,21 @@ namespace estadisticasStreaming
             buttonSeleccionar.Visible = false;
             buttonSalir.Visible = false;
             panel2.Visible = true;
-            try
-            {
+            //try
+            //{
+                Reiniciar();
                 ObtenerEstadisticas();
-            }
-            catch
-            {
+                MostrarGraficas();
+            //}
+            //catch
+            //{
                 buttonTotalTipoUsuario.Visible = false;
                 buttonTotalTerminaron.Visible = false;
                 buttonPaisMasConsumo.Visible = false;
                 buttonPeliculaMasPopular.Visible = false;
                 buttonSerieMasPopular.Visible = false;
-                MessageBox.Show("Error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                //MessageBox.Show("Error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
 
         private void buttonTotalTipoUsuario_Click(object sender, EventArgs e)
@@ -147,7 +149,7 @@ namespace estadisticasStreaming
                 "Fecha y Hora de Creacion: " + File.GetCreationTime(rutaArchivo) + "\r\n\r\n" +
                 "Ultima Modificacion: " + File.GetLastWriteTime(rutaArchivo) + "\r\n\r\n" +
                 "Ultimo Acceso: " + File.GetLastAccessTime(rutaArchivo)
-                ,"Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                , "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void ValidarDatos()
@@ -169,7 +171,7 @@ namespace estadisticasStreaming
                     }
                 }
             }
-            if (compatible)ImprimirContenido();
+            if (compatible) ImprimirContenido();
             else
             {
                 rutaArchivo = rutaAnterior;
@@ -188,7 +190,7 @@ namespace estadisticasStreaming
             int fila = 0;
 
             using (StreamReader lector = new StreamReader(rutaArchivo)) //Esta es la segunda vez que lo lee ahora si completo ya habiendo verificado que podrá leerlo completo
-            { 
+            {
                 while (!lector.EndOfStream)
                 {
                     string linea = lector.ReadLine();
@@ -206,8 +208,6 @@ namespace estadisticasStreaming
 
         private void ObtenerEstadisticas()
         {
-            Reiniciar();
-
             using (StreamReader lector = new StreamReader(rutaArchivo))
             {
                 lector.BaseStream.Seek(0, SeekOrigin.Begin);
@@ -340,6 +340,11 @@ namespace estadisticasStreaming
             Estadisticas.SeriePopular = Estadisticas.SeriesYCantidad.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
             Estadisticas.PaisMasConsumo = Estadisticas.PaisYCantidad.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
 
+            MostrarGraficas();
+        }
+
+        private void MostrarGraficas()
+        {
             if (Estadisticas.TipoGrafica == "")
             {
                 chartTiposUsuarios.Visible = true;
@@ -489,7 +494,7 @@ namespace estadisticasStreaming
                 }
                 chartTerminaron.Series.Add(serie2);
 
-                
+
                 chartTipoProducto.Visible = true;
                 string[] series3 = { "Peliculas", "Series" };
                 int[] puntos3 = { Estadisticas.Peliculas * 100 / (Estadisticas.Peliculas + Estadisticas.Series),
@@ -505,7 +510,7 @@ namespace estadisticasStreaming
                 }
                 chartTipoProducto.Series.Add(serie3);
 
-                
+
                 chartConsumoGenero.Visible = true;
                 string[] series4 = { "Romance", "Drama", "Terror", "Suspenso", "Accion" };
                 int[] puntos4 = { Estadisticas.Romance * 100 / (Estadisticas.Romance + Estadisticas.Drama + Estadisticas.Terror + Estadisticas.Suspenso + Estadisticas.Accion),

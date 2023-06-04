@@ -1,4 +1,5 @@
 ﻿using estadisticasStreaming.Clases;
+using estadisticasStreaming.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,10 +25,12 @@ namespace estadisticasStreaming.Formsitos.VentanasAjustes
             if (comboBox1.SelectedItem != null && comboBox1.SelectedItem.ToString() == "Pastel")
             {
                 Estadisticas.TipoGrafica = "Pastel";
+                Estadisticas.Activar = true;
             }
             else if (comboBox1.SelectedItem != null && comboBox1.SelectedItem.ToString() == "Barras")
             {
                 Estadisticas.TipoGrafica = "Barras";
+                Estadisticas.Activar = true;
             }
             else if (comboBox1.SelectedItem == null)
             {
