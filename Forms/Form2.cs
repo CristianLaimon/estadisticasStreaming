@@ -155,5 +155,10 @@ namespace estadisticasStreaming.Forms
                 }
             }
         }
+
+        private void Form2_Deactivate(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

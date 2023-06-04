@@ -373,6 +373,7 @@
             this.chartTiposUsuarios.BackColor = System.Drawing.Color.Transparent;
             chartArea1.Name = "ChartArea1";
             this.chartTiposUsuarios.ChartAreas.Add(chartArea1);
+            this.chartTiposUsuarios.Cursor = System.Windows.Forms.Cursors.Hand;
             legend1.Name = "Legend1";
             this.chartTiposUsuarios.Legends.Add(legend1);
             this.chartTiposUsuarios.Location = new System.Drawing.Point(0, 0);
@@ -445,6 +446,7 @@
             this.chartSerieMasPopular.BackColor = System.Drawing.Color.Transparent;
             chartArea2.Name = "ChartArea1";
             this.chartSerieMasPopular.ChartAreas.Add(chartArea2);
+            this.chartSerieMasPopular.Cursor = System.Windows.Forms.Cursors.Hand;
             legend2.Name = "Legend1";
             this.chartSerieMasPopular.Legends.Add(legend2);
             this.chartSerieMasPopular.Location = new System.Drawing.Point(718, 191);
@@ -464,6 +466,7 @@
             this.chartPeliculaMasPopular.BackColor = System.Drawing.Color.Transparent;
             chartArea3.Name = "ChartArea1";
             this.chartPeliculaMasPopular.ChartAreas.Add(chartArea3);
+            this.chartPeliculaMasPopular.Cursor = System.Windows.Forms.Cursors.Hand;
             legend3.Name = "Legend1";
             this.chartPeliculaMasPopular.Legends.Add(legend3);
             this.chartPeliculaMasPopular.Location = new System.Drawing.Point(462, 191);
@@ -483,6 +486,7 @@
             this.chartConsumoPais.BackColor = System.Drawing.Color.Transparent;
             chartArea4.Name = "ChartArea1";
             this.chartConsumoPais.ChartAreas.Add(chartArea4);
+            this.chartConsumoPais.Cursor = System.Windows.Forms.Cursors.Hand;
             legend4.Name = "Legend1";
             this.chartConsumoPais.Legends.Add(legend4);
             this.chartConsumoPais.Location = new System.Drawing.Point(673, 0);
@@ -502,6 +506,7 @@
             this.chartAnios.BackColor = System.Drawing.Color.Transparent;
             chartArea5.Name = "ChartArea1";
             this.chartAnios.ChartAreas.Add(chartArea5);
+            this.chartAnios.Cursor = System.Windows.Forms.Cursors.Hand;
             legend5.Name = "Legend1";
             this.chartAnios.Legends.Add(legend5);
             this.chartAnios.Location = new System.Drawing.Point(452, 0);
@@ -531,6 +536,7 @@
             this.chartConsumoGenero.BackColor = System.Drawing.Color.Transparent;
             chartArea6.Name = "ChartArea1";
             this.chartConsumoGenero.ChartAreas.Add(chartArea6);
+            this.chartConsumoGenero.Cursor = System.Windows.Forms.Cursors.Hand;
             legend6.Name = "Legend1";
             this.chartConsumoGenero.Legends.Add(legend6);
             this.chartConsumoGenero.Location = new System.Drawing.Point(226, 191);
@@ -560,6 +566,7 @@
             this.chartTipoProducto.BackColor = System.Drawing.Color.Transparent;
             chartArea7.Name = "ChartArea1";
             this.chartTipoProducto.ChartAreas.Add(chartArea7);
+            this.chartTipoProducto.Cursor = System.Windows.Forms.Cursors.Hand;
             legend7.Name = "Legend1";
             this.chartTipoProducto.Legends.Add(legend7);
             this.chartTipoProducto.Location = new System.Drawing.Point(0, 191);
@@ -579,6 +586,7 @@
             this.chartTerminaron.BackColor = System.Drawing.Color.Transparent;
             chartArea8.Name = "ChartArea1";
             this.chartTerminaron.ChartAreas.Add(chartArea8);
+            this.chartTerminaron.Cursor = System.Windows.Forms.Cursors.Hand;
             legend8.Name = "Legend1";
             this.chartTerminaron.Legends.Add(legend8);
             this.chartTerminaron.Location = new System.Drawing.Point(226, 0);

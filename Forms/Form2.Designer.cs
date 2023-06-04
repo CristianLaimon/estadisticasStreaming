@@ -90,7 +90,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(347, 0);
+            this.label1.Location = new System.Drawing.Point(297, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(287, 45);
             this.label1.TabIndex = 0;
@@ -267,6 +267,7 @@
             this.MinimumSize = new System.Drawing.Size(986, 535);
             this.Name = "Form2";
             this.Text = "Estadisticas";
+            this.Deactivate += new System.EventHandler(this.Form2_Deactivate);
             this.Load += new System.EventHandler(this.Form2_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
