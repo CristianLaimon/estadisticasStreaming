@@ -95,10 +95,7 @@ namespace estadisticasStreaming.Forms
             {
                 chart1.Visible = true;
                 string[] series5 = { "2020", "2021", "2022", "2023" };
-                int[] puntos5 = { Estadisticas.Anio2020 * 100 / (Estadisticas.Anio2020 + Estadisticas.Anio2021 + Estadisticas.Anio2022 + Estadisticas.Anio2023),
-                Estadisticas.Anio2021 * 100 / (Estadisticas.Anio2020 + Estadisticas.Anio2021 + Estadisticas.Anio2022 + Estadisticas.Anio2023),
-                Estadisticas.Anio2022 * 100 / (Estadisticas.Anio2020 + Estadisticas.Anio2021 + Estadisticas.Anio2022 + Estadisticas.Anio2023),
-                Estadisticas.Anio2023 * 100 / (Estadisticas.Anio2020 + Estadisticas.Anio2021 + Estadisticas.Anio2022 + Estadisticas.Anio2023) };
+                int[] puntos5 = { Estadisticas.Anio2020, Estadisticas.Anio2021, Estadisticas.Anio2022, Estadisticas.Anio2023 };
                 chart1.Titles.Add("#Productos Estrenados");
 
                 for (int i = 0; i < series5.Length; i++)
@@ -235,10 +232,7 @@ namespace estadisticasStreaming.Forms
             {
                 chart1.Visible = true;
                 string[] series5 = { "2020", "2021", "2022", "2023" };
-                int[] puntos5 = { Estadisticas.Anio2020 * 100 / (Estadisticas.Anio2020 + Estadisticas.Anio2021 + Estadisticas.Anio2022 + Estadisticas.Anio2023),
-                Estadisticas.Anio2021 * 100 / (Estadisticas.Anio2020 + Estadisticas.Anio2021 + Estadisticas.Anio2022 + Estadisticas.Anio2023),
-                Estadisticas.Anio2022 * 100 / (Estadisticas.Anio2020 + Estadisticas.Anio2021 + Estadisticas.Anio2022 + Estadisticas.Anio2023),
-                Estadisticas.Anio2023 * 100 / (Estadisticas.Anio2020 + Estadisticas.Anio2021 + Estadisticas.Anio2022 + Estadisticas.Anio2023) };
+                int[] puntos5 = { Estadisticas.Anio2020, Estadisticas.Anio2021, Estadisticas.Anio2022,Estadisticas.Anio2023 };
                 chart1.Titles.Add("#Productos Estrenados");
 
                 Series serie5 = new Series();

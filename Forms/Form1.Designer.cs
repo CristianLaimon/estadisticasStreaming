@@ -76,16 +76,16 @@
             this.buttonCerrar = new System.Windows.Forms.Button();
             this.chartTiposUsuarios = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.buttonPeliculaMasPopular = new System.Windows.Forms.Button();
             this.buttonSerieMasPopular = new System.Windows.Forms.Button();
             this.buttonPaisMasConsumo = new System.Windows.Forms.Button();
-            this.buttonPeliculaMasPopular = new System.Windows.Forms.Button();
+            this.buttonTotalTerminaron = new System.Windows.Forms.Button();
+            this.buttonTotalTipoUsuario = new System.Windows.Forms.Button();
             this.chartSerieMasPopular = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chartPeliculaMasPopular = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chartConsumoPais = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chartAnios = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.buttonTotalTipoUsuario = new System.Windows.Forms.Button();
             this.chartConsumoGenero = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.buttonTotalTerminaron = new System.Windows.Forms.Button();
             this.chartTipoProducto = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chartTerminaron = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.buttonSalir = new System.Windows.Forms.Button();
@@ -380,9 +380,12 @@
             // chartTiposUsuarios
             // 
             this.chartTiposUsuarios.BackColor = System.Drawing.Color.Transparent;
+            this.chartTiposUsuarios.BorderSkin.BackColor = System.Drawing.Color.Transparent;
+            this.chartTiposUsuarios.BorderSkin.BorderColor = System.Drawing.Color.Transparent;
             chartArea1.BackColor = System.Drawing.Color.Transparent;
             chartArea1.BackImageTransparentColor = System.Drawing.Color.Transparent;
             chartArea1.BackSecondaryColor = System.Drawing.Color.Transparent;
+            chartArea1.BorderColor = System.Drawing.Color.Transparent;
             chartArea1.Name = "ChartArea1";
             this.chartTiposUsuarios.ChartAreas.Add(chartArea1);
             this.chartTiposUsuarios.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -419,6 +422,16 @@
             this.panel2.Size = new System.Drawing.Size(968, 363);
             this.panel2.TabIndex = 2;
             // 
+            // buttonPeliculaMasPopular
+            // 
+            this.buttonPeliculaMasPopular.Location = new System.Drawing.Point(613, 291);
+            this.buttonPeliculaMasPopular.Name = "buttonPeliculaMasPopular";
+            this.buttonPeliculaMasPopular.Size = new System.Drawing.Size(73, 23);
+            this.buttonPeliculaMasPopular.TabIndex = 9;
+            this.buttonPeliculaMasPopular.Text = "Pelicula+";
+            this.buttonPeliculaMasPopular.UseVisualStyleBackColor = true;
+            this.buttonPeliculaMasPopular.Click += new System.EventHandler(this.buttonPeliculaMasPopular_Click);
+            // 
             // buttonSerieMasPopular
             // 
             this.buttonSerieMasPopular.Location = new System.Drawing.Point(872, 280);
@@ -439,15 +452,25 @@
             this.buttonPaisMasConsumo.UseVisualStyleBackColor = true;
             this.buttonPaisMasConsumo.Click += new System.EventHandler(this.buttonPaisMasConsumo_Click);
             // 
-            // buttonPeliculaMasPopular
+            // buttonTotalTerminaron
             // 
-            this.buttonPeliculaMasPopular.Location = new System.Drawing.Point(613, 291);
-            this.buttonPeliculaMasPopular.Name = "buttonPeliculaMasPopular";
-            this.buttonPeliculaMasPopular.Size = new System.Drawing.Size(73, 23);
-            this.buttonPeliculaMasPopular.TabIndex = 9;
-            this.buttonPeliculaMasPopular.Text = "Pelicula+";
-            this.buttonPeliculaMasPopular.UseVisualStyleBackColor = true;
-            this.buttonPeliculaMasPopular.Click += new System.EventHandler(this.buttonPeliculaMasPopular_Click);
+            this.buttonTotalTerminaron.Location = new System.Drawing.Point(361, 74);
+            this.buttonTotalTerminaron.Name = "buttonTotalTerminaron";
+            this.buttonTotalTerminaron.Size = new System.Drawing.Size(56, 23);
+            this.buttonTotalTerminaron.TabIndex = 7;
+            this.buttonTotalTerminaron.Text = "Totales";
+            this.buttonTotalTerminaron.UseVisualStyleBackColor = true;
+            this.buttonTotalTerminaron.Click += new System.EventHandler(this.buttonTotalTerminaron_Click);
+            // 
+            // buttonTotalTipoUsuario
+            // 
+            this.buttonTotalTipoUsuario.Location = new System.Drawing.Point(137, 84);
+            this.buttonTotalTipoUsuario.Name = "buttonTotalTipoUsuario";
+            this.buttonTotalTipoUsuario.Size = new System.Drawing.Size(56, 23);
+            this.buttonTotalTipoUsuario.TabIndex = 6;
+            this.buttonTotalTipoUsuario.Text = "Totales";
+            this.buttonTotalTipoUsuario.UseVisualStyleBackColor = true;
+            this.buttonTotalTipoUsuario.Click += new System.EventHandler(this.buttonTotalTipoUsuario_Click);
             // 
             // chartSerieMasPopular
             // 
@@ -521,16 +544,6 @@
             this.chartAnios.Text = "chart5";
             this.chartAnios.Click += new System.EventHandler(this.chartAnios_Click);
             // 
-            // buttonTotalTipoUsuario
-            // 
-            this.buttonTotalTipoUsuario.Location = new System.Drawing.Point(137, 84);
-            this.buttonTotalTipoUsuario.Name = "buttonTotalTipoUsuario";
-            this.buttonTotalTipoUsuario.Size = new System.Drawing.Size(56, 23);
-            this.buttonTotalTipoUsuario.TabIndex = 6;
-            this.buttonTotalTipoUsuario.Text = "Totales";
-            this.buttonTotalTipoUsuario.UseVisualStyleBackColor = true;
-            this.buttonTotalTipoUsuario.Click += new System.EventHandler(this.buttonTotalTipoUsuario_Click);
-            // 
             // chartConsumoGenero
             // 
             this.chartConsumoGenero.BackColor = System.Drawing.Color.Transparent;
@@ -548,16 +561,6 @@
             this.chartConsumoGenero.TabIndex = 3;
             this.chartConsumoGenero.Text = "chart4";
             this.chartConsumoGenero.Click += new System.EventHandler(this.chartConsumoGenero_Click);
-            // 
-            // buttonTotalTerminaron
-            // 
-            this.buttonTotalTerminaron.Location = new System.Drawing.Point(361, 74);
-            this.buttonTotalTerminaron.Name = "buttonTotalTerminaron";
-            this.buttonTotalTerminaron.Size = new System.Drawing.Size(56, 23);
-            this.buttonTotalTerminaron.TabIndex = 7;
-            this.buttonTotalTerminaron.Text = "Totales";
-            this.buttonTotalTerminaron.UseVisualStyleBackColor = true;
-            this.buttonTotalTerminaron.Click += new System.EventHandler(this.buttonTotalTerminaron_Click);
             // 
             // chartTipoProducto
             // 
