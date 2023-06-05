@@ -41,16 +41,18 @@
             this.comboBox1.Items.AddRange(new object[] {
             "Barras",
             "Pastel"});
-            this.comboBox1.Location = new System.Drawing.Point(97, 42);
+            this.comboBox1.Location = new System.Drawing.Point(111, 56);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 23);
+            this.comboBox1.Size = new System.Drawing.Size(138, 28);
             this.comboBox1.TabIndex = 0;
             // 
             // buttonAplicar
             // 
-            this.buttonAplicar.Location = new System.Drawing.Point(124, 71);
+            this.buttonAplicar.Location = new System.Drawing.Point(142, 95);
+            this.buttonAplicar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonAplicar.Name = "buttonAplicar";
-            this.buttonAplicar.Size = new System.Drawing.Size(75, 23);
+            this.buttonAplicar.Size = new System.Drawing.Size(86, 31);
             this.buttonAplicar.TabIndex = 1;
             this.buttonAplicar.Text = "Aplicar";
             this.buttonAplicar.UseVisualStyleBackColor = true;
@@ -59,9 +61,9 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(144, 110);
+            this.label1.Location = new System.Drawing.Point(164, 130);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 15);
+            this.label1.Size = new System.Drawing.Size(50, 20);
             this.label1.TabIndex = 2;
             this.label1.Text = "label1";
             // 
@@ -72,13 +74,12 @@
             // 
             // AOtros
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(332, 134);
+            this.ClientSize = new System.Drawing.Size(379, 179);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonAplicar);
             this.Controls.Add(this.comboBox1);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "AOtros";
             this.Text = "Tipo de Grafica";
             this.Load += new System.EventHandler(this.AOtros_Load);

@@ -33,11 +33,13 @@ namespace estadisticasStreaming.Formsitos.VentanasAjustes
             {
                 label1.Text = "Aplicado";
                 timer1.Start();
+                MessageBox.Show("Actualiza las gráficas para ver el cambio\r\nNota: Puedes presionar una gráfica para verlo o\r\ncerrar y abrir la pestaña gráficas", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Estadisticas.TipoGrafica = "Pastel";
             }
             else if (comboBox1.SelectedItem != null && comboBox1.SelectedItem.ToString() == "Barras")
             {
                 label1.Text = "Aplicado";
+                MessageBox.Show("Actualiza las gráficas para ver el cambio\r\nNota: Puedes presionar una gráfica para verlo o\r\ncerrar y abrir la pestaña gráficas", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 timer1.Start();
                 Estadisticas.TipoGrafica = "Barras";
             }
