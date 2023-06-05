@@ -111,7 +111,7 @@ namespace estadisticasStreaming
         }
         private void buttonEstadisticas_Click(object sender, EventArgs e)
         {
-            EsconderBotones();
+            VisibilidadBotones();
             Estadisticas.ReiniciarEstadisticas();
             ReiniciarCharts();
             Estadisticas.ObtenerEstadisticas(rutaArchivo, listaRegistros);
@@ -174,18 +174,18 @@ namespace estadisticasStreaming
         #endregion
 
         #region Funcionalidades
-        private void EsconderBotones()
+        private void VisibilidadBotones()
         {
             buttonInformacion.Visible = false;
             buttonEstadisticas.Visible = false;
             buttonSeleccionar.Visible = false;
             buttonSalir.Visible = false;
             panel2.Visible = true;
-            buttonTotalTipoUsuario.Visible = false;
-            buttonTotalTerminaron.Visible = false;
-            buttonPaisMasConsumo.Visible = false;
-            buttonPeliculaMasPopular.Visible = false;
-            buttonSerieMasPopular.Visible = false;
+            buttonTotalTipoUsuario.Visible = true;
+            buttonTotalTerminaron.Visible = true;
+            buttonPaisMasConsumo.Visible = true;
+            buttonPeliculaMasPopular.Visible = true;
+            buttonSerieMasPopular.Visible = true;
         }
         private void ObtenerRuta()
         {
