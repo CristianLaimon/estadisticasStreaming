@@ -246,7 +246,7 @@ namespace estadisticasStreaming.Forms
 
                 for (int i = 0; i < series5.Length; i++)
                 {
-                    serie5.Points.Add(new DataPoint(0, puntos5[i]) { LegendText = series5[i], Label = puntos5[i].ToString() + "%" });
+                    serie5.Points.Add(new DataPoint(0, puntos5[i]) { LegendText = series5[i], Label = puntos5[i].ToString() });
                 }
                 chart1.Series.Add(serie5);
             }
@@ -283,7 +283,7 @@ namespace estadisticasStreaming.Forms
 
                 for (int i = 0; i < series7.Length; i++)
                 {
-                    serie7.Points.Add(new DataPoint(0, puntos7[i]) { LegendText = series7[i], Label = puntos7[i].ToString() + "%" });
+                    serie7.Points.Add(new DataPoint(0, puntos7[i]) { LegendText = series7[i], Label = puntos7[i].ToString() });
                 }
                 chart1.Series.Add(serie7);
             }
@@ -299,7 +299,7 @@ namespace estadisticasStreaming.Forms
 
                 for (int i = 0; i < series8.Length; i++)
                 {
-                    serie8.Points.Add(new DataPoint(0, puntos8[i]) { LegendText = series8[i], Label = puntos8[i].ToString() + "%" });
+                    serie8.Points.Add(new DataPoint(0, puntos8[i]) { LegendText = series8[i], Label = puntos8[i].ToString() });
                 }
                 chart1.Series.Add(serie8);
             }
