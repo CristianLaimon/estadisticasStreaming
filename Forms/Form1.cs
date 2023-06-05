@@ -23,7 +23,6 @@ namespace estadisticasStreaming
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
-
         private void Form1_Load(object sender, EventArgs e)
         {
             #region InicializaciónFrom
@@ -221,7 +220,6 @@ namespace estadisticasStreaming
 
                 rutaArchivo = openFileDialog1.FileName;
                 ValidarDatos();
-                //Estadisticas.Activar = true;
             }
         }
 
@@ -255,7 +253,6 @@ namespace estadisticasStreaming
             chartAnios.Series.Clear();
             chartConsumoPais.Series.Clear();
             chartSerieMasPopular.Titles.Clear();
-
         }
         public void EtiquetarCharts()
         {

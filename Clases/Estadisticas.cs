@@ -39,7 +39,6 @@ namespace estadisticasStreaming.Clases
         private static Dictionary<string, int> paisYCantidad = new Dictionary<string, int>();
         private static string tipoChart = "";
         private static string tipoGrafica = "";
-        private static bool activar = false;
 
         public static int TotalUsuarios { get => totalUsuarios; set => totalUsuarios = value; }
         public static int NoStarters { get => noStarters; set => noStarters = value; }
@@ -72,7 +71,6 @@ namespace estadisticasStreaming.Clases
         public static Dictionary<string, int> PaisYCantidad { get => paisYCantidad; set => paisYCantidad = value; }
         public static string TipoChart { get => tipoChart; set => tipoChart = value; }
         public static string TipoGrafica { get => tipoGrafica; set => tipoGrafica = value; }
-        public static bool Activar { get => activar; set => activar = value; }
 
         public static void ObtenerEstadisticas(string rutaArchivo, List<Registro> listaRegistros)
         {
@@ -98,132 +96,158 @@ namespace estadisticasStreaming.Clases
                 }
             }
 
-            Estadisticas.TotalUsuarios = listaRegistros.Count;
+            TotalUsuarios = listaRegistros.Count;
 
             foreach (Registro r in listaRegistros)
             {
-                if (r.MinutosVistos <= (short)(r.Duracion * 0.1)) Estadisticas.NoStarters++;
-                else if (r.MinutosVistos < (short)(r.Duracion * .9)) Estadisticas.NoWatchers++;
-                else if (r.MinutosVistos >= (short)(r.Duracion * .9)) Estadisticas.NoCompleters++;
+                if (r.MinutosVistos <= (short)(r.Duracion * 0.1)) NoStarters++;
+                else if (r.MinutosVistos < (short)(r.Duracion * .9)) NoWatchers++;
+                else if (r.MinutosVistos >= (short)(r.Duracion * .9)) NoCompleters++;
 
-                if (r.MinutosVistos == r.Duracion) Estadisticas.VerCompleto++;
-                else Estadisticas.VerIncompleto++;
+                if (r.MinutosVistos == r.Duracion) VerCompleto++;
+                else VerIncompleto++;
 
                 if (r.Tipo == "PELICULA")
                 {
-                    Estadisticas.Peliculas++;
-                    if (Estadisticas.PeliculasYCantidad.ContainsKey(r.ProductoVisto)) Estadisticas.PeliculasYCantidad[r.ProductoVisto]++;
-                    else Estadisticas.PeliculasYCantidad.Add(r.ProductoVisto, 1);
+                    Peliculas++;
+                    if (PeliculasYCantidad.ContainsKey(r.ProductoVisto)) PeliculasYCantidad[r.ProductoVisto]++;
+                    else PeliculasYCantidad.Add(r.ProductoVisto, 1);
                 }
                 else
                 {
-                    Estadisticas.Series++;
-                    if (Estadisticas.SeriesYCantidad.ContainsKey(r.ProductoVisto)) Estadisticas.SeriesYCantidad[r.ProductoVisto]++;
-                    else Estadisticas.SeriesYCantidad.Add(r.ProductoVisto, 1);
+                    Series++;
+                    if (SeriesYCantidad.ContainsKey(r.ProductoVisto)) SeriesYCantidad[r.ProductoVisto]++;
+                    else SeriesYCantidad.Add(r.ProductoVisto, 1);
                 }
 
                 switch (r.Genero)
                 {
                     case "ROMANCE":
-                        Estadisticas.Romance++;
+                        Romance++;
                         break;
 
                     case "DRAMA":
-                        Estadisticas.Drama++;
+                        Drama++;
                         break;
 
                     case "TERROR":
-                        Estadisticas.Terror++;
+                        Terror++;
                         break;
 
                     case "SUSPENSO":
-                        Estadisticas.Suspenso++;
+                        Suspenso++;
                         break;
 
                     case "ACCION":
-                        Estadisticas.Accion++;
+                        Accion++;
                         break;
                 }
 
                 switch (r.AnioEstreno)
                 {
                     case "2020":
-                        Estadisticas.Anio2020++;
+                        Anio2020++;
                         break;
 
                     case "2021":
-                        Estadisticas.Anio2021++;
+                        Anio2021++;
                         break;
 
                     case "2022":
-                        Estadisticas.Anio2022++;
+                        Anio2022++;
                         break;
 
                     case "2023":
-                        Estadisticas.Anio2023++;
+                        Anio2023++;
                         break;
                 }
 
                 switch (r.Pais)
                 {
                     case "MEXICO":
-                        Estadisticas.Mexico++;
+                        Mexico++;
                         {
-                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
-                            else Estadisticas.PaisYCantidad.Add(r.Pais, 1);
+                            if (PaisYCantidad.ContainsKey(r.Pais)) PaisYCantidad[r.Pais]++;
+                            else PaisYCantidad.Add(r.Pais, 1);
                         }
                         break;
 
                     case "EU":
-                        Estadisticas.Eu++;
+                        Eu++;
                         {
-                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
-                            else Estadisticas.PaisYCantidad.Add(r.Pais, 1);
+                            if (PaisYCantidad.ContainsKey(r.Pais)) PaisYCantidad[r.Pais]++;
+                            else PaisYCantidad.Add(r.Pais, 1);
                         }
                         break;
 
                     case "CANADA":
-                        Estadisticas.Canada++;
+                        Canada++;
                         {
-                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
-                            else Estadisticas.PaisYCantidad.Add(r.Pais, 1);
+                            if (PaisYCantidad.ContainsKey(r.Pais)) PaisYCantidad[r.Pais]++;
+                            else PaisYCantidad.Add(r.Pais, 1);
                         }
                         break;
 
                     case "COLOMBIA":
-                        Estadisticas.Colombia++;
+                        Colombia++;
                         {
-                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
-                            else Estadisticas.PaisYCantidad.Add(r.Pais, 1);
+                            if (PaisYCantidad.ContainsKey(r.Pais)) PaisYCantidad[r.Pais]++;
+                            else PaisYCantidad.Add(r.Pais, 1);
                         }
                         break;
 
                     case "CUBA":
-                        Estadisticas.Cuba++;
+                        Cuba++;
                         {
-                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
-                            else Estadisticas.PaisYCantidad.Add(r.Pais, 1);
+                            if (PaisYCantidad.ContainsKey(r.Pais)) PaisYCantidad[r.Pais]++;
+                            else PaisYCantidad.Add(r.Pais, 1);
                         }
                         break;
 
                     case "COSTA RICA":
-                        Estadisticas.CostaRica++;
+                        CostaRica++;
                         {
-                            if (Estadisticas.PaisYCantidad.ContainsKey(r.Pais)) Estadisticas.PaisYCantidad[r.Pais]++;
-                            else Estadisticas.PaisYCantidad.Add(r.Pais, 1);
+                            if (PaisYCantidad.ContainsKey(r.Pais)) PaisYCantidad[r.Pais]++;
+                            else PaisYCantidad.Add(r.Pais, 1);
                         }
                         break;
                 }
             }
-
-            Estadisticas.PeliculaPopular = Estadisticas.PeliculasYCantidad.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
-            Estadisticas.SeriePopular = Estadisticas.SeriesYCantidad.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
-            Estadisticas.PaisMasConsumo = Estadisticas.PaisYCantidad.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
-
+            
+            PeliculaPopular = PeliculasYCantidad.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
+            SeriePopular = SeriesYCantidad.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
+            PaisMasConsumo = PaisYCantidad.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
         }
 
         public static void ReiniciarEstadisticas(ref List<string[]> seriesitas, ref List<int[]> puntitos)
         {
+            NoStarters = 0;
+            NoWatchers = 0;
+            NoCompleters = 0;
+            VerCompleto = 0;
+            VerIncompleto = 0;
+            Peliculas = 0;
+            Series = 0;
+            Romance = 0;
+            Drama = 0;
+            Terror = 0;
+            Suspenso = 0;
+            Accion = 0;
+            Anio2020 = 0;
+            Anio2021 = 0;
+            Anio2022 = 0;
+            Anio2023 = 0;
+            Mexico = 0;
+            Eu = 0;
+            Canada = 0;
+            Colombia = 0;
+            Cuba = 0;
+            CostaRica = 0;
+            PeliculaPopular = "";
+            SeriePopular = "";
+            PaisMasConsumo = "";
+            PeliculasYCantidad.Clear();
+            SeriesYCantidad.Clear();
             Estadisticas.NoStarters = 0;
             Estadisticas.NoWatchers = 0;
             Estadisticas.NoCompleters = 0;
@@ -251,6 +275,8 @@ namespace estadisticasStreaming.Clases
             Estadisticas.PaisMasConsumo = "";
             Estadisticas.PeliculasYCantidad.Clear();
             Estadisticas.SeriesYCantidad.Clear();
+            seriesitas = null;
+            puntitos = null;
             seriesitas = null;
             puntitos = null;
         }
