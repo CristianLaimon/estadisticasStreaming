@@ -7,9 +7,11 @@ namespace estadisticasStreaming
 {
     public partial class Form1 : Form
     {
-        public static Form1 Instancia { get; set; } 
+        public static Form1 Instancia { get; set; }
         private string rutaArchivo, rutaAnterior;
         private static List<Registro> listaRegistros;
+        private List<string[]> seriesitasCharts; //Los nombres de las series de los charts
+        private List<int[]> puntitosCharts; //Los puntos de las series de los charts
         private string[] series, series2, series3, series4, series5, series6, series7, series8;
         private int[] puntos, puntos2, puntos3, puntos4, puntos5, puntos6, puntos7, puntos8;
         Series serie, serie2, serie3, serie4, serie5, serie6, serie7, serie8;
@@ -25,6 +27,7 @@ namespace estadisticasStreaming
         private void Form1_Load(object sender, EventArgs e)
         {
             #region InicializaciónFrom
+
             toolStripStatusLabel1.Text = "Hecho por: Diana Yulissa Sesma Santiago y Kristan Ruiz Limon";
             openFileDialog1.Filter = "Archivos de texto(*.txt)|*.txt";
             openFileDialog1.InitialDirectory = Path.Combine(Application.StartupPath, "Data");
@@ -41,10 +44,21 @@ namespace estadisticasStreaming
             chartConsumoPais.Visible = false;
             chartPeliculaMasPopular.Visible = false;
             chartSerieMasPopular.Visible = false;
+
             #endregion
+        }
+        private void buttonEstadisticas_Click(object sender, EventArgs e)
+        {
+            EsconderBotonesPrincipales();
+            Estadisticas.ReiniciarEstadisticas(ref seriesitasCharts, ref puntitosCharts);
+            LimpiarCharts();
+            Estadisticas.ObtenerEstadisticas(rutaArchivo, listaRegistros);
+            MostrarGraficas();
+            EtiquetarCharts();
         }
 
         #region ChartsClick
+
         private void chartTiposUsuarios_Click(object sender, EventArgs e)
         {
             Estadisticas.TipoChart = "tiposUsuarios";
@@ -92,9 +106,11 @@ namespace estadisticasStreaming
             Estadisticas.TipoChart = "serieMasPopular";
             AbrirForm2();
         }
+
         #endregion
 
         #region ClickEventos
+
         private void buttonSeleccionar_Click(object sender, EventArgs e) => ObtenerRuta();
 
         private void abrirNuevoArchivoToolStripMenuItem_Click(object sender, EventArgs e) => ObtenerRuta();
@@ -115,43 +131,39 @@ namespace estadisticasStreaming
                 AjustesForm.Instancia.BringToFront();
             }
         }
-        private void buttonEstadisticas_Click(object sender, EventArgs e)
-        {
-            EsconderBotones();
-            Estadisticas.ReiniciarEstadisticas();
-            ReiniciarCharts();
-            Estadisticas.ObtenerEstadisticas(rutaArchivo, listaRegistros);
-            MostrarGraficas();
-        }
+
 
         private void buttonTotalTipoUsuario_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Startes: " + Estadisticas.NoStarters + "\r\n\r\n" +
-                "Watchers: " + Estadisticas.NoWatchers + "\r\n\r\n" +
-                "Completers: " + Estadisticas.NoCompleters,
+                            "Watchers: " + Estadisticas.NoWatchers + "\r\n\r\n" +
+                            "Completers: " + Estadisticas.NoCompleters,
                 "Total Tipos de Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void buttonTotalTerminaron_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Si Terminaron: " + Estadisticas.VerCompleto + "\r\n\r\n" +
-                "No Terminaron: " + Estadisticas.VerIncompleto + "\r\n\r\n",
+                            "No Terminaron: " + Estadisticas.VerIncompleto + "\r\n\r\n",
                 "Total Terminaron", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void buttonPaisMasConsumo_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Pais: " + Estadisticas.PaisMasConsumo, "Pais que Mas Consume", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Pais: " + Estadisticas.PaisMasConsumo, "Pais que Mas Consume", MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
         }
 
         private void buttonPeliculaMasPopular_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Pelicula: " + Estadisticas.PeliculaPopular, "Pelicula Mas Popular", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Pelicula: " + Estadisticas.PeliculaPopular, "Pelicula Mas Popular", MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
         }
 
         private void buttonSerieMasPopular_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Serie: " + Estadisticas.SeriePopular, "Serie Mas Popular", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Serie: " + Estadisticas.SeriePopular, "Serie Mas Popular", MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
         }
 
         private void buttonCerrar_Click(object sender, EventArgs e)
@@ -174,13 +186,16 @@ namespace estadisticasStreaming
 
         private void buttonSalir_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("¿Desea Salir?", "¿Salir?", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show("¿Desea Salir?", "¿Salir?", MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Question);
             if (result == DialogResult.OK) Application.Exit();
         }
+
         #endregion
 
         #region Funcionalidades
-        private void EsconderBotones()
+
+        private void EsconderBotonesPrincipales()
         {
             buttonInformacion.Visible = false;
             buttonEstadisticas.Visible = false;
@@ -192,7 +207,9 @@ namespace estadisticasStreaming
             buttonPaisMasConsumo.Visible = false;
             buttonPeliculaMasPopular.Visible = false;
             buttonSerieMasPopular.Visible = false;
+
         }
+
         private void ObtenerRuta()
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -207,6 +224,7 @@ namespace estadisticasStreaming
                 //Estadisticas.Activar = true;
             }
         }
+
         private void ObtenerInfo()
         {
             MessageBox.Show(
@@ -217,7 +235,7 @@ namespace estadisticasStreaming
                 , "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        public void ReiniciarCharts()
+        public void LimpiarCharts()
         {
             listaRegistros.Clear();
             buttonCerrar.Visible = true;
@@ -239,6 +257,25 @@ namespace estadisticasStreaming
             chartSerieMasPopular.Titles.Clear();
 
         }
+        public void EtiquetarCharts()
+        {
+            chartTiposUsuarios.Visible = true;
+            chartTiposUsuarios.Titles.Add("Tipos de Usuarios%");
+            chartTerminaron.Visible = true;
+            chartTerminaron.Titles.Add("Terminaron%");
+            chartTipoProducto.Visible = true;
+            chartTipoProducto.Titles.Add("Consumo Tipo de Producto%");
+            chartConsumoGenero.Visible = true;
+            chartConsumoGenero.Titles.Add("Consumo por Genero%");
+            chartAnios.Visible = true;
+            chartAnios.Titles.Add("#Productos Estrenados");
+            chartConsumoPais.Visible = true;
+            chartConsumoPais.Titles.Add("Consumo por Pais%");
+            chartPeliculaMasPopular.Visible = true;
+            chartPeliculaMasPopular.Titles.Add("#Peliculas");
+            chartSerieMasPopular.Visible = true;
+            chartSerieMasPopular.Titles.Add("#Series");
+        }
 
         public void AbrirForm2()
         {
@@ -251,6 +288,7 @@ namespace estadisticasStreaming
         #endregion
 
         #region Datos
+
         private void ValidarDatos()
         {
             bool compatible = true;
@@ -270,13 +308,15 @@ namespace estadisticasStreaming
                     }
                 }
             }
+
             if (compatible) ImprimirDatos();
             else
             {
                 rutaArchivo = rutaAnterior;
                 buttonInformacion.Enabled = false;
                 buttonEstadisticas.Enabled = false;
-                MessageBox.Show("Ha seleccionado un archivo con un formato incompatible", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ha seleccionado un archivo con un formato incompatible", "Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -288,7 +328,9 @@ namespace estadisticasStreaming
             toolStripStatusLabel1.Text = rutaArchivo;
             int fila = 0;
 
-            using (StreamReader lector = new StreamReader(rutaArchivo)) //Esta es la segunda vez que lo lee ahora si completo ya habiendo verificado que podrá leerlo completo
+            using (StreamReader
+                   lector = new StreamReader(
+                       rutaArchivo)) //Esta es la segunda vez que lo lee ahora si completo ya habiendo verificado que podrá leerlo completo
             {
                 while (!lector.EndOfStream)
                 {
@@ -300,19 +342,32 @@ namespace estadisticasStreaming
                     {
                         dataGridView1.Rows[fila].Cells[i].Value = lineaElementos[i];
                     }
+
                     fila++;
                 }
             }
         }
+
         #endregion
+
+
 
 
         private void MostrarGraficas()
         {
-            //------------------------------------------------------------------------------------------------------
+            Estadisticas.CalcularSeriesyPuntos(out seriesitasCharts, out puntitosCharts);
+
 
             if (Estadisticas.TipoGrafica == "" || Estadisticas.TipoGrafica == "Barras")
             {
+                foreach (String[] serie in seriesitasCharts)
+                {
+                    serie.ChartType = SeriesChartType.Column;
+
+                }
+
+
+
                 for (int i = 0; i < series.Length; i++)
                 {
                     serie = chartTiposUsuarios.Series.Add(series[i]); //Se crea la serie
@@ -454,8 +509,8 @@ namespace estadisticasStreaming
                     serie8.Points.Add(new DataPoint(0, puntos8[i]) { LegendText = series8[i], Label = puntos8[i].ToString() + "%" });
                 }
                 chartSerieMasPopular.Series.Add(serie8);
+
             }
-            //------------------------------------------------------------------------------------------------------
         }
     }
 }
